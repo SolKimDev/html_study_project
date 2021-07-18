@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 04</title>
+    <style>
+        table, th, td {
+			border:1px solid #ccc;
+		}	
+        strong {
+            color:cornflowerblue;
+        }
+        a {
+            text-decoration: none;
+        }
+        th, td {
+            margin: auto;
+        }
+        th {
+            text-align: center;
+        }
+        tr > td:first-child {
+			text-align: center;
+            margin: auto;
+		}
+        .subm{
+            display: block;
+            background-color: #fff;
+            border: 1px solid #dedede;
+            cursor: pointer;
+            padding: 5px 10px 6px 7px;
+        }
+        .subm img{
+            border:0;
+            padding: 0;
+            width: 16px;
+            height: 16px;
+        }
+        .subm:hover{
+            background-color: #e6efc2;
+            border:1px solid #c6d880;
+            color: #529215;
+        }
+        .man {
+            margin: auto;
+            border: 0.5px solid rgba(121, 121, 121, 0.5);
+            padding: 10px 30px 10px 20px;
+            display: inline-block;
+            background-color: rgba(218, 218, 218, 0.3);
+        }
+        .man em{
+            font-weight: bold;
+        }
+        .detail li{
+            margin: auto;
+        }
+        .meter li{
+            list-style: none;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h1>HTML 태그 정리하기</h1>
+    <h3>한 번도 본 적 없던 태그들을 위주로 정리합니다.</h3>
+    <small>(기억이 잘 안 나는 녀석들도 포함합니다.)</small>
+    <br> <br>
+    <table style="border:1px solid #ccc">
+        <tr>
+            <td style="text-align: unset;">
+                <h3>Lists</h3>
+                <ol>
+                    <li><a href="#show1">챕터 4-1. 폼 만들기</a></li>
+                    <li><a href="#show2">챕터 4-2. input 태그 상세</a></li>
+                    <li><a href="#show3">챕터 4-3. input 태그의 다양한 속성</a></li>
+                    <li><a href="#show4">챕터 4-4. 여러 데이터 나열해 보여 주기</a></li>
+                    <li><a href="#show5">챕터 4-5. 기타 다양한 폼 요소들</a></li>
+                </ol>
+            </td>
+        </tr>
+    </table>
+    <br>
+
+    <ol>
+        <li>
+            <div title="chapter 04-1. Making Forms">
+                <h4><a href=#one id="show1" style="text-decoration:none" onclick="if(hide1.style.display=='none')
+                {hide1.style.display='';show1.innerText='챕터 4-1. 폼 만들기 ▽'}
+                else {hide1.style.display='none'; show1.innerText='챕터 4-1. 폼 만들기 ▷'}">챕터 4-1. 폼 만들기 ▽</a></h4>
+                <hr>
+                <div id="hide1" style="display: show">
+                    폼은 프엔에서 만들고, 백엔드는 ASP/PHP/JSP 등을 이용해 DB로 처리한 뒤 결과값만 돌려받는다. <br>
+                    <ul>
+                        <li><p><strong>&lang;form&rang;</strong> 태그는 폼을 만드는 태그로, 기본형은 다음과 같습니다.</p></li>
+                        <div class="man"><em>&lang; form [속성="속성 값"] &rang; 여러 폼 요소 &lang; /form &rang;</em></div> <br>
+                        form을 이용하는 방법은, form 태그로 input 태그와 같이 form을 구성하는 하위 태그를 묶은 뒤, form 속성에 백엔드 속성을 연동하는 방법으로 사용합니다.<br>
+                        <br>
+                        <b>form 태그의 속성</b> <br>
+                        <table style="width :60%; border:1px solid #ccc;">
+                            <tr>
+                                <th>속성</th>
+                                <th colspan="2">설명</th>
+                            </tr>
+                            <tr>
+                                <td rowspan="3">method</td>
+                                <td colspan="2">사용자가 입력한 내용들을 서버 쪽 프로그램으로 어떻게 넘겨줄지 지정합니다.</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2" style="width : 80px">속성 값</td>
+                                <td>get - 주소 표시줄에 사용자가 입력한 내용이 그대로 드러납니다. 256byte~4096byte까지의 데이터만 서버로 넘길 수 있습니다.</td>
+                            </tr>
+                            <tr>
+                                <td>post - 대부분 이 방식을 사용합니다. 사용자의 입력을 표준 입력(standard input)으로 넘겨주기 때문에 입력 내용의
+                                     길이에 제한을 받지 않고 사용자가 입력한 내용이 드러나지 않습니다.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>name</td>
+                                <td colspan="2">폼의 이름을 지정합니다. 한 문서 안에 여러 개의 &lang;form&rang; 태그가 있을 경우, 폼들을 구분하기 위해 사용합니다.</form></td>
+                            </tr>
+                            <tr>
+                                <td>action</td>
+                                <td colspan="2">&lang;form&rang; 태그 안의 내용들을 처리해 줄 서버 상의 프로그램을 지정합니다.</td>
+                            </tr>
+                            <tr>
+                                <td>target</td>
+                                <td colspan="2">action 속성에서 지정한 스크립트 파일을 현재 창이 아닌 다른 위치에 열도록 지정합니다.</td>
+                            </tr>
+                        </table>
+                        + autocomplete 속성 : 자동 완성 기능으로, on/off 설정이 가능하다. <br>
+                        <br>
+                        <br>
+                        <b>폼 태그의 하위 태그</b>
+                        <ul>
+                            <li><p><strong>&lang;input&rang;</strong>태그는 폼을 통해 무엇인가를 입력받고자 할 때 이용됩니다. (버튼 혹은 입력창 생성)</p></li>
+                            input 태그에 대해 자세한 사항은 <b><a href="#0402">이곳</a></b>에서 확인할 수 있습니다.
+                            <form id="#formsample1" action="#formsample1" >
+                                <input type="text" title="검색">        <!-- 검색 입력창 -->
+                                <input type="submit" value="검색">      <!-- 검색 버튼 -->
+                            </form> <br>
+                        </ul>
+                        <li><p><strong>&lang;label&rang;</strong>태그는 폼 요소에 레이블을 붙일 수 있다.</p></li>
+                        <label> 레이블 <input type="text"></label> <br>
+                        <br>
+                        <b>레이블의 기본형은 아래와 같다.</b> <br><br>
+                        <div class="man">
+                            <em>&lang; label [속성="속성 값"] &rang; 레이블 &lang; /label &rang;</em>  또는<br><br>
+                            <em>&lang; label for="id이름" &rang; 레이블 &lang; /label &rang; </em> <br>
+                            <em>&lang; input id="id이름" [속성 = "속성 값"]&rang;</em>
+                        </div> <br><br>
+                        label 태그에서 주의해야 할 점은, label 태그는 해당 input과 연동되어 있어, 라벨 텍스트를 클릭한 경우에도 폼을 클릭한 것과 마찬가지로 취급됩니다.<br>
+                        따라서, label 태그는 라디오버튼과 같이 사용하면 좋은 조합이 될 수 있습니다.
+                        <li><p><strong>&lang;fieldset&rang;</strong>태그는 <strong>&lang;legend&rang;</strong> 태그와 묶어 사용할 수 있습니다. <br>
+                        fieldset 태그는 태그 안의 폼을 하나의 영역으로 테두리를 그어 묶어 주고, legend 태그는 해당 그룹에 제목을 붙여줍니다.</p>
+                        <fieldset style="width: 20%;">
+                            <legend>Legend Area</legend>
+                            <ul>
+                                <li>
+                                    <label for="labelsample1">라벨명 1</label>
+                                    <input type="text" id="labelsample1">
+                                </li>
+                                <li>
+                                    <label for="labelsample2">라벨명 2</label>
+                                    <input type="text" id="labelsample2">
+                                </li>
+                            </ul>
+                        </fieldset>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div title="chapter 04-2. Input Tags">
+                <h4><a href=#two id="show2" style="text-decoration:none" onclick="if(hide2.style.display=='none')
+                {hide2.style.display='';show2.innerText='챕터 4-2. input 태그 상세 ▽'}
+                else {hide2.style.display='none'; show2.innerText='챕터 4-2. input 태그 상세 ▷'}">챕터 4-2. input 태그 상세 ▽</a></h4>
+                <hr>
+                <div id="hide2" style="display: show;">
+                    <a name="0402"><p>input 태그는 type 속성을 이용해 인풋박스의 유형을 바꾸며, 중복 이용되는 경우가 많으므로, id 속성을 이용해 폼 구성 요소를 구분할 것이 권장됩니다. <br>
+                    ex) <em>&lang; input type="text" id="user-name" size="10" &rang;</em></p> </a>
+                    <b>type 속성의 종류</b>
+                    <ul>
+                        <li><a href="#hidden">hidden</a> : 사용자에게는 보이지 않지만 서버로 넘겨지는 값을 가집니다. <input type="hidden"></input></li>
+                        <li><a href="#text">text</a> : 한 줄짜리 텍스트를 입력할 수 있는 텍스트 상자를 넣습니다. <input type="text"></li>
+                        <li><a href="#textvariations">search</a> : 검색 상자를 넣습니다. 최신 브라우저의 경우, 'X'키를 통해 검색 기록을 삭제할 수 있습니다.<input type="search"></li>
+                        <li><a href="#textvariations">tel</a> : 전화번호 입력 필드를 넣습니다. 사용자 입력 값을 확인하지는 않으나, 해당 입력값이 전화번호임을 인식할 수 있도록 하여, 모바일 접근 시 전화번호 입력 키보드 UI를 제공합니다. <input type="tel"></li>
+                        <li><a href="#textvariations">url</a> : url 주소를 입력할 수 있는 필드를 넣습니다. <mark>모바일로 접근 시 웹 전용 키보드 UI를 제공</mark>합니다.<input type="url"></li>
+                        <li><a href="#textvariations">email</a> : 메일 주소를 입력할 수 있는 필드를 넣습니다. 이 필드를 이용하면, <mark>입력한 값이 메일 주소 형식에 맞는지 확인</mark>할 수 있습니다.<input type="email"></li>
+                        <li>password : 패스워드를 입력할 수 있는 필드를 넣습니다. <input type="password"></li>
+                        <li><a href="#timetype">datetime</a> : 국제 표준시(UTC)로 설정된 날짜와 시간(연, 월, 일, 시, 분, 초, 분할 초)를 넣습니다. <input type="datetime"></li>
+                        <li><a href="#timetype">datetime-local</a> : 사용자가 있는 지역을 기준으로 날짜와 시간(연, 월, 일, 시, 분, 초, 분할 초)을 넣습니다. <input type="datetime-local"></li>
+                        <li><a href="#datetype">date</a> : 사용자 지역을 기준으로 날짜(연, 월, 일)을 넣습니다. <input type="date"></li>
+                        <li><a href="#datetype">month</a> : 사용자 지역을 기준으로 날짜(연, 월)를 넣습니다. <input type="month"></li>
+                        <li><a href="#datetype">week</a> : 사용자 지역을 기준으로 날짜(연, 주)를 넣습니다. <input type="week"></li>
+                        <li><a href="#timetype">time</a> : 사용자 지역을 기준으로 시간(시, 분, 초, 분할 초)을 넣습니다. <input type="time"></li>
+                        <li>number : 숫자를 조절할 수 있는 화살표(스핀 박스)를 넣습니다. <input type="number"></li>
+                        <li><a href="#range">range</a> : 숫자를 조절할 수 있는 슬라이드 막대를 넣습니다. <input type="range"></li>
+                        <li><a href="#color">color</a> : 색상 표를 넣습니다. <input type="color"></li>
+                        <li><a href="#radiocheck">checkbox</a> : 주어진 항목에서 <mark>2개 이상 선택 가능한</mark> 체크박스를 넣습니다. <input type="checkbox" name="check_sample"> <input type="checkbox" name="check_sample"> <input type="checkbox" name="check_sample"></li>
+                        <li><a href="#radiocheck">radio</a> : 주어진 항목에서 <mark>1개만 선택할 수 있는</mark> 라디오 버튼을 넣습니다. <input type="radio" name="radio_sample"> <input type="radio" name="radio_sample"> <input type="radio" name="radio_sample"></li>
+                        <li>file : 파일을 첨부할 수 있는 버튼을 넣습니다. 제공되는 UI는 브라우저에 따라서 달라지므로 주의가 필요합니다.<input type="file"></li>
+                        <li>submit : 서버 전송 버튼을 넣습니다. 입력된 내용은 form 태그에서 action 속성으로 연결된 프로그램에서 처리됩니다.<input type="submit"></li>
+                        <li><a href="#image">image</a> : submit 버튼 대신 사용할 이미지를 넣습니다. <input type="image"></li>
+                        <li>reset : 리셋 버튼을 넣습니다. <input type="reset"></li>
+                        <li><a href="#button">button</a> : 버튼을 넣습니다. <input type="button" value="버튼"></li>
+                    </ul> 
+                    <br><br>
+                    <b>type 속성의 상세</b>
+                    <br>
+                    <ul>
+                        <li><p><a name="hidden"><strong>hidden</strong>필드는 화면상의 폼에는 보이지 않지만, 사용자가 입력을 마치고 폼을 서버로 전송할 때 서버로 함께 전송되는 요소입니다. <br>
+                            보통 사용자에게 굳이 보여 줄 필요는 없으나, 관리자 입장에서 필요한 것들을 hidden 속성을 이용하여 전달합니다.<br><br>
+                            hidden 태그의 기본값은 다음과 같습니다.<br>
+                            <div class="man"><em>&lang; input type="hidden" name='이름" value="서버로 넘길 값" &rang;</em></div><br></a></p></li>
+                        <li><p><a name="text"><strong>text</strong>필드는 한 줄짜리 일반 텍스트를 입력하는 필드입니다. <br>
+                            폼에서 가장 많이 사용하는 요소로 주로 아이디나 이름, 주소 등 텍스트를 입력할 때 사용하며, 기본형은 다음과 같습니다.<br><br>
+                            <div class="man"><em>&lang; input type="text" [속성="속성 값"] &rang;</em></div><br>
+                            <br>
+                            텍스트 필드에서 사용할 수 있는 속성은 다음과 같습니다. <br>
+                            <ul>
+                                <li>name : 텍스트 필드를 구별할 수 있도록 이름을 붙입니다.</li>
+                                <li>size :텍스트 필드의 길이를 지정하여 화면에 몇 글자가 보이도록 할 것인지를 지정합니다.</li>
+                                <li>value : 텍스트 필드 요소가 화면에 표시될 때 텍스트 필드 부분에 표시될 내용입니다.</li>
+                                <li>maxlength : 텍스트 필드에 입력할 수 있는 최대 문자 개수를 지정합니다.</li>
+                            </ul>
+                            </a></p></li>
+                        <li><p><a name="textvariations"><strong>search, url, email, tel</strong>과 같은 태그들은, <mark>text 필드에서 각 정보에 맞추어 분화</mark>된 필드 타입입니다.<br>
+                        따라서, 이들은 모두 <mark>텍스트 필드와 같은 속성을 사용</mark>한다는 특징이 있습니다.</a></p></li>
+                        <li><p><a name="range"><strong>range</strong>필드는 슬라이드 막대를 움직여 숫자 값을 입력하게 하나, 일부 브라우저에서는 일반 텍스트 상자로 표시될 수 있습니다.<br><br>
+                        range 태그의 기본값은 다음과 같습니다.<br>
+                        <div class="man"><em>&lang; input type="range" [속성="속성 값"] &rang;</em></div><br>
+                        <br>
+                        레인지 필드에서 사용할 수 있는 속성은 다음과 같습니다. <br>
+                        <ul>
+                            <li>min : 필드에 입력할 수 있는 최솟값을 지정합니다. 기본값은 0입니다.</li>
+                            <li>max : 필드에 입력할 수 있는 최댓값을 지정합니다. 기본값은 100입니다.</li>
+                            <li>step : 짝수나 홀수 등, 특정 숫자로 제한하고자 할 때 숫자 간격을 지정할 수 있습니다. 기본값은 1이며, 생략할 수 있습니다.</li>
+                            <li>value : 필드에 표시할 초기값입니다.</li>
+                        </ul></a></p></li>
+                        <li><p><a name="radiocheck"><strong>radio</strong>필드와 <strong>checkbox</strong>필드는 선택 가능한 항목의 갯수가 다르다는 점만 빼면, 사용법이 비슷합니다.<br>
+                        radio 태그와 checkbox 태그의 기본값은 다음과 같습니다.<br>
+                        <div class="man"><em>&lang; input type="radio | checkbox" [속성="속성 값] &rang;</em></div><br>
+                        <br>
+                        라디오버튼과 체크박스에서 사용할 수 있는 속성은 다음과 같습니다. <br>
+                        <ul>
+                            <li>name : 라디오버튼이나 체크박스가 여러 개 있을 경우, 서버의 폼 프로그램에서 라디오버튼이나 체크박스를 구분하기 위해 이름을 지정합니다.<br>
+                                라디오 버튼은 여러 개 중에서 하나만 선택하는 것이기 때문에 관련있는 그룹끼리는 name 속성을 똑같이 지정해야 합니다.</li>
+                            <li>value : 선택한 라디오 버튼이나 체크박스를 서버로 알려 줄 때 넘길 값을 지정합니다. 이 값은 영문이거나 숫자여야 하며 필수 속성입니다.</li>
+                            <li>checked : 라디오 버튼의 항목들은 처음에 아무것도 선택되지 않은 상태로 화면에 표시되는데, 기본으로 선택해 놓을 항목이 있다면 checked 속성을 사용해야 합니다.</li>
+                        </ul></a></p></li>
+                        <li><p><a name="color"><strong>color</strong>필드는 js를 이용할 필요 없이 사용자가 선택 가능한 색상표를 제공합니다. 기본형은 다음과 같습니다.<br>
+                        <div class="man"><em>&lang; input type="color" [value="기본 색" [속성="속성 값"] &rang;</em></div></a></p></li>
+                        <li><p><a name="datetype"><strong>date, month, week</strong>는 날짜 유형을 표시하기 위한 필드입니다.<br>
+                            브라우저 및 플랫폼별로 입력 형식 및 입력 UI는 다르게 적용될 수 있으며, 지원되지 않는 경우에는 텍스트 필드가 표시됩니다. <br>
+                            <br>
+                            기본형은 아래와 같습니다.<br>
+                            <div class="man"><em>&lang; input type="date | month | week" [value="기본 값" 속성="속성 값"] &rang;</em></div></a></p></li>
+                        <li><p><a name="timetype"><strong>time, datetime, datetime-local</strong>은 날짜 및 시간 유형을 지정할 수 있는 필드입니다.<br>
+                            시간만 지정할 경우 time을 사용하고, 날짜와 시간을 모두 지정하려면 datetime 계열 필드를 사용합니다.<br>
+                            type="datetime"일 경우, 날짜와 시간 문자 뒤에 timezone을 함께 표시해야 합니다.<br>
+                            UTC 기준일 경우 Z라고 기입하면 되며, +dd:dd나 -dd:dd처럼 시간의 차이를 직접 기입해도 됩니다.
+                            <br>
+                            기본형은 아래와 같습니다.<br>
+                            <div class="man"><em>&lang; input type="time | datetime | datetime-local" [value="기본 값" 속성="속성 값] &rang;</em></div><br>
+                            <br>
+                            시간 유형 필드에서 공통으로 사용할 수 있는 속성들은 다음과 같습니다.<br>
+                            <ul>
+                                <li>min : 날짜나 시간의 최솟값을 지정합니다.</li>
+                                <li>max : 날짜나 시간의 최댓값을 지정합니다.</li>
+                                <li>step : 스핀 박스의 화살표를 누를 때마다 날짜나 시간을 얼마나 조절할지를 지정합니다.</li>
+                                <li>value : 화면에 표시할 초기값을 지정합니다. type="time"일 경우, 시간은 00:00부터 23:59까지 입력하고, type="datetime" 계열일 경우 날짜 다음에 키워드 T를 쓰고 24시간제로 시간을 지정합니다.</li>
+                            </ul></a></p></li>
+                        <li><p><a name="image"><strong>image</strong>필드는 버튼 대신 이미지를 사용할 수 있습니다. 기본형은 다음과 같습니다.<br>
+                            <div class="man"><em>&lang; input type="image" src="경로" alt="대체 텍스트" [속성="속성 값"] &rang;</em></div></a></p></li>
+                        <li><p><a name="button"><strong>button</strong>필드는 기능이 없는 버튼이기 때문에, onclick 속성을 이용해 스크립트 함수 등을 연결해주어야만 합니다.<br><br>
+                            기본형은 다음과 같습니다.<br>
+                            <div class="man"><em>&lang; input type="button" [value="버튼 내용"] [속성="속성 값"] &rang;</em></div></a></p></li>                       
+                    </ul>
+                </div>
+            </div>
+            <div title="chapter 04-3. Input Properties">
+                <h4><a href="#three" id="show3" style="text-decoration:none" onclick="if(hide3.style.display=='none')
+                {hide3.style.display='';show3.innerText='챕터 4-3. input 태그의 다양한 속성 ▽'}
+                else {hide3.style.display='none'; show3.innerText='챕터 4-3. input 태그의 다양한 속성 ▷'}">챕터 4-3. input 태그의 다양한 속성 ▽</a></h4>
+                <hr>
+                <div id="hide3" style="display: show;">
+                    <p>이번 절에서는 input 태그에 대한 상세 속성들을 확인합니다.</p>
+                    <ul class="detail">
+                        <li><strong>autofocus</strong> 속성은 페이지가 자바스크립트를 이용할 필요 없이 페이지가 로드된 직후 텍스트 필드에 대해 오토포커싱 될 수 있도록 합니다.<br>
+                        ex ) <em>&lang; input type="text" id="uname" autofocus required &rang;</em></li>
+                        <li><strong>placeholder</strong> 속성은 텍스트 필드에 대해 플레이스홀더를 제공합니다.<br>
+                        ex ) <em>&lang; input type="text" id="uid" placeholder="하이픈없이 입력" &rang;</em></li>
+                        <li><strong>readonly</strong> 속성은 텍스트 필드를 읽기 전용으로 지정합니다. <br>
+                            readonly 속성은 bool type이기 때문에 readonly="true | false"와 같이 지정해주어야 합니다.<br>
+                            또 다른 사용법으로, readonly="readonly"라고 지정하거나, readonly만 이용할 경우 readonly="true"와 같이 인식합니다.</li>
+                        <li><strong>required</strong> 속성은 해당 필드를 필수적으로 입력해야만 하는 필드로 지정합니다.<br>
+                            <form>
+                                <label for="required">입력하세요</label>
+                                <input type="text" id="required" placeholder="필수 입력 필드입니다." required>
+                                <input type="submit" id="required">
+                            </form>
+                            필수 필드는 브라우저에서 직접 체크하는 것이므로, 오류 메시지 내용은 브라우저들마다 다르게 나타납니다.<br>
+                            required 속성은 bool type이기 때문에 required="required", 또는 required라고만 입력하면 됩니다.</li>
+                        <li><strong>min, max, step</strong> 속성은 각각 해당 필드의 최대, 최소값, 그리고 숫자가 변화하는 간격을 지정합니다.<br>
+                            해당 옵션은 input 태그의 유형이 date이거나 datetime, datetime-local, month, week, time, number, range일 경우 사용 가능합니다.</li>
+                        <li><strong>size, minlength, maxlength</strong> 속성은 텍스트의 길이를 조절하는 속성입니다.<br>
+                            size속성은 한 줄짜리 텍스트 필드에서 화면에 보이는 글자의 최대 수를 지정합니다.<br>
+                            minlength, maxlength 속성은 사용자가 입력해야 할 최대/최소 글자수를 지정합니다.</li>
+                        <li><strong>formaction</strong> 속성은 실행할 프로그램을 연결합니다.<br>
+                            type="submit"이나 type="image"일 때 사용할 수 있습니다.</li>
+                        <li><strong>formenctype</strong> 속성은 서버로 폼을 전송했을 때 폼 데이터를 어떤 방식으로 해석할 것인지 지정합니다.<br>
+                            type="submit"이나 type="image"일 때 사용할 수 있습니다.</li>
+                        <li><strong>formmethod</strong> 속성은 서버로 폼을 전송하는 방식(get, post 등)을 지정합니다.<br>
+                            이미 form 태그 안에서 지정한 방식이 있어도 그 방식은 무시됩니다.</li>
+                        <li><strong>formnovalidate</strong> 속성은 form 태그 안에 novalidate라는 속성이 있어서 서버로 전송할 때 폼 데이터가 vaidate한지의 여부를 표시할 수 있는데,
+                            input 태그 안에서도 formnovalidate 속성을 이용해 유효성 여부를 표시할 수 있습니다.</li>
+                        <li><strong>formtarget</strong> 속성은 폼 데이터를 서버로 전송한 후 서버의 응답을 어디에 표시할 것인지 타깃을 지정합니다.</li>
+                        <li><strong>height, width</strong> 속성은 type="image"인 경우 이미지의 너비와 높이를 지정합니다.</li>
+                        <li><strong>list</strong> 속성은 &lang;datalist&rang;에 미리 정의해 놓은 옵션 값을 &lang;input&rang;안에 나열해 보여줍니다.<br>
+                            자세한 내용은 <b><a href="#datalist">이곳</a></b>에서 확인할 수 있습니다.</li>
+                        <li><strong>multiple</strong> 속성은 type="email"이나 type="file"인 경우 두 개 이상의 값을 입력할 수 있도록 합니다. <br>
+                            이를 이용하려면 input 태그 안에 속성 이름만 표시하면 됩니다.</li>
+                    </ul>
+                </div>
+            </div>
+            <div title="chapter 04-4. Multiple Data">
+                <h4><a href="#four" id="show4" style="text-decoration:none" onclick="if(hide4.style.display=='none')
+                    {hide4.style.display='';show4.innerText='챕터 4-4. 여러 데이터 나열해 보여 주기 ▽'}
+                    else {hide4.style.display='none'; show4.innerText='챕터 4-4. 여러 데이터 나열해 보여 주기 ▷'}">챕터 4-4. 여러 데이터 나열해 보여 주기 ▽</a></h4>
+                    <hr>
+                <div id="hide4" style="display: show;">
+                    <p>이번 절에서는 input 태그가 아닌 다른 태그를 사용해 한 줄짜리 데이터가 아닌 여러 데이터를 나열해 보여 주고 사용자가 선택할 수 있도록 하는 폼 요소들을 살펴봅니다.</p>
+                    <br>
+                    <b>드롭다운 목록 만들기</b><br><br>
+                    드롭다운 목록은 <strong>&lang;select&rang;</strong>태그와 <strong>&lang;option&rang;</strong>태그를 이용해 표시합니다.<br>
+                    select 태그로 드롭다운 목록의 범위를 지정하고, 그 안에 option 태그를 사용해 원하는 항목들을 추가합니다.<br>
+                    마지막으로 option 태그에는 value 속성을 이용해 서버로 넘겨주기 위한 값을 지정하기만 하면 됩니다.<br>
+                    <br>
+                    드롭다운 목록을 만들기 위한 기본형은 다음과 같습니다.<br>
+                    <br>
+                    <div class="man">
+                        <em>&lang; select 속성="속성 값" &rang;<br>
+                            &nbsp; &nbsp; &nbsp; &nbsp; &lang; option value ="값" [속성="속성 값"] &rang; 내용1 &lang; /option &rang; <br>
+                            &nbsp; &nbsp; &nbsp; &nbsp; &lang; option value ="값" [속성="속성 값"] &rang; 내용1 &lang; /option &rang; <br>
+                            &nbsp; &nbsp; &nbsp; &nbsp; &lang; option value ="값" [속성="속성 값"] &rang; 내용1 &lang; /option &rang; <br>
+                            &nbsp; &nbsp; &nbsp; &nbsp; ... <br>
+                            &lang; /select &rang;
+                        </em>
+                    </div> <br>
+                    <ul class="detail">
+                        <li><p><strong>&lang;select&rang;</strong>태그를 사용해 만든 드롭다운 목록은 기본적으로 한 가지 옵션이 표시되고, 화살표를 클릭해 나머지 옵션을 살펴본 후 필요한 한 가지 항목을 선택할 수 있습니다. <br>
+                        이 때, size 속성이나 multiple 속성을 이용하여 드롭다운 목록의 크기나 선택할 항목의 개수를 조절할 수 있습니다. <br>
+                        <ul>
+                            <li>size : 화면에 표시될 드롭다운 메뉴의 항목 개수를 지정합니다. 브라우저에 따라, size에서 지정한 개수+1개의 옵션이 표시되기도 합니다.<br>
+                                size 0, 혹은 size 지정 안할 경우 크롬에서 size 1과 같이 동작합니다. 다른 브라우저에서도 그런지는 조사가 필요합니다. 
+                                <label for="size">size=3</label>
+                                <select size=3 id="size">
+                                    <option>항목 1</option>
+                                    <option>항목 2</option>
+                                    <option>항목 3</option>
+                                    <option>항목 4</option>
+                                    <option>항목 5</option>
+                                    <option>항목 6</option>
+                                </select>
+                            </li>
+                            <li>multiple : 브라우저 화면에 여러 개의 옵션이 함께 표시되면서, Ctrl 키를 누른 상태로 드롭다운 메뉴에 있는 여러 항목을 선택할 수 있게 합니다.
+                                <label for="multiple">multiple</label>
+                                <select size=3 id="multiple" multiple>
+                                    <option>항목 1</option>
+                                    <option>항목 2</option>
+                                    <option>항목 3</option>
+                                    <option>항목 4</option>
+                                    <option>항목 5</option>
+                                    <option>항목 6</option>
+                                </select>
+                            </li>
+                        </ul></p></li>
+                        <li><p><strong>&lang;option&rang;</strong>태그는 드롭다운 목록에 표시되는 옵션들에 대해 지정하는 태그입니다.<br>
+                            option 태그에서 사용되는 속성들은 다음과 같습니다.<br>
+                            <ul>
+                                <li>value : 옵션을 선택했을 때 서버로 넘겨질 값을 지정합니다.</li>
+                                <li>selected : 화면에 표시될 때 기본으로 선택되어 있는 옵션을 지정합니다.
+                                    <label for="selected">selected 항목 3</label>
+                                    <select size=1 id="selected">
+                                        <option>항목 1</option>
+                                        <option>항목 2</option>
+                                        <option selected>항목 3</option>
+                                        <option>항목 4</option>
+                                        <option>항목 5</option>
+                                        <option>항목 6</option>
+                                    </select>
+                                </li>
+                            </ul></p></li>
+                        <li><p><strong>&lang;optgroup&rang;</strong>태그는 드롭다운 목록에서 여러 항목들을 그룹화 할 수 있습니다.<br>
+                            optgroup 태그를 사용할 때에는 label 속성을 사용해 그룹의 제목을 붙입니다.
+                            <select>
+                                <optgroup label="label 1">
+                                    <option>항목 1</option>
+                                    <option>항목 2</option>
+                                    <option>항목 3</option>
+                                </optgroup>
+                                <optgroup label="label 2">
+                                    <option>항목 4</option>
+                                    <option>항목 5</option>
+                                    <option>항목 6</option>
+                                </optgroup>
+                            </select></p></li>
+                        <li><p><a name="datalist"><strong>&lang;datalist&rang;</strong>태그는 select 태그 대신 이용하며, 이를 통해 텍스트 필드에 드롭다운을 적용할 수 있습니다.<br>
+                            datalist는 type="text"인 경우 대부분의 브라우저에서 지원하지만, number나 range, color 필드는 브라우저나 버전별로 지원하지 않을 수도 있습니다.<br>
+                            text 필드를 datalist를 이용하여 구현한 모습은 이러하며, 기본형은 아래와 같습니다.
+                            <input type="text" list="datalist1">
+                            <datalist id="datalist1">
+                                <option value="value 1" label="레이블 적용됨"></option>
+                                <option value="레이블이 적용되지 않은 옵션"></option>
+                            </datalist>
+                            <br>
+                            <div class="man">
+                                <em>&lang; input type="text" list="datalist_id" &rang; <br>
+                                    &nbsp; &nbsp; &nbsp; &nbsp; &lang; datalist id="datalist_id" &rang; <br>
+                                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lang; option &rang; . . . . . . &lang; /option &rang; <br>
+                                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lang; option &rang; . . . . . . &lang; /option &rang; <br>
+                                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; . . . . . . <br>
+                                    &nbsp; &nbsp; &nbsp; &nbsp; &lang; /datalist &rang;
+                                </em>
+                            </div> <br>
+                            datalist의 경우, option 태그에 value 속성과 label 속성을 적용할 수 있습니다.<br>
+                            각 속성에 대한 설명은 다음과 같으며, 구현된 모습은 이전에 구현된 것과 같습니다.<br>
+                            <ul>
+                                <li>value : 사용자가 레이블을 선택했을 때 서버로 넘겨질 값을 지정합니다.</li>
+                                <li>label : 사용자를 위해 브라우저에 표시할 레이블입니다. 따로 지정하지 않을 경우 value 값을 레이블로 사용합니다.</li>
+                            </ul>
+                            </a></p></li>
+                    </ul>
+                        <p><strong>&lang;textarea&rang;</strong> 태그는 input 태그와 달리 여러 줄을 입력할 수 있는 텍스트박스를 제공합니다.<br>
+                        textarea에서 이용하는 속성은 다음과 같습니다. <br>
+                        <ul>
+                            <li>name : 다른 폼 요소와 구분하기 위해 텍스트 영역의 이름을 지정합니다.</li>
+                            <li>cols : 텍스트 영역의 가로 너비를 문자 단위로 지정합니다.</li>
+                            <li>rows : 텍스트 영역의 세로 길이를 줄 단위로 지정합니다. 지정한 숫자보다 줄 개수가 많아지면 스크롤 막대가 생깁니다.</li>
+                        </ul></p>
+                </div>
+            </div>
+            <div title="chapter 04-5. Form Elements">
+                <h4><a href="#five" id="show5" style="text-decoration:none" onclick="if(hide5.style.display=='none')
+                    {hide5.style.display='';show5.innerText='챕터 4-5. 기타 다양한 폼 요소들 ▽'}
+                    else {hide5.style.display='none'; show5.innerText='챕터 4-5. 기타 다양한 폼 요소들 ▷'}">챕터 4-5. 기타 다양한 폼 요소들 ▽</a></h4>
+                    <hr>
+                <div id="hide5" style="display: show;">
+                    <ul class="detail">
+                        <li><strong>&lang;button&rang;</strong>태그를 이용하면 input 태그의 속성을 이용하는 대신 버튼을 직접 삽입할 수 있습니다. <br>
+                        input 태그 대신 button 태그를 사용할 경우 그 모양과 역할은 거의 같으나, 화면 낭독기 상에서 해당 요소가 버튼임을 인지할 수 있기 때문에, 접근성 면에서 유리합니다.<br>
+                        또한, button 태그를 사용한 버튼에는 콘텐츠를 포함할 수 있기 때문에 아이콘을 추가할 수도 있고, CSS를 이용해 원하는 형태로 꾸밀 수도 있습니다.
+                        기본형은 다음과 같습니다. <br>
+                        <br>
+                        <div class="man">
+                            <em>&lang; button [type="submit | reset | button"] &rang; 내용 &lang; /button &rang;</em>
+                        </div>
+                        <br>
+                        버튼 태그의 속성은 버튼이 활성화되었을 때 어떤 동작을 하는지 지정합니다. <br>
+                        선택할 수 있는 값은 submit과 reset, button중 하나이고, 기본값은 submit입니다. <br>
+                        각 속성에 대한 설명은 다음과 같습니다. <br>
+                        <ul>
+                            <li>submit : 폼을 서버로 전송합니다. <q><em>&lang; button type="submit" &rang;전송하기&lang; /button&rang;</em> </q>와 같이 사용합니다.
+                                <button type="submit">전송하기</button></li>
+                            <li>reset : 폼에 입력한 모든 내용을 초기화시킵니다. <q><em>&lang; button type="reset" &rang;다시 쓰기&lang; /button &rang; </em></q> 와 같이 사용합니다.
+                                <button type="reset">다시 쓰기</button></li>
+                            <li>button : 버튼 형태만 만들 뿐 자체 기능은 없습니다. <q><em>&lang; button type="bytton" &rang;주소 입력&lang; /button &rang; </em></q> 와 같이 사용합니다.
+                                <button type="button">주소 입력</button></li>
+
+                        </ul></li>
+                        <br>
+                        또한 버튼 태그는 블록 내부에 이미지를 삽입함으로서 이미지를 적용하거나, CSS를 이용해 마우스 오버 시의 스타일도 별도로 지정할 수 있습니다. <br>
+                        게다가 태그와 CSS만으로 버튼을 만들었기 때문에 버튼을 이미지 파일로 만들어 &lang;input type="image"&rang;로 넣었을 때보다 서버의 리소스를 적게 사용합니다. <br>
+                        다음의 예시는 버튼 태그와 CSS를 통해 버튼을 구현한 예시입니다. 체크 버튼 이외에는 모두 태그와 CSS만을 이용하여 구현하였습니다.
+                        <form>
+                            <button type="submit" class="subm">
+                                <img src="../rsrc/image/tick.png" alt="전송 버튼"> 전송하기
+                            </button>
+                        </form>
+                        <li><p><strong>&lang;output&rang;</strong>태그는 입력하는 값이 계산 결과라는 것을 브라우저에게 알려줍니다. <br>
+                        output 태그를 사용한다고 해서 브라우저 화면에 다르게 표시되는 것은 아니지만, output 태그로 묶인 부분이 일반 텍스트가 아니라 계산의 결과 값이라는 점을 웹 브라우저가
+                        정확히 인식할 수 있습니다.<br>
+                        이를 이용해 결과 값만 골라 다른 연산을 할 수도 있고, 스크립트 프로그래밍에서 조건 처리에 사용할 수도 있습니다. <br>
+                        <br>
+                        output 태그의 기본형은 다음과 같습니다.<br>
+                        <div class="man">
+                            <em>&lang; output [속성="속성 값"] &rang;내용&lang; /output &rang;</em>
+                        </div>
+                        <br><br>
+                        다음은 output 태그를 이용하여 덧셈 스크립트를 적용한 예시입니다. <br>
+                        <form oninput="result.value=parseInt(num1.value)+parseInt(num2.value)">
+                            <input type="number" name="num1" value="0"> + 
+                            <input type="number" name="num2" value="0"> = 
+                            <output name="result" for="num"></output>
+                        </form>
+                    </p></li>
+                    <li><p><strong>&lang;progress&rang;</strong>태그는 작업 진행 상태를 나타낼 때 사용하는 태그입니다.<br>
+                        작업 시작을 0으로 하고 최종 완료를 최댓값으로 해 얼마나 진척되었는지 숫자로 표현합니다.<br>
+                        이 때 사용하는 값에는 특별한 단위가 없고, 단위를 표시하지도 않습니다.<br>
+                        progress 태그의 기본형은 다음과 같습니다.<br>
+                        <div class="man">
+                            <em>&lang; progress value="값" [max="값"] &rang;&lang; /progress &rang;</em>
+                        </div><br>
+                        <br>
+                        progress 태그에서 사용할 수 있는 속성은 다음과 같습니다.<br>
+                        <ul>
+                            <li>value : 작업 진행 상태를 나타내며 부동 소수점으로 표현합니다. 이 값은 0이상, max이하여야 합니다. max가 지정되지 않은 경우 이 값은 1.0보다는 작아야 합니다.</li>
+                            <li>max : 작업이 완료되려면 얼마나 많은 작업을 해야 하는지 부동 소수점으로 표현합니다. 이 값은 0보다 커야 합니다.</li>
+                        </ul><br>
+                        다음 예제는 progress 태그를 이용해 진행 상황을 표시한 것입니다.<br>
+                        자바스크립트를 이용하여 progress 막대의 진행을 순차적으로 진행시켜 애니메이션처럼 동작하도록 하였습니다.<br>
+
+                        <script>
+                            function dwn(){
+                                var bar=document.getElementById("bar"),
+                                progress=document.getElementById("progress"),
+                                text=document.getElementById("pText");
+                                loaded=0;
+                                var load=function(){
+                                    loaded +=5;
+                                    bar.value=loaded;
+                                    text.value="진행률 "+loaded+"%";
+
+                                    if(loaded == 100) {
+                                        clearInterval(dummyLoad);
+                                    }
+                                }
+
+                                var dummyLoad = setInterval(function() {
+                                    load()
+                                }, 500);
+                            }
+                        </script>
+
+                        <input type="text" id="pText" value="진행률 0%" readonly style="border: none; display: inline-block; text-align: right;">
+                        <progress id="bar" value="0" max="100">
+                            <span id="progress"> </span> </progress>
+                        <input type="button" value="다운로드 시작" onClick="dwn()">
+                        </p></li>
+                        <li><p><strong>&lang;meter&rang;</strong>태그는 progress 태그와 거의 유사하나, 진행도를 전체 크기에 비례하여 표시하는 특성을 가집니다.<br>
+                        meter 태그의 기본형은 다음과 같습니다.<br>
+                        <div class="man">
+                            <em>&lang; meter value="값" [속성="속성 값"] &rang;&lang; /meter &rang;</em>
+                        </div><br>
+                        <br>
+                        meter 태그에서 사용할 수 있는 속성은 다음과 같습니다.<br>
+                        high값이나 low값이 지정되어 있으면 현재 값이 높은지 낮은지 비교할 수 있으며, 그 정도를 색상으로 표시할 수도 있습니다.<br>
+                        <br>
+                        <ul>
+                            <li>min, max : 범위의 최솟값과 최댓값을 나타냅니다. 값을 정하지 않으면 0과 1로 간주합니다.</li>
+                            <li>value : 범위 내에서 차지하는 값을 나타냅니다.</li>
+                            <li>low : "이 정도면 낮다."라고 할 정도의 값을 지정합니다.</li>
+                            <li>high : "이 정도면 높다."라고 할 정도의 값을 지정합니다.</li>
+                            <li>optimum : "이 정도면 적당하다."라고 할 정도의 범위를 지정합니다.<br>
+                                optimum 값이 high값보다 크다면 value값이 클수록 좋고, optimum 값이 low값보다 작다면 value 값이 작을수록 좋습니다.</li>
+                        </ul>
+                        <br> 아래는 그 예시입니다.<br>
+                        <ul class="meter">
+                            <li>
+                                <label>점유율 0.8</label>
+                                <meter value="0.8"></meter>
+                                <small>현재 값만 지정한 기본형입니다.</small>
+                            </li>
+                            <li>
+                                <label>사용량 64%</label>
+                                <meter min="0" max="100" value="64"></meter>
+                                <small>현재 값과 함께 min, max를 지정했습니다.</small>
+                            </li>
+                            <li>
+                                <label>트래픽 초과</label>
+                                <meter min="1024" max="10240" low="2048" high="8192" value="9126"></meter>
+                                <small>전체 크기는 1024~10240인데, high값인 8192보다 현재 값(9126)이 더 큽니다.</small>
+                            </li>
+                            <li>
+                                <label>적절한 트래픽</label>
+                                <meter value="0.5" optimum="0.8"></meter>
+                                <small>전체 1중에서 현재 0.5를 차지하고 있으며, 적정도를 0.8로 설정했습니다.</small>
+                            </li>
+                        </ul></p></li>
+                    </ul>
+                </div>
+        </li>
+    </ol>
+
+    <a href="../main.html">메인페이지로 이동</a>
+</body>
+</html>
