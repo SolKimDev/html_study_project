@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic|Nanum+Myeongjo&display=swap&subset=korean');
+
+* {
+        font-family: 'Nanum Gothic', sans-serif;
+}
+
+#title { font-size: 20px; font-weight: bold; color: #616161; margin: 25px 0px 24px; font-family: 'NanumGothic-Bold';}
+
+#mainTitle{
+        color: black;
+}
+
+#mainTitle:hover{
+        color: rgba(0,0,0,0.7);
+}
+
+#footer{
+        background-color: #f2f2f2;
+        position: absolute;
+        width: 100%;
+}
+
+#footer > p {
+        padding: 8px 12px;
+        font-size: 16px;
+        color: #797979; 
+}
+
+#footer > p > a {
+        color: black;
+}
+
+
+strong {
+        color:cornflowerblue;
+    }
+    a {
+        text-decoration: none;
+        color : rgb(3, 3, 173);
+        font-weight: bold;
+    }
+    div{
+        margin: 10px;
+    }
+    mark{
+        font-weight: 600;
+    }
+
+    /*미사용*/
+    .title:link {color: black;}
+    .title:visited {color: black;}
+    .title:hover {color:black; text-decoration: underline;}
+
+    .man {
+        margin: auto;
+        border: 0.5px solid rgba(121, 121, 121, 0.5);
+        padding: 10px 30px 10px 20px;
+        display: inline-block;
+        background-color: rgba(218, 218, 218, 0.3);
+    }
+    .man em{
+        font-weight: bold;
+    }
+    .man em small {
+        color : green;
+    }
+    /* small green이 왜 안되는거지??*/
+    
+    .cssMan span:nth-child(even){
+        color: red;
+    }
+    .cssMan span:nth-child(odd){
+        color: blue;
+    }
+    .cssMan span:first-child{
+        color: brown;
+    }
+
+
+    .detail li{
+        margin: auto;
+    }
