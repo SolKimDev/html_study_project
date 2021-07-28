@@ -22,8 +22,25 @@
             </div>
         </header>
         <content>
-            <iframe src="./chap_06/main.html" frameborder='0' scrolling="no"></iframe>
-            <div>navigation</div>
+            <iframe id="ifrm" src="./chap_07/main.html" frameborder='0' scrolling="yes"></iframe>
+            <div id="navArea">
+                <div id="nav">
+                    <h3>HStudy Navigation</h3>
+                    <br>
+                    <p style="overflow: hidden;">
+                        <ol style="padding-left: 20px;">
+                            <li><a href="./main_new.html">메인페이지로</a></li>
+                            <li><a href="#" onclick="document.getElementById('ifrm').src = './chap_02/main.html' ">asd</a></li>
+                            <li><a href="#" onclick="document.getElementById('ifrm').src = './chap_03/main.html' ">asd</a></li>
+                            <li><a href="#" onclick="document.getElementById('ifrm').src = './chap_04/main.html' ">asd</a></li>
+                            <li><a href="#" onclick="document.getElementById('ifrm').src = './chap_05/main.html' ">asd</a></li>
+                            <li><a href="#" onclick="document.getElementById('ifrm').src = './chap_06/main.html' ">asd</a></li>
+                            <li><a href="#" onclick="document.getElementById('ifrm').src = './chap_07/main.html' ">색상과 배경을 위한<br>스타일</a></li>
+                            <li><a href="#" onclick="document.getElementById('ifrm').src = './chap_08/main.html' ">CSS 박스 모델</a></li>
+                        </ol>
+                    </p>
+                </div>
+            </div>
         </content>
         <footer>
             <a href="./main.html">☜ 메인으로 돌아가기</a>

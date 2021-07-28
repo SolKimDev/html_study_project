@@ -1,10 +1,20 @@
 @import url('https://fonts.googleapis.com/css?family=Nanum+Gothic|Nanum+Myeongjo&display=swap&subset=korean');
 
-* {
+/*문서 내에서 href를 통한 아코디언 메뉴를 생성하는 대신, details 요소를 이용하고 있습니다.
+  해당 요소는 IE에서 호환되지 않으며, summary 요소의 삼각형 스타일을 list-style 속성을 이용해 바꿀 수 있으나,
+  아직 크롬에서도 이 방법을 지원하고 있지 않으므로, 굳이 삼각형 스타일을 바꿔야 한다면 비표준 "::-webkit-details-marker" 요소를 사용해야 합니다. */
+
+#mainText {
         font-family: 'Nanum Gothic', sans-serif;
 }
 
 #title { font-size: 20px; font-weight: bold; color: #616161; margin: 25px 0px 24px; font-family: 'NanumGothic-Bold';}
+
+navigator { display: block; 
+    border:  1px solid black;
+    width : max-content;
+    padding: 0px 10px;
+}
 
 #mainTitle{
         color: black;
@@ -30,6 +40,9 @@
         color: black;
 }
 
+#content-wrap {
+
+}
 
 strong {
         color:cornflowerblue;
@@ -45,6 +58,45 @@ strong {
     mark{
         font-weight: 600;
     }
+
+    .under {
+        text-decoration: underline;
+        font-style: italic;
+    }
+
+    table {
+        border-collapse: collapse;
+        text-align: left;
+        line-height: 1.5;
+        border-left: 1px solid #ccc;
+        margin: 20px 10px;
+      }
+      
+      table thead th {
+        padding: 10px;
+        font-weight: bold;
+        border-top: 1px solid #ccc;
+        border-right: 1px solid #ccc;
+        border-bottom: 2px solid rgb(0, 129, 204);
+        background: #d6e0f3a8;
+      }
+      table tbody th {
+        width: max-content;
+        padding: 10px;
+        font-weight: bold;
+        vertical-align: top;
+        border-right: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+        background: #f1f1f1;
+      }
+      table td {
+        width: max-content;
+        padding: 10px;
+        vertical-align: top;
+        border-right: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+      }
+
 
     /*미사용*/
     .title:link {color: black;}
@@ -92,4 +144,14 @@ strong {
 
     .detail li{
         margin: auto;
+    }
+
+    .title_sub{
+        display: inline-block;
+        margin-bottom: 8px;
+    }
+
+    .header > summary{
+        height: min-content;
+        margin-top: -10px;
     }

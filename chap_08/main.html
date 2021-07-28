@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/7eaeb96e92.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../css/css_documents.css">
+    <style>
+
+    </style>
+    <title>Chapter 08</title>
+</head>
+<body>
+    <div id="titlebox">
+        <h1 style="display: inline;">CSS 박스 모델</h1><br>
+        <small>이지스퍼블리싱 Do it! HTML 2판을 기준으로 정리한 문서입니다.</small>
+    </div>
+    <navigator>
+        <h3>Lists</h3>
+        <ol>
+            <li><a href="#show1">CSS와 박스 모델</a></li>
+            <li><a href="#show2">테두리 관련 속성들</a></li>
+            <li><a href="#show3">여백을 조절하는 속성들</a></li>
+        </ol>
+    </navigator>
+    <div id="mainText">
+        <ol>
+            <li>
+                <div id="c0801">
+                    <h4><a href=#one id="show1" onclick="if(hide1.style.display=='none')
+                        {hide1.style.display='';show1.innerText='챕터 8-1. CSS 박스 모델 ▽'}
+                        else {hide1.style.display='none'; show1.innerText='챕터 8-1. CSS 박스 모델 ▷'}">챕터 8-1. CSS 박스 모델 ▽</a></h4>
+                        <hr>
+                    <div id="hide1" style="display: show">
+                        <p>웹 문서의 내용을 마진과 패딩, 테두리 등을 이용하여 박스 형태로 정의합니다.</p>
+                        <ul>
+                            <li><strong>블록 레벨 요소와 인라인 레벨 요소</strong>
+                                <p>
+                                    블록 레벨 요소는 혼자서 한 줄을 전부 차지하며(width : 100%), 따라서 요소의 왼쪽이나 오른쪽에 다른 요소가 올 수 없습니다. <br>
+                                    따라서 width, margin, padding 등을 이용해 크기나 위치를 지정하기 위해선 블록 레벨 요소여야만 합니다.
+                                </p>
+                                <p>반면, 인라인 레벨 요소는 줄을 차지하지 않고, 콘텐츠만큼만 영역을 차지합니다. 따라서 한 줄에 여러 개의 인라인 요소를 표현할 수 있습니다.</p>
+                                <p>
+                                    다음은 블록 레벨 요소와 인라인 레벨 요소를 만드는 대표적인 태그입니다.
+                                    <table>
+                                        <thead><tr><th>종류</th><th>해당 태그</th></tr></thead>
+                                        <tbody>
+                                            <tr><th>블록 레벨 태그</th><td>p, h1~h6, ul, ol, div, blockquote, from, hr, table, fieldset, address</td></tr>
+                                            <tr><th>인라인 레벨 태그</th><td>img, object, br, sub, sup, span, input, textarea, label, button</td></tr>
+                                        </tbody>
+                                    </table>
+                                </p>
+                            </li>
+                            <li><strong>박스 모델(box model)</strong><b> : 박스 형태의 콘텐츠</b>
+                                <p>
+                                    &lang;p&rang;태그와 같은 대부분의 <mark>블록 레벨 요소들은 박스 모델</mark> 형태로, <span class="under">요소 앞뒤로 빈 줄</span>이 생기며 박스 형태를 이룹니다.<br>
+                                    박스 모델의 주요 속성들은 다음과 같습니다.
+                                    <ul>
+                                        <li><strong>width, height 속성</strong><b> : 콘텐츠 영역의 크기</b>
+                                            <p>
+                                                이 두 속성은 콘텐츠 영역의 너비와 높이를 지정합니다. 기본형은 다음과 같습니다.
+                                                <div class="man">
+                                                    width: &lang;크기&rang; | &lang;백분율&rang; | auto <br>
+                                                    height: &lang;크기&rang; | &lang;백분율&rang; | auto
+                                                </div>
+                                            </p>
+                                            <p>
+                                                실제 콘텐츠 크기를 계산함에 있어, 실제 콘텐츠의 크기는 <b>width+좌우 패딩 + 좌우 보더</b>로 계산합니다.<br>
+                                                그러나 IE6의 경우, 계산법이 표준과 다르기 때문에, IE 6을 고려한 사이트를 기획한다면 width 값을 지정할 때 주의해야 합니다.
+                                            </p>
+                                        </li>
+                                        <li><strong>display 속성</strong><b> : 화면 배치 방법 결정하기</b>
+                                            <p>
+                                                block 요소를 inline 속성으로 바꾸거나, inline 요소를 table 속성으로 바꾸는 등, 해당 요소가 화면에 보이는 방식을 지정합니다.<br>
+                                                기본형은 다음과 같습니다.
+                                                <div class="man">
+                                                    display: none | contents | block | inline | inline-block | table | table-cell 등
+                                                </div>
+                                            </p>
+                                            <p>
+                                                각 속성에 대한 설명은 다음과 같습니다.
+                                                <ul>
+                                                    <li><b>block</b> : 요소를 블록 레벨로 지정합니다.</li>
+                                                    <li><b>inline</b> : 요소를 인라인 레벨로 지정합니다.</p></li>
+                                                    <li><b>inline-block</b> : inline 요소에 블록 레벨 속성 (float, margin, etc)을 적용하기 위해 요소는 인라인으로, 내용은 블록으로 지정합니다.</li>
+                                                    <li><b>none</b> : visibility: hidden;과는 다르게 요소의 공간까지 포함하여 요소를 화면에서 아예 표시하지 않습니다.<br>
+                                                        반응형 웹에서 모바일 화면에서 표시하고 싶지 않은 요소에 해당 속성을 적용하는 것처럼 사용하기도 합니다.<br>
+                                                        visibility 속성에 대한 자세한 정보는 <a href="#">준비중</a>에서 확인할 수 있습니다.</li>
+                                                    <li>inherit : 상위 요소의 display 속성을 상속받습니다.</li>
+                                                    <li>table : 블록 레벨의 표로 만듭니다.</li>
+                                                    <li>inline-table : &lang;tange&rang; 태그를 사용한 것처럼 인라인 레벨의 표를 만듭니다.</li>
+                                                    <li>table-row : &lang;tr&rang; 태그를 사용한 것처럼 인라인 표의 행으로 만듭니다.</li>
+                                                    <li>table-row-group : &lang;tbody&rang; 태그를 사용한 것처럼 표의 행을 그룹으로 만듭니다.</li>
+                                                    <li>table-header-group : &lang;thead&rang; 태그를 사용한 것처럼 표의 헤더 그룹으로 만듭니다.</li>
+                                                    <li>table-footer-group : &lang;tfoot&rang; 태그를 사용한 것처럼 표의 요약 영역 그룹으로 만듭니다.</li>
+                                                    <li>table-column : &lang;col&rang; 태그를 사용한 것처럼 표의 열로 만듭니다.</li>
+                                                    <li>table-column-group : &lang;colgroup&rang; 태그를 사용한 것처럼 표의 열 그룹으로 만듭니다.</li>
+                                                    <li>table-cell : &lang;td&rang;나 &lang;tr&rang;을 사용한 것처럼 표에서 하나의 셀로 만듭니다.</li>
+                                                    <li>table-caption : &lang;caption&rang; 태그를 사용한 것처럼 표의 캡션을 만듭니다.</li>
+                                                    <li>list-item : &lang;li&rang;태그를 사용한 것처럼 기본적인 블록 박스와 표시자 박스를 만듭니다.</li>
+                                                </ul>
+                                            </p>
+                                        </li>
+                                    </ul>
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div id="c0802">
+                    <h4><a href=#two id="show2" onclick="if(hide2.style.display=='none')
+                        {hide2.style.display='';show2.innerText='챕터 8-2. 테두리 관련 속성들 ▽'}
+                        else {hide2.style.display='none'; show2.innerText='챕터 8-2. 테두리 관련 속성들 ▷'}">챕터 8-2. 테두리 관련 속성들 ▽</a></h4>
+                        <hr>
+                    <div id="hide2" style="display: show">
+                        <ul>
+                            <li><strong>border-style 속성</strong><b> : 테두리 스타일 지정하기</b>
+                                <p>
+                                    실선이나 점선, 이중 선 등 테두리의 형태를 지정합니다. 기본값은 none입니다.<br>
+                                    기본형은 다음과 같습니다.
+                                    <div class="man">
+                                        border-style: none | hidden | dashed | dotted | double | groove | inset | outset | ridge | solid
+                                    </div>
+                                </p>
+                                <p> 각 속성에 대한 설명은 다음과 같으며, border-collapse 속성에 대해서는 <a href="#">준비중</a>에서 자세히 확인할 수 있습니다.
+                                    <ul>
+                                        <li>none : 기본값으로, 테두리가 나타나지 않습니다. <span style="border-style: none;">테두리 표시 영역</span></li>
+                                        <li>hidden : 테두리가 나타나지 않으며, border-collapse:collapse일 경우, 다른 테두리도 표시되지 않습니다. <span style="border-style: hidden;">테두리 표시 영역</span></li>
+                                        <li>dashed : 테두리를 짧은 선(직선으로 된 점선)으로 표시합니다. <span style="border-style: dashed;">테두리 표시 영역</span></li>
+                                        <li>dotted : 테두리를 점선으로 표시합니다. <span style="border-style: dotted;">테두리 표시 영역</span></li>
+                                        <li>double : 테두리를 이중선(겹선)으로 표시합니다. <span style="border-style: double;">테두리 표시 영역</span></li>
+                                        <li>groove : 테두리를 창에 조각한 것처럼 표시합니다. 홈이 파인 듯 입체적으로 보입니다. <span style="border-style: groove;">테두리 표시 영역</span></li>
+                                        <li>inset : border-collapse: separate일 경우, 전체 박스 테두리가 창에 박혀 있는 것처럼 표시되고, <span style="border-style: inset; border-collapse: separate;">테두리 표시 영역</span><br>
+                                            border-collapse: collapse일 경우, groove와 똑같이 표시됩니다.<span style="border-style: inset; border-collapse: collapse;">테두리 표시 영역</span></li>
+                                        <li>outset : border-collapse: separate일 경우, 전체 박스 테두리가 창에서 튀어나온 것처럼 표시되고, <span style="border-style: outset; border-collapse: separate;">테두리 표시 영역</span><br>
+                                            border-collapse: collapse일 경우, ridge와 똑같이 표시됩니다. <span style="border-style: outset; border-collapse: collapse;">테두리 표시 영역</span></li>
+                                        <li>ridge : 테두리를 창에서 튀어나온 것처럼 표시합니다. <span style="border-style: ridge;">테두리 표시 영역</span></li>
+                                        <li>solid : 테두리를 실선으로 표시합니다. <span style="border-style: solid;">테두리 표시 영역</span></li>
+                                    </ul>
+                                </p>
+                            </li>
+                            <li><strong>border-width 속성</strong><b> : 테두리 두께 지정하기</b>
+                                <p>
+                                    테두리의 두께를 지정합니다. 속성 값이 2개인 경우 (상하, 좌우) 값으로 지정하고, 속성 값이 4개인 경우 (상,우,하,좌) 순서로 지정합니다.<br>
+                                    border-width 속성을 통해 상하좌우 모든 값을 한 번에 지정하거나, 개별 속성을 이용해 개별 값만 별도로 지정할 수도 있습니다.<br>
+                                    이 순서는 모든 border 속성에 통용되며, 기본형은 다음과 같습니다.
+                                    <div class="man">
+                                        border-width: &lang;크기&rang; | thin | medium | thick <small>or</small> <br>
+                                        border-( top | right | bottom | left )-width: &lang;크기&rang; | thin | medium | thick
+                                    </div>
+                                </p>
+                            </li>
+                            <li><strong>border-color 속성</strong><b> : 테두리 색상 지정하기</b>
+                                <p>
+                                    테두리의 색상을 지정합니다. 기본형은 다음과 같습니다.
+                                    <div class="man">
+                                        border-color: &lang;색상&rang; <small>or</small><br>
+                                        border-( top | right | bottme | left )-color: &lang;색상&rang;
+                                    </div>
+                                </p>
+                            </li>
+                            <li><strong>border 속성</strong><b> : 테두리 스타일 묶어 지정하기</b>
+                                <p>
+                                    다른 속성과 마찬가지로, border 관련 속성은 border 속성을 이용해 묶어 지정할 수 있습니다.<br>
+                                    다만 네 방향의 테두리 스타일이 같지 않다면, 개별 방향에 대하여 별도의 속성을 지정해야만 합니다.<br>
+                                    기본형은 다음과 같습니다.
+                                    <div class="man">
+                                        border: &lang;두께&rang; &lang;색상&rang; &lang;스타일&rang; <small>or</small><br>
+                                        border-( top | right | bottom | left ): &lang;두께&rang; &lang;색상&rang; &lang;스타일&rang;
+                                    </div>
+                                </p>
+                            </li>
+                            <li><strong>border-radius 속성</strong><b> : 박스 모서리 둥글게 만들기</b>
+                                <p>
+                                    박스의 모서리를 &lang;크기&lang;의 반지름을 가진 원이 겹친 것처럼 둥글게 처리합니다.<br>
+                                    네 모서리를 한번에 처리하지 않을 경우, 각 모서리를 별도로 지정하는 속성을 이용해야 합니다.<br>
+                                    또한, 모서리의 크기를 2개를 입력한다면, 각각 &lang;가로 크기&rang;, &rang;세로 크기&lang;의 타원으로 인식합니다.<br>
+                                    border-radius 속성으로 네 모서리를 동시에 처리할 경우에는, 가로 반지름과 세로 반지름 사이에 슬래시(/)를 넣어 구분합니다.
+                                    기본형은 다음과 같습니다.
+                                    <div class="man">
+                                        border-radius: &lang;크기&rang; | &lang;백분율&rang; <small>or</small><br>
+                                        border-top-( left | right )-radius: &lang;크기&rang; | &lang;백분율&rang; <small>or</small><br>
+                                        border-bottom-( left | right )-radius: &lang;크기&rang; | &lang;백분율&rang;
+                                    </div>
+                                </p>
+                            </li>
+                            <li><strong>box-shadow 속성</strong><b> : 요소에 그림자 효과 넣기</b>
+                                <p>
+                                    선택한 요소에 그림자 효과를 넣습니다. &lang;그림자 값&rang;에서 수평 거리와 수직 거리는 반드시 지정해야 하며, 기타 속성 값은 옵션이므로 필요할 떄만 사용하면 됩니다.<br>
+                                    두 개 이상의 그림자를 사용할 경우, 앞의 그림자부터 차례로 적용됩니다. 기본형은 다음과 같습니다.
+                                    <div class="man">
+                                        box-shadow : none | &lang;그림자 값&rang; [, &lang;그림자 값&rang;]*;<br>
+                                        <span class="tab">그림자 값 = &lang;수평 거리&rang; &lang;수직 거리&rang; &lang;흐림 정도&rang; &lang;번짐 정도&rang; &lang;색상&rang; inset</span>
+                                    </div>
+                                </p>
+                                <p>
+                                    각 속성에 대한 설명은 다음과 같습니다.
+                                    <ul>
+                                        <li>수평 거리 : 그림자의 수평 오프셋 거리(양수/음수)입니다. 필수 속성입니다.</li>
+                                        <li>수직 거리 : 그림자의 수직 오프셋 거리(양수/음수)입니다. 필수 속성입니다.</li>
+                                        <li>흐림 정도 : 그림자의 blur radius를 지정합니다. 기본 값은 0으로, 음수 값은 사용할 수 없습니다.</li>
+                                        <li>번짐 정도 : 그림자의 번지는 정도(양수/음수)를 나타냅니다. 기본 값은 0입니다.</li>
+                                        <li>색상 : 그림자의 색상을 지정합니다. 한 가지만 지정할 수도 있고, 공백으로 구분해 여러 개의 색상을 지정할 수도 있습니다.<br>
+                                            필요한 경우에만 사용하는 옵션 값이며, 기본 값은 현재 글자 색입니다.</li>
+                                        <li>inset : 이 키워드를 함께 표시하면 안쪽 그림자로 그립니다.</li>
+                                    </ul>
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div id="c0803">
+                    <h4><a href=#three id="show3" onclick="if(hide3.style.display=='none')
+                        {hide3.style.display='';show3.innerText='챕터 8-3. 여백을 조절하는 속성들 ▽'}
+                        else {hide3.style.display='none'; show3.innerText='챕터 8-3. 여백을 조절하는 속성들 ▷'}">챕터 8-3. 여백을 조절하는 속성들 ▽</a></h4>
+                        <hr>
+                    <div id="hide3" style="display: show">
+                        <p>이번 장에서는 margin과 padding을 다루는 속성에 대해 알아봅니다.<br>
+                            margin과 padding 속성 역시, 두 개를 사용할 경우 상하/좌우, 네 개를 사용할 경우 상/우/하/좌 순서로 패딩을 지정합니다.</p>
+                        <ul>
+                            <li><strong>margin 속성</strong><b> : 요소 주변 여백 설정하기</b>
+                                <p>
+                                    border 바깥쪽의 여백인 margin 값을 설정합니다.<br>
+                                    margin을 설정하지 않았으나, 설정하지 않은 방향으로 margin이 설정된 요소가 있는 경우, 해당 방향의 margin은 해당 방향으로 있는 요소의 margin 값을 공유합니다.<br>
+                                    기본형은 다음과 같습니다.
+                                    <div class="man">
+                                        margin: &lang;크기&rang; | &lang백분율&rang; | auto <small>or</small><br>
+                                        margin-( top | right | bottom | left ): &lang;크기&rang; | &lang백분율&rang; | auto
+                                    </div>
+                                </p>
+                                <p>
+                                    margin의 속성 중 auto 속성은 display 속성에서 지정한 값에 맞게 적절한 값이 자동으로 설정됩니다.<br>
+                                    또한, margin-left와 margin-right를 auto로 지정하면, 요소의 너비 값을 뺀 나머지 공간의 좌우 마진을 똑같이 맞춥니다. 이 방법은 웹 요소를 중앙에 배치하려고 할 때 자주 사용합니다.
+                                </p>
+                            </li>
+                            <li><strong>마진 중첩(margin overlap)현상</strong>
+                                <p>
+                                    마진 중첩(마진 상쇄) 현상이란, <span class="under">요소를 세로로 배치하는 경우</span> 마진과 마진이 만날 때 <mark>마진이 큰 쪽으로 겹쳐지는 현상</mark>을 말합니다.<br>
+                                    이는 여러 요소를 세로로 배치할 때 맨 위의 마진과 맨 아래 마진에 비해 중간에 있는 마진들이 너무 커지는 것을 방지하기 위한 것입니다.<br>
+                                    마진 중첩은 아래 마진과 위 마진이 서로 만날 때 큰 마진 값으로 합쳐지는 것이고, <span class="under">오른쪽 마진과 왼쪽 마진이 만날 경우에는 중첩되지 않습니다.</span>
+                                </p>
+                            </li>
+                            <li><strong>padding 속성</strong><b> : 콘텐츠 영역과 테두리 사이 여백 설정하기</b>
+                                <p>
+                                    콘텐츠와 border 사이의 여백인 padding 값을 설정합니다. 기본형은 다음과 같습니다.
+                                    <div class="man">
+                                        padding: &lang;크기&rang; | &lang;백분율&rang; | auto <small>or</small><br>
+                                        padding-( top | right | bottom | left ): &lang;크기&rang; | &lang;백분율&rang; | auto
+                                    </div>
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+        </ol>
+    </div>
+</body>
