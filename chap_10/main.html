@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/7eaeb96e92.js" crossorigin="anonymous"></script> <!--미사용-->
+    <link rel="stylesheet" href="../css/css_documents.css">
+    <style>
+        #example {
+            width: 500px;
+            height: 300px;
+            border: none;
+        }
+        #example * {
+            border: 1px solid black;
+            padding: 10px;
+        }
+        #example #ecArea{
+            padding: 0px;
+            height: 60%;
+            border: none;
+        }
+        #example #eSection {
+            float: left;
+            margin: 0% 1% 0% 0%;
+            width: 60%;
+            height: 88%;
+            background: #e9e9e9;
+        }
+        #example #eAside {
+            float: right;
+            margin: 0;
+            width: 29%;
+            height: 88%;
+        }
+        #example .eArticle{
+            background: #ffffff;
+        }
+    </style>
+    <title>Chapter 10</title>
+</head>
+<body>
+    <header>
+        <h1 style="display: inline;">HTML5와 시맨틱 태그</h1><br>
+        <small>이지스퍼블리싱 Do it! HTML 2판을 기준으로 정리한 문서입니다.</small>
+    </header>
+    <nav>
+        <h3>Lists</h3>
+        <ol>
+            <li><a href="#c1001">문서 구조를 위한 HTML5 시맨틱 태그</a></li>
+        </ol>
+    </nav>
+    <section id="mainText">
+        <ol>
+            <li>
+                <article id="c1001">
+                    <details class="accordion" open=true>
+                        <summary><h4 class="title_sub">HTML5 문서</h4><hr></summary>
+                        <div id="example">
+                            <div id="eHeader">&lang;header&rang; : 헤더</div>
+                            <div id="ecArea" class="clearfix">
+                                <div id="eSection">&lang;section&rang; : 콘텐츠 영역
+                                    <div class="eArticle">&lang;article&rang;</div>
+                                    <div class="eArticle">&lang;article&rang;</div>
+                                </div>
+                                <div id="eAside">&lang;aside&rang; : 사이드바</div>
+                            </div>
+                            <div id="eFooter">&lang;footer&rang; : 푸터</div>
+                        </div>
+                        <p>
+                            대부분의 홈페이지들은, 디자인은 다르더라도 대부분 위와 같은 레이아웃으로 구성되어 있습니다.<br>
+                            따라서, 이런 분석을 토대로 HTML5에서는 HTML4의 기존 태그를 그대로 사용하면서도, 태그 이름만 보고도 문서 구조에서 어떤 역할을 하는지 쉽게 이해할 수 있는 '시맨틱 태그'를 추가했습니다.<br>
+                            시맨틱 태그를 이용하면, 소스만으로도 문서 내용을 알 수 있으며, 웹 접근성 측면에서 큰 이득을 취할 수 있습니다.<br>
+                            HTML5에서 이용할 수 있는 시맨틱 태그는 다음과 같습니다.
+                        </p>
+                        <ul>
+                            <li><strong>&lang;header&rang; 태그</strong><b> : 머리말 지정하기</b>
+                                <p>
+                                    사이트 전체의 헤더는 주로 페이지 맨 위쪽이나 왼쪽에 삽입하며, 헤더의 내용으로는 주로 &lang;form&rang;태그를 사용해 검색 창을 넣거나, &lang;nav&rang;태그를 사용해 사이트 메뉴를 넣습니다.<br>
+                                    &lang;header&rang;태그는 본문 중에 사용해 해당 부분의 머리말로 사용할 수도 있습니다.
+                                </p>
+                            </li>
+                            <li><strong>&lang;nav&rang; 태그</strong><b> : 문서를 연결하는 내비게이션 링크</b>
+                                <p>
+                                    내비게이션 역할을 하는 &lang;nav&rang;태그는 동일한 사이트 안의 문서나 다른 사이트의 문서로 연결하는 링크 모음을 나타냅니다.<br>
+                                    이 태그를 사용하면 어느 부분이 내비게이션인지 쉽게 알 수 있습니다.
+                                </p>
+                                <p>
+                                    &lang;nav&rang;태그는 내비게이션 메뉴뿐문 아니라 푸터에 있는 사이트 링크 모음 부분에도 많이 사용됩니다.<br>
+                                    다시 말해 사용하는 위치의 영향을 받지 않아 &lang;header&rang;나 &lang;footer&rang; 태그 또는 &lang;aside&rang;태그 안에 포함시킬 수도, 독립해 사용할 수도 있습니다.<br>
+                                    그리고 문서 안에 여러 개의 &lang;nav&rang;태그를 사용할 경우, ID를 따로 지정해 주면 스타일 시트에서 각 내비게이션에 맞게 스타일을 지정할 수 있습니다.
+                                </p>
+                            </li>
+                            <li><strong>&lang;section&rang; 태그</strong><b> : 주제별 콘텐츠 영역 나타내기</b>
+                                <p>
+                                    &lang;section&rang; 태그는 문서에서 콘텐츠 영역을 나타내며, 문맥 흐름 중 콘텐츠를 주제별로 묶을 때 사용합니다.<br>
+                                    &lang;section&rang; 태그 안에는 또 다른 &lang;section&rang; 태그를 넣어 주제를 세분화 할 수 있습니다.
+                                </p>
+                            </li>
+                            <li><strong>&lang;article&rang; 태그</strong><b> : 콘텐츠 내용 넣기</b>
+                                <p>
+                                    &lang;section&rang; 태그로는 콘텐츠를 주제별로 묶고, &lang;article&rang; 태그를 사용해 독립적인 콘텐츠의 내용을 채웁니다.<br>
+                                    &lang;article&rang; 태그 안에 &lang;section&rang; 태그를 넣을 수도 있습니다.
+                                </p>
+                            </li>
+                            <li><strong>&lang;aside&rang; 태그</strong><b> : 본문 이외의 내용 표시하기</b>
+                                <p>
+                                    &lang;aside&rang;태그는 사이드바와 같이, 문서의 메인 내용에 영향을 미치지 않는, 필수가 아닌 요소들을 넣을 때 사용합니다.
+                                </p>
+                            </li>
+                            <li><strong>&lang;footer&rang; 태그</strong><b> : 제작 정보와 저작권 정보 표시하기</b>
+                                <p>
+                                    &lang;footer&rang;태그는 일반적으로 웹 문서 끝자락에서, 사이트 관리자의 연락처 정보나 저작권 정보 등을 표시합니다.<br>
+                                    또한, &lang;footer&rang; 태그 안에는 header 태그를 비롯해 section, article 등 다른 레이아웃 태그들을 모두 사용할 수 있고, 이런 태그를 이용해 푸터 안에 다양한 정보를 넣을 수 있습니다.
+                                </p>
+                            </li>
+                            <li><strong>&lang;iframe&rang; 태그</strong><b> : 외부 문서 삽입하기</b>
+                                <p>
+                                    &lang;iframe&rang;태그를 이용하면 웹 문서 안에 다른 웹 문서와 표시할 수 있습니다. 이것을 inline frame이라고 합니다.<br>
+                                    iframe의 기본형은 다음과 같습니다.
+                                    <div class="man">
+                                        &lang; iframe src="삽입할 문서 주소" [속성 = "속성 값"]&rang; (접근성을 위한 대체 내용) &lang; iframe &rang;
+                                    </div>
+                                </p>
+                                <p>
+                                    iframe 태그에서는 여러 속성을 이용해 인라인 프레임을 원하는 형태로 삽입할 수 있습니다. 사용할 수 있는 주요 속성은 다음과 같습니다.
+                                    <ul>
+                                        <li>width, height: 픽셀이나 백분율 값을 입력합니다.</li>
+                                        <li>name : 인라인 프레임의 이름입니다.<br>xhtml에서는 name은 퇴화 태그이므로 id 속성을 사용하나, 브라우저 호환성을 위해 name과 id 속성을 같이 사용하기도 합니다.</li>
+                                        <li>src : 프레임에 표시할 문서의 주소를 지정합니다.</li>
+                                        <li>seamless : 프레임의 테두리를 없애 본문의 일부처럼 보이도록 합니다. 속성 값 없이 사용하면 되며, 현재까지는 크롬과 사파리에서만 지원됩니다.</li>
+                                        <li>sandbox : 보안을 위해 iframe에서 form이나 js 실행을 제한합니다.</li>
+                                    </ul>
+                                    <ul>해당 속성은 HTML5에서 지원하지 않거나, 지원하지 않을 예정인 속성입니다.
+                                        <li>frameborder : 1이나 0값. 테두리를 표시할지 말지를 지정합니다. 대신 border 사용이 권장됩니다.</li>
+                                        <li>scrolling : yes | no | auto. 스크롤바 유무를 선택합니다. 대신 overflow 계열 속성 사용이 권장됩니다.</li>
+                                        <li>align, marginheight, marginwidth, longdesc 등</li>
+                                    </ul>
+                                </p>
+                            </li>
+                            <li><strong>&lang;address&rang; 태그</strong><b> : 사이트 제작자 정보, 연락처 정보 나타내기</b>
+                                <p>
+                                    &lang;address&rang; 태그는 주로 &lang;footer&rang; 태그 안에 사용되는데 웹 페이지 제작자의 이름이나 제작자의 웹 페이지 또는 피드백을 위한 연락처 정보를 넣는 데 사용됩니다.<br>
+                                    또한, 웹 사이트와 관련된 우편 주소도 address 태그 안에 포함시킵니다. 하지만 단순히 우편 주소를 표기할 용도라면 p태그를 이용해 표시하는 것이 낫습니다.
+                                </p>
+                            </li>
+                            <li><strong>&lang;div&rang; 태그의 이용</strong><b> : 스타일의 적용 및 IE8 이하 버전에서</b>
+                                <p>
+                                    HTML5에서 div 태그는 주로 span과 같이 콘텐츠에 CSS를 이용해 시각적 효과를 적용할 때에 사용됩니다.<br>
+                                    그 외의 경우에는, IE8이나 오페라 미니 등, 시맨틱 태그를 지원하지 않는 브라우저를 고려할 때, 이전 방식과 비슷하게 div 태그를 사용하기도 합니다.<br>
+                                </p>
+                                <p>
+                                    IE 8 이하에서 시맨틱 태그를 사용하기 위한 방법들은 다음과 같습니다.
+                                    <ul>
+                                        <li><b>CSS에서 블록 레벨로 정의하기</b>
+                                            <p>
+                                                브라우저는 자신이 인식하지 못하는 태그를 만나면 인라인 태그로 취급하므로, 이런 태그를 이용해 레이아웃을 만드는 것은 불가능합니다.<br>
+                                                따라서, HTML5 시맨틱 태그를 인식하지 못하는 브라우저에 대해, 시맨틱 태그에 대해 블록 속성을 추가해 주어 레이아웃을 만들수 있도록 할 수 있습니다.
+                                            </p>
+                                        </li>
+                                        <li><b>시맨틱 태그 직접 정의하기</b>
+                                            <p>
+                                                <b>document.createElement('article')</b>과 같이, 자바스크립트를 이용해 필요한 태그를 직접 정의하는 방법이 있습니다.<br>
+                                                다만 필요한 태그들을 빠뜨리지 않고 처음에 모두 정의하는 것이 쉽지 않다는 방법이 있습니다. 
+                                            </p>
+                                        </li>
+                                        <li><b>HTML5 Shiv 사용하기</b>
+                                            <p>
+                                                HTML5 Shiv는 JS로 시맨틱 태그를 정의하는 방법을 자동화한 심(shim) 중 하나로, 대부분 이러한 방법을 사용합니다.<br>
+                                                해당 파일은 인터넷으로 다운로드 받은 후, 다음과 같이 소스 안에 링크해 사용합니다.
+                                                <div class="man">
+                                                    &lang; script src="js/html5shiv.js" &rang;&lang; /script &rang;
+                                                </div>
+                                            </p>
+                                        </li>
+                                    </ul>
+                                </p>
+                            </li>
+                            <li><strong>브라우저 파편화와 폴리필</strong>
+                                <p>
+                                    이 외에, 최신 브라우저라고 하더라도 HTML5 표준 기능들이 어떤 브라우저에서는 되고 어떤 브라우저에서는 되지 않는, 즉 브라우저 파편화(browser fragmentation) 현상이 일어납니다.<br>
+                                    브라우저 파편화를 줄이기 위해서 심(shim)이나 폴백(fallback)과 같은 방법론이 이루어지는데, 이 중 하나로 폴리필(pollyfill)이 있습니다.<br>
+                                    폴리필은 파편화가 생기는 브라우저에 삽입하는 자바스크립트로, 브라우저를 스스로 진단해 필요한 shim을 자동으로 끼워 넣어 줍니다.<br>
+                                    개발되어 있는 폴리필들은 상당히 많은데, <a href="https://github.com/Modernizr/Modernizr/wiki/HTML5-Cross-Browser-Polyfills" target="_blank">HTML5 Cross Browser Polyfills 페이지</a>를 참고하면 각 기능별로 폴리필이나 심, 폴백을 한눈에 볼 수 있습니다.
+                                </p>
+                            </li>
+                        </ul>
+                    </details>
+                </article>
+            </li>
+        </ol>
+    </section>
+</body>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/7eaeb96e92.js" crossorigin="anonymous"></script> <!--미사용-->
+    <link rel="stylesheet" href="../css/css_documents.css">
+    <style>
+        #target:target {
+            font-weight: bold;
+            text-decoration: underline;
+            color: green;
+        }
+    </style>
+    <title>Chapter 12</title>
+</head>
+<body>
+    <header>
+        <h1 style="display: inline;">다재다능한 CSS3 선택자</h1><br>
+        <small>이지스퍼블리싱 Do it! HTML 2판을 기준으로 정리한 문서입니다.</small>
+    </header>
+    <nav>
+        <h3>Lists</h3>
+        <ol>
+            <li><a href="#c1201">연결 선택자</a></li>
+            <li><a href="#c1202">속성 선택자</a></li>
+            <li><a href="#c1203">가상 클래스와 가상 요소</a></li>
+        </ol>
+    </nav>
+    <section id="mainText">
+        <ol>
+            <li>
+                <article id="c1201">
+                    <details class="accordion" open=true>
+                        <summary><h4 class="title_sub">연결 선택자</h4><hr></summary>
+                        <p>
+                            CSS에서는 선택자와 선택자를 연결해 적용 대상을 한정시킬 수 있으며, 이를 '연결 선택자'라고 합니다.<br>
+                            연결 선택자는 '콤비네이션 선택자', '콤비네이션 셀렉터(combination selector)'라고도 하며, 그 종류는 다음과 같습니다.
+                        </p>
+                        <ul>
+                            <li><strong>하위 선택자</strong><b> : 지정한 모든 하위 요소에 스타일 적용하기</b>
+                                <p>
+                                    하위 선택자(decendant selector)는 부모 요소에 포함된 하위 요소 모두에 스타일이 적용되는 것으로, '자손 선택자'라고도 합니다.<br>
+                                    즉, 자식 요소뿐 아니라, hierarchy상 최하위 요소까지의 모든 요소에 대해 스타일을 적용합니다.<br>
+                                    기본형은 다음과 같습니다.
+                                    <div class="man">
+                                        상위요소 하위요소 { 스타일 }
+                                    </div>
+                                </p>
+                            </li>
+                            <li><strong>자식 선택자</strong><b> : 자식 요소에만 스타일 적용하기</b>
+                                <p>
+                                    하위 요소 전체가 아닌, 바로 아래의 자식 요소에만 스타일을 적용하기 위해서는 자식 선택자(child selector)를 이용합니다.<br>
+                                    기본형은 다음과 같습니다.
+                                    <div class="man">
+                                        상위요소 > 하위요소 { 스타일 }
+                                    </div>
+                                </p>
+                            </li>
+                            <li><strong>인접 형제 선택자</strong><b> : 가장 가까운 형제 요소에 스타일 적용하기</b>
+                                <p>
+                                    같은 부모 요소를 가지는 요소 간의 관계를 '형제 관계'라고 하며, 형제 관계 요소 중 먼저 나오는 요소를 '형 요소', 나중에 나오는 요소를 '동생 요소'라고 합니다.<br>
+                                    인접 형제 선택자(adjacent selector)를 사용하면 문서 구조상 같은 부모를 가진 형제 요소 중 첫 번째 동생 요소에 대해 스타일을 적용합니다.<br>
+                                    기본형은 다음과 같습니다.
+                                    <div class="man">
+                                        요소1 + 요소2 { 스타일 }
+                                    </div>
+                                </p>
+                                <p>
+                                    요소1과 요소2는 같은 레벨이면서, 요소1 이후 맨 먼저 오는 요소 2에 스타일을 적용합니다.
+                                </p>
+                            </li>
+                            <li><strong>형제 선택자</strong><b> : 형제 요소에 스타일 적용하기</b>
+                                <p>
+                                    형제 선택자(sibling selector)도 형제 요소들에 스타일을 적용하나, adjacent selector와는 다르게 모든 형제 요소에 대해 스타일을 적용합니다.<br>
+                                    기본형은 다음과 같습니다.
+                                    <div class="man">
+                                        요소1 ~ 요소2 { 스타일 }
+                                    </div>
+                                </p>
+                            </li>
+                        </ul>
+                    </details>
+                </article>
+            </li>
+            <li>
+                <article id="c1202">
+                    <details class="accordion" open=true>
+                        <summary><h4 class="title_sub">속성 선택자</h4><hr></summary>
+                        <p>
+                            속성 선택자는 태그 안에서 사용하는 속성들의 값에 따라 스타일을 지정합니다.
+                        </p>
+                        <ul>
+                            <li><strong>[속성] 선택자</strong><b> : 지정한 속성에 스타일 적용하기</b>
+                                <p>
+                                    특정한 속성을 사용한 요소에 대해 스타일을 적용합니다. 기본형은 다음과 같습니다.
+                                    <div class="man">
+                                        [속성] { 스타일 }
+                                    </div>
+                                </p>
+                            </li>
+                            <li><strong>[속성 = 값] 선택자</strong><b> : 특정 값을 갖는 속성에 스타일 적용하기</b>
+                                <p>
+                                    주어진 속성과 속성 값이 일치하는 요소를 찾아 스타일을 적용합니다. 기본형은 다음과 같습니다.
+                                    <div class="man">
+                                        [속성 = 값] { 스타일 }
+                                    </div>
+                                </p>
+                            </li>
+                            <li><strong>[속성 ~= 값] 선택자</strong><b> : 여러 값 중 특정 값이 포함된 속성에 스타일 적용하기</b>
+                                <p>
+                                    여러 속성 값 중 해당 값이 포함되어 있는 요소를 선택해 스타일을 적용합니다.<br>
+                                    이 선택자는 하나의 속성에 속성 값이 여러 개일 때 특정 속성 값을 찾는 데 편리합니다.<br>
+                                    기본형은 다음과 같습니다.
+                                    <div class="man">
+                                        [속성 ~= 값] { 스타일 }
+                                    </div>
+                                </p>
+                            </li>
+                            <li><strong>[속성 |= 값] 선택자</strong><b> : 특정 값이 포함된 속성에 스타일 적용하기</b>
+                                <p>
+                                    특정 값이 포함된 속성에 스타일을 적용합니다. 이때 값은 한 단어로 일치해야 합니다.<br>
+                                    [속성 ~=값]과의 차이점은, <mark>[속성 ~=값] 선택자는 하이픈(-)으로 연결한 단어에 스타일을 적용하지 않는</mark> 반면, <br>
+                                    <mark>[속성 |=값] 선택자는 속성 값이 지정한 값이거나, '값-"으로 시작하면 스타일을 적용합니다.</mark>
+                                </p>
+                            </li>
+                            <li><strong>[속성 ^= 값] 선택자</strong><b> : 특정 값으로 시작하는 속성에 스타일 적용하기</b>
+                                <p>
+                                    지정한 문자로 시작하는 속성 값에 대해 스타일을 적용합니다. 기본형은 다음과 같습니다.
+                                    <div class="man">
+                                        [속성 ^= 값] { 스타일 }
+                                    </div>
+                                </p>
+                            </li>
+                            <li><strong>[속성 $= 값] 선택자</strong><b> : 특정 값으로 끝나는 속성에 스타일 적용하기</b>
+                                <p>
+                                    지정한 문자로 끝나는 속성 값에 대해 스타일을 적용합니다. a=href에 대해 확장자를 판별하는 속성과 같이 적용할 수 있습니다.<br>
+                                    기본형은 다음과 같습니다.
+                                    <div class="man">
+                                        [속성 $= 값] { 스타일 }
+                                    </div>
+                                </p>
+                            </li>
+                            <li><strong>[속성 *= 값] 선택자</strong><b> : 값의 일부가 일치하는 속성에 스타일 적용하기</b>
+                                <p>
+                                    사용자가 지정한 속성 값의 어느 위치에서든 해당하는 값이 포함되어 있으면 스타일을 적용합니다. 기본형은 다음과 같습니다.
+                                    <div class="man">
+                                        [속성 *= 값] { 스타일 }
+                                    </div>
+                                </p>
+                            </li>
+                        </ul>
+                        <p>
+                            모든 속성 선택자 옵션을 표로 정리하면 다음과 같습니다.
+                            <table>
+                                <thead><tr><th>기본형</th><th>스타일 적용 조건</th><th>예시 : 선택자</th><th>예시 : 적용되는 요소</th></tr></thead>
+                                <tbody>
+                                    <tr><th>[속성]</th><td>지정한 '속성'일 때</td><td>[href]</td><td>
+                                        <span class="cssMan" style="font-weight: bold;">       &lang;<span>a</span> <span>href</span><span>="#"</span>&rang;메뉴 1&lang;/a&rang;    </span></td></tr>
+                                    <tr><th>[속성 = 값]</th><td>'값'에 일치할 때</td><td>[target="_blank"]</td><td>
+                                        <span class="cssMan" style="font-weight: bold;">       &lang;<span>a</span> <span>href</span><span>="......"</span> <span>target</span><span>"_blank"</span>&rang;HTML&lang;/a&rang;    </span></td></tr>
+                                    <tr><th>[속성 ~= 값]</th><td>여러 값들 중 특정 '값'이 포함되어 있을 때 (단어별)</td><td>[class~="button"]</td><td>
+                                        <span class="cssMan" style="font-weight: bold;">       &lang;<span>a</span> <span>href</span><span>="#"</span> <span>class</span><span>="flat button"</span>&rang;메뉴 4&lang;/a&rang;    </span></td></tr>
+                                    <tr><th>[속성 |= 값]</th><td>'값'이 포함되어 있을 때 (하이픈 포함 단어별)</td><td>[class |="us"]</td><td>
+                                        <span class="cssMan" style="font-weight: bold;">       &lang;<span>a</span> <span>href</span><span>="#"</span> <span>title</span><span>="us"</span>&rang;영어&lang;/a&rang;    </span> <small style="font-weight: bold; color:green">and</small><br>
+                                        <span class="cssMan" style="font-weight: bold;">       &lang;<span>a</span> <span>href</span><span>="#"</span> <span>title</span><span>="us-english"</span>&rang;영어&lang;/a&rang; </span></td></tr>
+                                    <tr><th>[속성 ^= 값]</th><td>'값'으로 시작할 때</td><td>[title^="eng"]</td><td>
+                                        <span class="cssMan" style="font-weight: bold;">       &lang;<span>a</span> <span>href</span><span>="#"</span> <span>title</span><span>="english</span> &rang;영어&lang;/a&rang;    </span></td></tr>
+                                    <tr><th>[속성 $= 값]</th><td>'값'으로 끝날 때</td><td>[href $="xls"]</td><td>
+                                        <span class="cssMan" style="font-weight: bold;">       &lang;<span>a</span> <span>href</span><span>="intro.xls"</span>&rang;엑셀 파일&lang;/a&rang;    </span></td></tr>
+                                    <tr><th>[속성 *= 값]</th><td>'값'이 속성 값의 일부일 때</td><td>[href *= "w3"]</td><td>
+                                        <span class="cssMan" style="font-weight: bold;">       &lang;<span>a</span> <span>href</span><span>="www.w3c.org"</span>&rang;HTML 사이트&lang;/a&rang;    </span></td></tr>
+                                </tbody>
+                            </table>
+                        </p>
+                    </details>
+                </article>
+            </li>
+            <li>
+                <article id="c1203">
+                    <details class="accordion" open=true>
+                        <summary><h4 class="title_sub">가상 클래스와 가상 요소</h4><hr></summary>
+                        <p>
+                            일반적인 선택자로 지정하기 난해한 요소들의 경우, 가상 클래스와 가상 요소를 이용해 선택할 수 있습니다.<br>
+                            <b>가상 클래스는 이름 앞에 콜론(:)</b>을 붙여 표시하며, <b>가상 요소는 이름 앞에 콜론을 두 개 붙여(::)</b> 사용합니다.
+                        </p>
+                        <ul>
+                            <li><strong>사용자 동작에 반응하는 가상 클래스</strong> <b>(pseudo class)</b>
+                                <p>
+                                    사용자가 웹 요소를 클릭하거나 마우스 커서를 올려놓는 등, <b>특정 동작을 할 때 스타일이 바뀌도록</b> 만들고 싶다면 가상 클래스 선택자를 사용합니다.<br>
+                                    웹 요소를 정의할 때에는 반드시 <b>:link &rang; :visited &rang; :hover &rang; :active 순서대로</b> 적용해야 합니다.
+                                </p>
+                                <p>
+                                    다음의 선택자들은 가상 클래스 선택자 중 자주 사용하는 것들을 모아 둔 것입니다.
+                                    <ul>
+                                        <li><b>:link</b> 가상 클래스 선택자 : 문서 안의 하이퍼링크 중 사용자가 아직 방문하지 않은 링크에 스타일을 적용합니다.</li>
+                                        <li><b>:visited</b> 가상 클래스 선택자 : 문서의 링크 중 한 번 이상 방문한 링크에 대한 스타일을 적용합니다.</li>
+                                        <li><b>:hover</b> 가상 클래스 선택자 : 웹 요소에 hover시 스타일을 지정합니다. rollover 효과 등에 이용할 수 있습니다.</li>
+                                        <li><b>:active</b> 가상 클래스 선택자 : 링크나 이미지 등 웹 요소를 활성화했을 때<small>(누르고 있을 때)</small>의 스타일을 지정합니다.
+                                        <li><b>:focus</b> 가상 클래스 선택자 : 텍스트 필드에 마우스 커서를 놓는 등, 웹 요소가 focused 되었을 때의 스타일을 지정합니다.</li>
+                                    </ul>
+                                </p>
+                            </li>
+                            <li><strong>UI 요소 상태에 따른 가상 클래스</strong>
+                                <p>
+                                    사용자의 동작 뿐 아니라 웹 요소의 상태에 따라 스타일을 지정할 때도 가상 클래스 선택자를 사용합니다.<br>
+                                    그중에서도 UI 요소의 상태에 따른 가상 클래스는 웹 사이트나 앱 화면을 디자인할 때 있어 웹 요소의 상태에 따라 스타일을 지정하기 위해 사용합니다.
+                                </p>
+                                <p>
+                                    다음은 UI 요소의 상태에 따른 대표적인 가상 클래스 선택자들입니다.
+                                    <ul>
+                                        <li><b>:enabled</b>와<b>:disabled</b> 가상 클래스 선택자
+                                            <p>
+                                                해당 요소가 사용 가능한 상태일 때의 스타일을 지정하려면 :enabled 클래스를 사용하고, 해당 요소가 사용 불가능한 상태일 때의 스타일을 지정하려면 :disabled 클래스를 사용합니다.<br>
+                                                예를 들어, textarea 필드를 게시판 입력 화면으로 사용할 때는 enabled를, 회원 약관 등을 보여 줄 때는 disabled 상태로 이용할 수 있습니다.
+                                            </p>
+                                        </li>
+                                        <li><b>:checked</b> 가상 클래스 선택자 : 라디오 버튼이나 체크 박스에서 해당 항목을 선택했을 때의 스타일을 지정합니다.
+
+                                        </li>
+                                    </ul>
+                                </p>
+                            </li>
+                            <li><strong>구조 가상 클래스</strong>
+                                <!--이해가 잘 안 되므로 예시 만들어 넣을 것-->
+                                <p>
+                                    구조 가상 클래스는 웹 문서 구조를 기준으로 특정 위치에 있는 요소를 찾아 스타일을 지정할 때 사용하는 가상 클래스입니다.
+                                    각 가상 클래스의 차이점이 미묘하여, 구현 예시를 먼저 첨부합니다.
+                                    <p class="codepen" data-height="300" data-default-tab="css,result" data-slug-hash="yLbxLRE" data-user="wierd_sol" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+                                        <span>See the Pen <a href="https://codepen.io/wierd_sol/pen/yLbxLRE">
+                                        </a> by 솔🌲 (<a href="https://codepen.io/wierd_sol">@wierd_sol</a>)
+                                        on <a href="https://codepen.io">CodePen</a>.</span>
+                                      </p>
+                                      <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+                                </p>
+                                <ul>
+                                    <li><b>:root</b> 가상 클래스 선택자 : 문서 안의 루트 요소에 스타일을 적용합니다. HTML 문서에서는 루트 요소가 HTML이므로 HTML 요소에 스타일이 적용됩니다.<br>
+                                        :root 선택자는 CSS3부터 정의되었습니다.</li>
+                                    <li><b>:nth-child(n)</b>와<b>nth-last-child(n)</b> 가상 클래스 선택자
+                                        <p>
+                                            여러 개의 항목이 나열되어 있는 경우, class나 id 를 사용하지 않고 스타일을 지정할 항목이 몇 번째에 있는지를 따져 스타일을 적용합니다.<br>
+                                            :nth-child(n)은 앞에서부터 n번째 자식 요소에 스타일을 적용하고, :nth-last-child(n)은 끝에서부터 n번째인 자식 요소에 스타일을 적용합니다.<br>
+                                            an+b처럼 수식을 사용할 수도 있는데, 이 때 n 값은 0부터 차례로 대입해 계산합니다.<br>
+                                            짝수나 홀수의 경우, 수식 대신 even / odd 를 사용할 수 있습니다.<br>
+                                            다만, 위치에 따라 스타일을 적용하는 선택자는 해당 요소들이 모두 같은 레벨의 요소여야 합니다.
+                                        </p>
+                                    </li>
+                                    <li><b>:nth-of-type(n), :nth-last-of-type(n)</b> 가상 클래스 선택자
+                                        <p>
+                                            여러 개의 항목이 나열되어 있는 경우, 스타일을 지정할 항목이 <mark>해당 타입 중 몇 번째</mark>에 있는지를 따져 스타일을 적용합니다.<br>
+                                            :nth-child(n)는 모든 요소를 포함해 순서를 카운팅하는 반면, type 속성은 해당하는 타입에 대해서만 순서를 카운팅합니다.<br>
+                                            그 외의 특성은 nth-child(n)과 동일합니다.
+                                        </p>
+                                    </li>
+                                    <li><b>:first-child, :last-child</b> 가상 클래스 선택자 : 첫 번째 요소나 마지막 요소에 대해 스타일을 적용합니다.</li>
+                                    <li><b>:first-of-type, :last-of-type</b> 가상 클래스 선택자 : 형제 관계인 요소들 중 첫 번째 / 마지막 요소에 스타일을 적용합니다.</li>
+                                    <li><b>:only-child, :only-of-type</b> 가상 클래스 선택자 : 부모 안의 자식 요소가 유일하게 하나일 때 / 해당 요소가 유일한 요소일 때 스타일을 적용합니다.</li>
+                                </ul>
+                            </li>
+                            <li><strong>그 외 가상 클래스</strong>
+                                <ul>
+                                    <li><!--왜적용안돼??-->
+                                        <b>:target</b> 가상 클래스 선택자 : <a href="#dest" id="target">앵커</a>로 연결된 부분, 즉 앵커의 <span id="dest">목적지</span>에 대한 스타일을 지정합니다.</li>
+                                    <li><b>:not(*)</b> 가상 클래스 선택자 : 특정 요소가 아닐 때 스타일 적용하기</li>
+                                </ul>
+                            </li>
+                            <li><strong>가상 요소</strong>
+                                <p>
+                                    가상 요소는 이름 앞에 콜론 두 개(::)를 붙여 이용하며, 내용의 일부만 선택해 스타일을 적용할 때 사용합니다.<br>
+                                    많이 사용하는 가상 요소들은 다음과 같습니다.
+                                </p>
+                                <ul>
+                                    <li><b>::first-line</b> 요소와 <b>::fisrt-letter</b> 요소 : 첫 번째 줄 / 첫 번째 글자에 스타일을 적용합니다.<br>
+                                        first-line 요소에 사용 가능한 속성은 font, background, color, word-spacing, letter-spacing, text-decoration, vertical align, text-transform, line-height 속성을 사용할 수 있습니다.<br>
+                                        &lang;p&rang;태그 안에 &lang;br&rang; 태그가 있어 첫 번째 글자가 첫 번째 줄에 없을 경우, 해당 속성은 적용할 수 없습니다.</li>
+                                    <li><b>::before, ::after</b> 요소 : 특정 요소의 내용 앞/뒤에 콘텐츠를 추가합니다. 'NEW!!' 와 같은 효과를 적용할 수 있습니다.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </details>
+                </article>
+            </li>
+        </ol>
+    </section>
+</body>

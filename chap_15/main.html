@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/7eaeb96e92.js" crossorigin="anonymous"></script> <!--미사용-->
+    <link rel="stylesheet" href="../css/css_documents.css">
+    <style>
+
+    </style>
+    <title>Chapter 15</title>
+</head>
+<body>
+    <header>
+        <h1 style="display: inline;">미디어 쿼리</h1><br>
+        <small>이지스퍼블리싱 Do it! HTML 2판을 기준으로 정리한 문서입니다.</small>
+    </header>
+    <nav>
+        <h3>Lists</h3>
+        <ol>
+            <li><a href="#c1501">미디어 쿼리 이해하기</a></li>
+            <li><a href="#c1502">미디어 쿼리 적용하기</a></li>
+        </ol>
+    </nav>
+    <section id="mainText">
+        <ol>
+            <li>
+                <article id="c1501">
+                    <details class="accordion" open=true>
+                        <summary><h4 class="title_sub">미디어 쿼리 이해하기</h4><hr></summary>
+                        <p>
+                            <b>미디어 쿼리</b>(Media Queries)는 CSS3 모듈 중 하나로 사이트에 접속하는 장치에 따라 특정한 CSS 스타일을 사용하도록 해 줍니다.<br>
+                        </p>
+                        <ul>
+                            <li><strong>미디어 쿼리 구문</strong>
+                                <p>
+                                    미디어 쿼리 구문은 &lang;style&rang;과 &lang;/style&rang; 사이에 사용하며, 대/소문자를 구별하지 않습니다.<br>
+                                    기본적으로 미디어 유형이 지정되어야 하고, 필요할 경우 쉼포(,)나 and 연산자로 조건을 적용합니다.<br>
+                                    미디어 쿼리 구문의 기본형은 다음과 같습니다.
+                                    <div class="man">
+                                        @media [only | not] 미디어 유형 [and 조건] * [and 조건]
+                                    </div>
+                                </p>
+                                <p>
+                                    미디어 쿼리 구문에서 사용할 수 있는 연산자는 다음과 같습니다.
+                                    <ul>
+                                        <li><b>and</b> : 미디어 쿼리 구문에 대해 조건을 계속 추가할 수 있습니다.<br>
+                                            다음 구문은 미디어 유형이 'screen'이면서 최소 너비가 200px이고 최대 너비가 360px일 경우에 적용할 CSS를 정의하는 구문입니다.<br>
+                                            <div class="man cssMan">
+                                                <span></span><span></span>
+                                                <span>@media screen and (</span><span>min-width</span><span>:200px ) and (</span><span>max-width</span><span>max-width</span><span>:360px</span>) { ... }
+                                            </div>
+                                        </li>
+                                        <li><b>, (쉼표)</b> : 동일한 스타일 유형을 사용할 미디어의 유형과 조건이 있다면 쉼표를 이용해 추가합니다.</li>
+                                        <li><b>only</b> : 미디어 쿼리를 지원하는 웹 브라우저에서만 조건을 인식하게 합니다. 이 키워드를 사용하면 미디어 쿼리를 지원하지 않는 웹 브라우저에서는 미디어 쿼리를 무시하고 실행하지 않습니다.<br>
+                                            IE에서는 미디어 쿼리를 제대로 인식하지 못하기 때문에 only 키워드를 사용하더라도 큰 의미가 없습니다.</li>
+                                        <li><b>not</b> : not 다음에 지정하는 미디어 유형을 제외합니다. 예를 들어 'not tv'라고 지정한다면 TV를 제외한 미디어 유형에만 적용합니다.</li>
+                                    </ul>
+                                </p>
+                                <p><b>미디어 유형의 종류</b>
+                                    <p>미디어 쿼리는 미디어별로 적용할 CSS를 따로 작성하기 때문에 @media 속성 다음에 미디어 유형을 알려주어야 합니다.<br>
+                                        미디어 유형에 들어갈 수 있는 것은 다음과 같습니다.
+                                        <ul>
+                                            <li><b>all</b> : 모든 미디어 유형</li>
+                                            <li><b>print</b> : 인쇄 장치</li>
+                                            <li><b>screen</b> : 컴퓨터 스크린(스마트폰 스크린 포함)</li>
+                                            <li><b>tv</b> : 음성과 영상이 동시 출력되는 TV</li>
+                                            <li><b>aural</b> : TTS 장치</li>
+                                            <li><b>braille</b> : 점자 표시 장치</li>
+                                            <li><b>handheld</b> : 패드(pad)처럼 손에 들고 다니는 장치</li>
+                                            <li><b>projection</b> : 프로젝터</li>
+                                            <li><b>tty</b> : 디스플레이 기능이 제한된 장치(픽셀 단위를 사용할 수 없는 장치)</li>
+                                            <li><b>embossed</b> : 점자 프린터</li>
+                                        </ul>
+                                    </p>
+                                </p>
+                            </li>
+                            <li><strong>미디어 쿼리의 조건</strong>
+                                <p>
+                                    미디어 쿼리는 특정 조건에 따라 적용할 CSS를 다르게 정의하므로, 조건을 어떻게 지정할 것인지가 중요합니다.<br>
+                                    미디어 쿼리의 조건들은 다음과 같습니다.
+                                </p>
+                                <ul>
+                                    <li><b>웹 문서의 가로 너비와 세로 높이</b>
+                                        <p>
+                                            실제 웹 문서의 내용이 화면에 보이는 영역을 '뷰포트'라고 하는데 뷰포트의 너비와 높이를 미디어 쿼리의 조건으로 사용할 수 있습니다.<br>
+                                            이 때 height(높이)값은 미디어에 따라 달라지기 때문에 주의해야 합니다.<br>
+                                            screen이 아닌 미디어에서는 스크롤을 포함한 전체 문서를 height로 지정해야 하며, print에서는 한 페이지 높이를 기준으로 합니다.<br>
+                                            기로 너비와 세로 높이를 지정하기 위해 사용하는 속성은 다음과 같습니다.
+                                            <table>
+                                                <thead>
+                                                    <tr><th>가로, 세로 값을 설정하는 속성</th><th>설명</th></tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr><th>width, height</th><td>웹 페이지의 가로 너비, 세로 높이</td></tr>
+                                                    <tr><th>min-width, min-height</th><td>최소 너비, 최소 높이</td>
+                                                    <tr><th>max-width, max-weight</th><td>최대 너비, 최대 높이</td></tr>
+                                                </tbody>
+                                            </table>
+                                        </p>
+                                    </li>
+                                    <li><b>단말기의 가로 너비와 세로 높이</b>
+                                        <p>
+                                            웹 문서의 크기는 단말기에 따라서도 달라지지만, 대부분의 단말기들은 단말기 해상도와 실제 브라우저의 너비가 다르므로 주의해야 합니다.<br>
+                                            단말기의 너비나 높이를 고려해 미디어 쿼리를 작성해야 한다면 다음과 같은 속성을 사용합니다.
+                                            <table>
+                                                <thead>
+                                                    <tr><th>단말기의 가로, 세로 값을 설정하는 속성</th><th>설명</th></tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr><th>device-width, device-height</th><td>단말기의 가로 너비, 세로 높이</td></tr>
+                                                    <tr><th>min-device-width, min-device-height</th><td>단말기의 최소 너비, 최소 높이</td>
+                                                    <tr><th>max-device-width, max-deviceweight</th><td>단말기의 최대 너비, 최대 높이</td></tr>
+                                                </tbody>
+                                            </table>
+                                            단말기 크기와 뷰포트 크기를 하나로 통일해 사용하기 위해서는 뷰포트를 지정할 때 width="device-width"로 놓고 사용합니다.
+                                        </p>
+                                    </li>
+                                    <li><b>화면 회전</b>
+                                        <p>
+                                            orientation 속성을 사용하면 모바일 기기에서 화면의 방향을 체크할 수 있습니다.<br>
+                                            orientation 속성은 portrait값과 landscape 값을 사용할 수 있는데, width가 넓으면 landscape이고, height가 길면 portrait입니다.
+                                        </p>
+                                    </li>
+                                    <li><b>화면 비율, 단말기의 물리적 화면 비율</b>
+                                        <p>
+                                            화면 비율은 뷰포트(단말기 브라우저)의 너비 값(width) / 높이 값(height)으로 계산되며, 숫자 값이나 계산식을 사용할 수 있습니다.<br>
+                                            사용할 수 있는 속성 값은 다음과 같습니다.
+                                            <ul>
+                                                <li><b>aspect-ratio</b> : 화면 비율(width / height)</li>
+                                                <li><b>min-aspect-ratio</b> : 최소 화면 비율</li>
+                                                <li><b>max-aspect-ratio</b> : 최대 화면 비율</li>
+                                            </ul>
+                                        </p>
+                                        <p>
+                                            단말기 화면 비율은 단말기의 너비 값(device-width)과 높이 값(device-height)을 이용해 계산합니다.<br>
+                                            사용할 수 있는 속성 값은 다음과 같습니다.
+                                            <ul>
+                                                <li><b>device-aspect-ratio</b> : 단말기 화면 비율(width 값 / height 값)</li>
+                                                <li><b>min-device-aspect-ratio</b> : 단말기 최소 화면 비율</li>
+                                                <li><b>max-device-aspect-ration</b> : 단말기 최대 화면 비율</li>
+                                            </ul>
+                                        </p>
+                                    </li>
+                                    <li><b>색상당 비트 수</b>
+                                        <p>
+                                            단말기에서 사용하는 최대 색상 비트 수를 미디어 쿼리 조건으로 사용할 수도 있습니다.<br>
+                                            color:1이면 최대 2가지(1비트 = 2<sup>1</sup>) 색상을 나타낼 수 있고, color:3이면 비트 3개로 표현할 수 있는 최대 색상인 8가지(3비트 = 2<sup>3</sup>)를 표현할 수 있습니다.<br>
+                                            미디어가 컬러 색상을 지원하지 않는다면 color:0으로 지정합니다.<br>
+                                            사용 가능한 속성 값은 다음과 같습니다.
+                                            <ul>
+                                                <li><b>color</b> : 비트 수</li>
+                                                <li><b>min-color</b> : 최소 비트 수</li>
+                                                <li><b>max-color</b> : 최대 비트 수</li>
+                                            </ul>
+                                        </p>
+                                        <p>
+                                            이 외에도 TV 미디어나 webkit 브라우저, 흑백 단말기 등 특정 기기에 해당하는 여러 미디어 쿼리 조건들도 있습니다.<br>
+                                            미디어 쿼리의 조건에 대한 자세한 설명은 <a target="_blank" href="https://www.w3.org/TR/css3-mediaqueries/">이곳</a>에서 확인할 수 있습니다.
+                                        </p>
+                                    </li>
+                                    <li><b>미디어 쿼리 중단점 만들기</b>
+                                        <p>
+                                            미디어 쿼리를 작성할 때 서로 다른 CSS를 적용할 화면 크기를 중단점(break point)이라고 합니다.<br>
+                                            이 중단점을 어떻게 지정하는가에 따라 CSS가 달라지고 화면 레이아웃이 바뀌는데 대부분 기기의 화면 크기를 기준으로 합니다.<br>
+                                            하지만 시중의 모든 기기들을 반영할 수는 없기 떄문에 모바일/태블릿/데스크톱 정도로만 구분하는 것이 좋습니다.<br>
+                                            그리고 처리 속도나 화면 크기 등에서 다른 기기보다 모바일 기기의 제약 조건이 더 많기 때문에 모바일 기기의 레이아웃을 기본으로 해 CSS를 만듭니다.<br>
+                                            그런 후 좀 더 사양이 훌륭하고 화면이 큰 태블릿과 데스크톱에 맞추어 더 많은 기능과 스타일을 추가합니다.<br>
+                                            이렇게 모바일을 먼저 고려해 미디어 쿼리를 작성하는 것을 '모바일 퍼스트(mobile first)'라고 합니다.<br>
+                                            디자이너에 따라 데스크톱을 기준으로 디자인한 후 모바일에 맞추어 기능을 줄이고 스타일을 바꾸어가는 방법을 선택하기도 합니다.
+                                        </p>
+                                        <p>
+                                            지금까지 출시된 기기들이 많고 앞으로도 다양한 크기의 기기들이 추가될 것이기 때문에 미디어 쿼리의 중단점을 어떻게 나눌 것인지에 대한 표준은 없습니다.<br>
+                                            웹 사이트를 제작하면서 미디어 쿼리를 사용할 예정이라면 해당 웹 사이트에 접속하는 사용자를 미리 예측하고 가장 일반적으로 사용할 만한 기기를 파악해야 합니다.<br>
+                                            그리고 그 기기들에 대한 크기를 중단점으로 사용하는 것이 좋습니다.
+                                        </p>
+                                        <p>
+                                            CSS 프레임워크인 부트스트랩(Bootstrap)과 쇼핑몰 개발 플랫폼인 마젠토(Magento)에서는 다음과 같은 중단점을 사용합니다.
+                                            <table>
+                                                <thead>
+                                                    <tr><th></th><th>아주 작은 화면</th><th>작은 화면</th><th>중간 화면</th><th>큰 화면</th><th>아주 큰 화면</th></tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr><th>부트스트랩</th><td>576px 미만</td><td>576px 이상</td><td>768px 이상</td><td>992px 이상</td><td>1200px 이상</td></tr>
+                                                    <tr><th>마젠토</th><td>640px 미만</td><td>640px 이상</td><td>768px 이상</td><td>1024px 이상</td><td>1440px 이상</td></tr>
+                                                </tbody>
+                                            </table>
+                                        </p>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </details>
+                </article>
+            </li>
+            <li>
+                <article id="c1502">
+                    <details class="accordion" open=true>
+                        <summary><h4 class="title_sub">미디어 쿼리 적용하기</h4><hr></summary>
+                        <p>
+                            미디어 쿼리는 웹 문서 안에서 @media 구문 다음 조건에 맞는 CSS 규칙을 직접 추가해 구현할 수도 있고 각 미디어 조건에 맞는 별도의 CSS 파일을 만들어 &lang;link&rang; 태그로 연결해 사용할 수도 있습니다.<br>
+                            미디어 쿼리를 적용하는 방법은 다음과 같습니다.
+                        </p>
+                        <ul>
+                            <li><strong>외부 CSS 파일 연결하기</strong>
+                                <p>
+                                    외부 스타일 시트 파일로 미디어 쿼리를 별도로 저장한 후 웹 문서에 연결하는 방법은 다음과 같습니다.
+                                </p>
+                                <ul>
+                                    <li><b>&lang;link&rang; 태그 사용하기</b>
+                                        <p>
+                                            외부 스타일 시트 파일을 연결할 때 &lang;link&rang; 태그를 이용하는 방법을 가장 많이 사용합니다.<br>
+                                            &lang;link&rang;태그는 &lang;head&rang; 태그와 &lang;/link&rang; 태그 사이에 삽입합니다.<br>
+                                            기본형은 다음과 같습니다.
+                                            <div class="man">
+                                                &lang; link rel="stylesheet" media="미디어 쿼리 조건" href="css 파일 경로" &rang;
+                                            </div>
+                                        </p>
+                                    </li>
+                                    <li><b>@import 구문 사용하기</b>
+                                        <p>
+                                            외부 CSS 파일을 연결할 때 &lang;link&rang; 태그 대신 @import 구문을 사용할 수 있습니다.<br>
+                                            @import 구문은 CSS를 정의하는 &lang;style&rang; 태그와 &lang;/style&rang;태그 사이에서 사용합니다.<br>
+                                            기본형은 다음과 같습니다.
+                                            <div class="man cssMan">
+                                                <span></span><span></span>
+                                                <span>@import url("css/tablet.css") only screen and (</span><span>min-width</span><span>:321px) and (</span><span>max-width</span><span>:768px);</span>
+                                            </div>
+                                        </p>
+                                    </li>
+                                </ul>
+                                <p>
+                                    &lang;link&rang; 태그와 @import 구문 모두 외부 CSS 파일을 가져와 사용하는 방법이기 때문에 CSS 파일이 1~2개밖에 없다면 속도나 처리 면에서 큰 차이가 없으나, CSS 파일이 많아질 경우 @import 구문보다 &lang;link&rang; 태그가 안정적이고 빠릅니다.<br>
+                                    특히, IE의 경우 @import 구문과 자바스크립트가 함께 있을 경우, 자바스크립트를 먼저 다운로드하고 @import구문에 있는 CSS를 다운로드하기 때문에 자바스크립트에서 스타일 관련 정보를 처리해야 할 경우 오류를 발생시킬 수도 있습니다.<br>
+                                    따라서 CSS 파일이 많고 대규모 사이트를 개발할 때는 @import 구문보다 &lang;link&rang; 태그를 주로 사용합니다.
+                                </p>
+                            </li>
+                            <li><strong>웹 문서에서 직접 정의하기</strong>
+                                <p>
+                                    미디어 쿼리를 웹 문서에서 직접 정의하는 방법은 @media 구문을 사용하는 것과 &lang;style&rang;태그 안에서 media 속성을 사용하는 것 두 가지가 있습니다.
+                                </p>
+                                <ul>
+                                    <li><b>media 속성 사용하기</b>
+                                        <p>
+                                            media 속성은 &lang;style&rang; 태그 안에서 media 속성을 사용해 조건을 지정하고 그 조건에 맞는 스타일을 정의하는 것입니다.<br>
+                                            기본형은 다음과 같습니다.
+                                            <div class="man">&lang;style media="미디어 쿼리 조건"&rang;<br>
+                                                <span class="tab">스타일 규칙들 . . .</span><br>
+                                                &lang;/style&rang;
+                                            </div> 
+                                        </p>
+                                    </li>
+                                    <li><b>@media 구문 사용하기</b>
+                                        <p>
+                                            @media 구문을 사용하면 media 속성과 달리 &lang;style&rang;태그 안에 조건별로 스타일을 지정해 놓고 그 중 선택적으로 스타일을 적용할 수 있습니다.<br>
+                                            기본형은 다음과 같습니다.
+                                            <div class="man">
+                                                &lang;style&lang;<br>
+                                                <span class='tab'>@media 미디어 쿼리 조건 {</span><br>
+                                                    <span class='tab2'>스타일 규칙들 . . .</span><br>
+                                                <span class='tab'>}</span><br>
+                                                &lang;/style&rang;
+                                            </div>
+                                        </p>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    </details>
+                </article>
+            </li>
+        </ol>
+    </section>
+</body>

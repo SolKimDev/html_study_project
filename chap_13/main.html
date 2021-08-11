@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/7eaeb96e92.js" crossorigin="anonymous"></script> <!--미사용-->
+    <link rel="stylesheet" href="../css/css_documents.css">
+    <style>
+        #tran_square {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            border: 1px solid gray;
+            background-color: #921293;
+            transition-property: all;
+            transition-duration: 500ms;
+        }
+        .box{
+            display: inline-block;
+            background-color: darkblue ;
+            position: relative; top: 0.5ex;
+            width: 1em;
+            height: 1em;
+            border: 1px solid gray;
+            transition-property: width;
+            transition-duration: 1s;
+            margin: 0px 5px;
+        }
+        .box:hover {
+            width:8em;
+        }
+        .linear {
+            transition-timing-function: linear;
+        }
+        .ease {
+            transition-timing-function: ease;
+        }
+        .ease-in {
+            transition-timing-function: ease-in;
+        }
+        .ease-out {
+            transition-timing-function: ease-out;
+        }
+        .ease-in-out {
+            transition-timing-function: ease-in-out;
+        }
+    </style>
+    <script type="text/javascript">
+        var timeout;
+        var interval;
+        
+        function chBox(){
+            var ranColor = Math.floor(Math.random() * 999899) +100;
+            var ranWidth = Math.floor(Math.random() * 90 ) +10;
+            var ranRad = Math.floor(Math.random() *15);
+            document.getElementById("tran_square").style.backgroundColor="#"+ranColor;
+            document.getElementById("tran_square").style.width=ranWidth+"%";
+            document.getElementById("tran_square").style.borderRadius=ranRad+"px";
+    
+            console.log('Color : #' + ranColor);
+            console.log('Width : ' + ranWidth);
+            console.log('Rad : ' + ranRad);
+        }
+    
+        window.onload=function(){
+            interval = setInterval('chBox()',1200);
+        };
+    </script>
+    <title>Chapter 13</title>
+</head>
+<body>
+    <header>
+        <h1 style="display: inline;">CSS3와 애니메이션</h1><br>
+        <small>이지스퍼블리싱 Do it! HTML 2판을 기준으로 정리한 문서입니다.</small>
+    </header>
+    <nav>
+        <h3>Lists</h3>
+        <ol>
+            <li><a href="#c1301">변형</a></li>
+            <li><a href="#c1302">변형과 관련된 속성들</a></li>
+            <li><a href="#c1303">트랜지션</a></li>
+            <li><a href="#c1304">애니메이션</a></li>
+        </ol>
+    </nav>
+    <section id="mainText">
+        <ol>
+            <li>
+                <article id="c1301">
+                    <details class="accordion" open=true>
+                        <summary><h4 class="title_sub">변형</h4><hr></summary>
+                        <p>
+                            CSS를 통해 이미지를 변형시킬 수 있으며, 이를 2차원 변형과 3차원 변형으로 분류할 수 있습니다.<br>
+                            <b>2차원 변형</b>은 <span class="under">평면상에서 요소를 수평/수직으로 이동하거나 회전</span>시키는 것을 뜻하며, <b>3차원 변형</b>은 <span class="under">x축과 y축에 z축을 추가해 원근감을 변형시키는 것을 말합니다.</span><br>
+                            IE9 이하의 구형 브라우저에서는 지원하지 않으므로 prefix 사용이 권장됩니다.
+                        </p>
+                        <ul>
+                            <li><strong>transform과 변형 함수</strong>
+                                <p>
+                                    이미지를 회전시키거나 이동하는 등, 웹 요소를 변형시려면 요소에 transform 속성을 적용해야 합니다. 기본형은 다음과 같습니다.
+                                    <div class="man">
+                                        * { transform: 변형 함수; }
+                                    </div>
+                                </p>
+                            </li>
+                        </ul>
+                            2차원 변형에서 사용하는 변형 함수는 다음과 같습니다. 
+                        <ul>
+                            <li><strong>translate 변형 함수</strong><b> : 요소 이동시키기</b>
+                                <p>
+                                    translate 변형 함수는 <b>2차원과 3차원에서 모두</b> 가능한 변형 함수입니다. x축 방향이나 y축 방향, 혹은 양쪽 방향으로 이동할 거리를 지정해 해당 요소를 지정한 크기만큼 이동시킵니다.<br>
+                                    translate 효과를 이용해 요소를 옮긴다고 해도, 원래 지정된 요소의 크기와 위치는 변하지 않습니다.
+                                    translate 함수의 형식은 다음과 같습니다.
+                                    <ul>
+                                        <li><b>transform : translate(tx, ty)</b> : x축 방향으로 tx만큼, y축 방향으로 ty만큼 이동합니다. ty 값이 주어지지 않으면 0으로 간주합니다.</li>
+                                        <li><b>transform : translate(tx, ty, tz)</b> : x축 방향으로 tx만큼, y축 방향으로 ty만큼, z축 방향으로 tz만큼 이동합니다.</li>
+                                        <li><b>transform : translate(tx)</b> : x축 방향으로 tx만큼 이동합니다.</li>
+                                        <li><b>transform : translate(ty)</b> : y축 방향으로 ty만큼 이동합니다.</li>
+                                        <li><b>transform : translate(tz)</b> : z축 방향으로 tz만큼 이동합니다.</li>
+                                    </ul>
+                                </p>
+                            </li>
+                            <li><strong>scale 변형 함수</strong><b> : 요소 확대/축소하기</b>
+                                <p>
+                                    요소를 지정한 크기(실수형 배수)만큼 확대/축소합니다. 괄호 안의 값이 1보다 크면 확대되고, 1보다 작으면 축소됩니다.<br>
+                                    scale 변형을 사용하는 형식은 다음과 같습니다.
+                                    <ul>
+                                        <li><b>transform : scale(sx, sy)</b> : x축 방향으로 sx만큼, y축 방향으로 sy만큼 확대합니다. sy값이 주어지지 않는 경우 sx값과 같다고 간주합니다.</li>
+                                        <li><b>transform : scale(sx, sy, sz)</b> : x축 방향으로 sx만큼, y축 방향으로 sy만큼, z축 방향으로 sz만큼 확대합니다.</li>
+                                        <li><b>transform : scale(sx)</b> : x축 방향으로 sx만큼 확대합니다.</li>
+                                        <li><b>transform : scale(sy)</b> : y축 방향으로 sy만큼 확대합니다.</li>
+                                        <li><b>transform : scale(sz)</b> : z축 방향으로 sz만큼 확대합니다.</li>
+                                    </ul>
+                                </p>
+                            </li>
+                            <li><strong>rotate 변형 함수</strong><b> : 요소 회전하기</b>
+                                <p>
+                                    <b>2차원과 3차원 모두</b> 가능한 rotate 변형 함수는 지정한 각도만큼 웹 요소를 시계 방향 / 시계 반대 방향으로 회전시킵니다.<br>
+                                    각도 값으로 각도나 라디안 값을 사용하며, 양수일 경우 시계 방향으로, 음수일 경우 시계 반대 방향으로 회정합니다.<br>
+                                    3차원 회전 변형을 주는 경우, 입체적인 느낌을 주기 위해 화면에 깊이감을 주는 perspective 속성을 많이 사용합니다. perspective에 대한 자세한 설명은 <a href="perspective">이곳</a>에서 확인할 수 있습니다.<br>
+                                    rotate 변형의 사용 형식은 다음과 같습니다.
+                                    <ul>
+                                        <li><b>transform:rotate(각도)</b> : <b>2차원 회전일 때 사용 가능</b>한 기본형입니다.</li>
+                                        <li><b>transform:rotate(rx, ry, 각도)</b> : <b>3차원 회전일 때 사용 가능</b>한 기본형입니다.</li>
+                                        <li><b>transform:rotate3d(rx, 각도)</b> : x,y,z축을 기준으로 지정한 각도만큼 회전합니다.</li>
+                                        <li><b>transform:rotateX(각도)</b> : x축을 기준으로 지정한 각도만큼 회전합니다.</li>
+                                        <li><b>transform:rotateY(각도)</b> : y축을 기준으로 지정한 각도만큼 회전합니다.</li>
+                                        <li><b>transform:rotateZ(각도)</b> : z축을 기준으로 지정한 각도만큼 회전합니다.</li>
+                                    </ul>
+                                </p>
+                            </li>
+                            <li><strong>skew 변형 함수</strong><b> : 요소 회전하기</b>
+                                <p>
+                                    <b>2차원 변형만 가능</b>하며, 요소를 지정한 각도만큼 비틀어 왜곡합니다.<br>
+                                    이 때, 양쪽 방향이나 한쪽 방향으로만 비틀 수 있습니다.<br>
+                                    skew 변형의 사용 형식은 다음과 같습니다.
+                                    <ul>
+                                        <li><b>transform:skew(ax, ay)</b> : 첫 번째 각도는 x축에서의 왜곡 각도이고, 두 번째 각도는 y축에서의 왜곡 각도입니다. ay가 주어지지 않으면 0으로 간주합니다.</li>
+                                        <li><b>transform:skewX(ax)</b> : x축에서 주어진 각도만큼 왜곡합니다.</li>
+                                        <li><b>transform:skewY(ay)</b> : y축에서 주어진 각도만큼 왜곡합니다.</li>
+                                    </ul>
+                                </p>
+                            </li>
+                        </ul>
+                    </details>
+                </article>
+            </li>
+            <li>
+                <article id="c1302">
+                    <details class="accordion" open=true>
+                        <summary><h4 class="title_sub">변형과 관련된 속성들</h4><hr></summary>
+                        <p>
+                            3차원 변형을 만들 때 단순히 z축만 추가한다고 해서 원근감이 생기지는 않으므로, 변형할 때 기준이 되는 지점을 바꾸거나 요소의 원근감을 표현하기 위한 속성을 추가해야 합니다.<br>
+                            따라서 이번 장에서는, 변형 및 원금감과 관련된 속성들에 대해서 알아봅니다.
+                        </p>
+                        <ul>
+                            <li><strong>transform-origin 속성</strong><b> : 변형 기준점 설정하기</b>
+                                <p>
+                                    transform-origin 속성을 사용하면 축이 아닌 특정 지점을 변형의 기준으로 설정할 수 있으며, 해당 속성은 2차원과 3차원 변형 모두에서 사용 가능합니다.<br>
+                                    기본형은 다음과 같습니다.
+                                    <div class="man">
+                                        transform-origin: &lang;x축&rang; &lang;x축&rang; &lang;x축&rang; | initial | inherit ;
+                                    </div>
+                                </p>
+                                <p>
+                                    transform-origin 속성에서 사용하는 변형 기준점들은 다음과 같이 설정할 수 있습니다.
+                                    <ul>
+                                        <li>&lang;x축&rang; : 원점 기준의 x좌푯값으로 길이 값이나 백분율, left, center, right중에서 사용할 수 있습니다.</li>
+                                        <li>&lang;y축&rang; : 원점 기준의 y좌푯값으로 길이 값이나 백분율, top, center, bottom중에서 사용할 수 있습니다.</li>
+                                        <li>&lang;y축&rang; : 원점 기준의 z좌푯값으로 길이 값만 사용할 수 있습니다.</li>
+                                    </ul>
+                                </p>
+                            </li>
+                            <li id="perspective"><strong>perspective, perspective-origin 속성</strong><b> : 원근감 표현하기</b>
+                                <p>
+                                    <b>perspective</b> 속성은 3차원 변형에서 사용하는 속성으로, 원래 위치에서 사용자가 있는 방향이나 반대 방향으로 잡아당기거나 밀어내어 원근감을 갖게 합니다.<br>
+                                    속성 값은 0보다 커야 하며 값이 클수록 사용자로부터 멀어집니다.
+                                </p>
+                                <p>
+                                    none값은 기본값으로, perspective를 지정하지 않으며, (픽셀 단위)크기를 입력할 시 원래 위치에서 사용자가 있는 방향으로 얼마나 이동할지를 지정합니다. 
+                                    기본형은 다음과 같습니다.
+                                    <div class="man">
+                                        perspective: &lang;크기&rang; | none;
+                                    </div>
+                                </p>
+                                <p>
+                                    <b>perspective-origin</b> 속성은 perspective와 함께 사용하여 좀 더 높은 곳에서 원근을 조절하는 듯한 느낌을 만듭니다.<br>
+                                    해당 속성으로 입체적으로 표현할 요소의 아랫부분의 위치를 지정하여 사용하며, 이 속성을 사용하기 위해서는 기본형에 나열된 순서대로 값을 입력하면 됩니다.
+                                    <div class="man">
+                                        perspective-origin: &lang;x축 값&rang; | &lang;y축 값&rang;;
+                                    </div>
+                                </p>
+                                <p>
+                                    x축 값과 y축 값은 각각 웹 요소가 x/y축에서 어디에 위치하는지를 지정합니다.<br>
+                                    사용할 수 있는 값은 길이나 백분율, 그리고 ( left,right,center / top,center,bottom )입니다. 기본 값은 50%입니다.
+                                </p>
+                            </li>
+                            <li><strong>transform-style 속성</strong><b> : 3D 변형 적용하기</b>
+                                <p>
+                                    여러 가지 변형을 동시에 적용할 때, transform-style 속성을 사용하면 부모 요소에 적용한 3D 변형을 하위 요소에도 동시에 적용할 수 있습니다.<br>
+                                    IE 11 이하에서는 prefix가 필요하며, 기본형은 다음과 같습니다.
+                                    <div class="man">
+                                        transform-style: flat | preserve-3d
+                                    </div>
+                                </p>
+                                <p>
+                                    flat을 적용하면 요소의 하위 요소를 평면으로 처리하며, preserve-3d를 적용하면 하위 요소들에도 3D 효과를 적용합니다.
+                                </p>
+                            </li>
+                            <li><strong>backface-visibility 속성</strong><b> : 요소의 뒷면 표시하기</b>
+                                <p>
+                                    요소의 회전각이 90˚를 넘는 경우 요소의 뒷면이 보이게 됩니다.<br>
+                                    이 경우, 요소 뒷면의 표시 여부를 backface-visibility 속성으로 결정할 수 있습니다.<br>
+                                    IE 9 이하에서는 prefix가 필요하며, 기본형은 다음과 같습니다.
+                                    <div class="man">
+                                        backface-visibility : visible | hidden
+                                    </div>
+                                </p>
+                            </li>
+                        </ul>
+                    </details>
+                </article>
+            </li>
+            <li>
+                <article id="c1303">
+                    <details class="accordion" open=true>
+                        <summary><h4 class="title_sub">트랜지션</h4><hr></summary>
+                        <div style="text-align: center; width: 80%;"> 
+                            <div id="tran_square"></div>
+                        </div>
+                        <p>
+                            트랜지션(transition)이란 웹 요소가 가지고 있는 스타일 속성을 다른 것으로 변경하는 것을 말합니다.<br>
+                            IE 10 이상에서 지원되며, 구형 브라우저의 경우 prefix 이용이 요구됩니다. 
+                        </p>
+                        <p>
+                            CSS3 트랜지션을 실행하기 위해서는 다음과 같이 여러 가지 속성이 사용됩니다. 각 속성에 대한 자세한 설명은 뒤이어 서술합니다.
+                            <table>
+                                <thead>
+                                    <tr><th>속성</th><th>설명</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><th>transition-property</th><td>트랜지션 대상을 설정합니다.</td></tr>
+                                    <tr><th>transition-duration</th><td>트랜지션 진행 시간을 설정합니다.</td></tr>
+                                    <tr><th>transition-timing-function</th><td>트랜지션 속도 곡선을 설정합니다.</td></tr>
+                                    <tr><th>transition-delay</th><td>트랜지션 지연 시간을 설정합니다.</td></tr>
+                                    <tr><th>transition</th><td>transition-property와 transition-duration, transition-timing-function, transition-delay 속성을 한꺼번에 설정합니다.</td></tr>
+                                </tbody>
+                            </table>
+                        </p>
+                        <ul>
+                            <li><strong>transition-property 속성</strong><b> : 트랜지션을 적용할 속성 지정하기</b>
+                                <p>
+                                    트랜지션을 만드는 첫 단계는, 트랜지션을 어느 속성에 적용할 것인지 선택하는 것으로, transition-property 속성으로 선택합니다.<br>
+                                    transition-property를 사용하지 않을 경우 모든 속성이 트랜지션 대상이 되며, 특정 속성 이름을 입력하면 그 속성에 트랜지션이 적용됩니다.<br>
+                                    기본형은 다음과 같습니다.
+                                    <div class="man">
+                                        transition-property: all | none | &lang;속성 이름&rang;
+                                    </div>
+                                </p>
+                                <p>
+                                    각 속성에 대한 설명은 다음과 같습니다.
+                                    <ul>
+                                        <li><b>all</b> : 기본값으로, all 값을 사용하거나 transition-property를 생략할 경우, 요소의 모든 속성이 트랜지션 대상이 됩니다.</li>
+                                        <li><b>none</b> : 트랜지션 동안 아무 속성도 바뀌지 않습니다.</li>
+                                        <li><b>&lang;속성 이름&rang;</b> : 트랜지션 효과를 적용할 속성 이름을 지정합니다. 속성이 여러 개일 경우, 쉼표(,)로 구분해 나열합니다.</li>
+                                    </ul>
+                                </p>
+                            </li>
+                            <li><strong>transition-duration 속성</strong><b> : 트랜지션 진행 시간 지정하기</b>
+                                <p>
+                                    트랜지션의 진행 시간을 지정하여 속성이 자연스럽게 바뀌는 애니메이션 효과를 적용합니다.<br>
+                                    기본 값은 0으로, 사용 가능한 시간 단위는 초(s) 혹은 밀리초(ms)입니다.<br>
+                                    트랜지션 대상이 되는 속성이 여러 개라면 트랜지션 진행 시간도 쉼표(,)로 구분해 순서대로 여러 개를 지정할 수 있습니다.<br>
+                                    만약, transition-property에서 지정한 값의 개수가 transition-duration에서 지정한 값의 개수보다 많다면, transition-duration에서 지정한 것 보다 많은 속성은 다시 첫 번째 속성부터 반복해 차례로 적용합니다.<br>
+                                </p>
+                            </li>
+                            <li><strong>transition-timing-function 속성</strong><b> : 트랜지션 속도 곡선 지정하기</b>
+                                <p>
+                                    트랜지션 변화 시 적용될 속도 곡선을 지정합니다. 속도 곡선은 미리 정해진 키워드나 '베지어 곡선'을 이용해 표현합니다.
+                                    기본형은 다음과 같습니다.
+                                    <div class="man">
+                                        transition-timing-function: linear | ease | ease-in | ease-out | ease-in-out | cubic-bezier(n,n,n,n)
+                                    </div>
+                                </p>
+                                <p>
+                                    각 속성에 대한 설명은 다음과 같습니다.
+                                    <ul>
+                                        <li><b>linear</b> : 시작부터 끝까지 똑같은 속도로 트랜지션을 진행합니다. <div class="box linear"></div></li>
+                                        <li><b>ease</b> : 기본값으로, 처음에는 천천히 시작하고 점점 빨라지다가 마지막에는 천천히 끝냅니다.<div class="box ease"></div></li>
+                                        <li><b>ease-in</b> : 시작 부분만 천천히 진행합니다.<div class="box ease-in"></div></li>
+                                        <li><b>ease-out</b> : 끝 부분만 천천히 진행합니다.<div class="box ease-out"></div></li>
+                                        <li><b>ease-in-out</b> : 느리게 시작하고 느리게 끝납니다.<div class="box ease-in-out"></div></li>
+                                        <li><b>cubic-bezier(n,n,n,n)</b> : 베지어 함수를 직접 정의해 사용합니다. n에서 사용할 수 있는 값은 0~1입니다.</li>
+                                    </ul>
+                                </p>
+                            </li>
+                            <li><strong>transition-delay 속성</strong><b> : 지연 시간 설정하기</b>
+                                <p>
+                                    트랜지션이 시작하기 전의 지연 시간을 설정합니다. 사용 가능한 값은 초(s)나 밀리초(ms)이며, 기본값은 0입니다.<br>
+                                    transition-delay에서도 transition-duration과 마찬가지로 여러 값을 지정할 수 있으며, transition-property에서 지정한 대상에 차례대로 적용됩니다.
+                                </p>
+                                <p>
+                                    기본형은 다음과 같습니다.
+                                    <div class="man">
+                                        transition-delay : &lang;시간&rang;
+                                    </div>
+                                </p>
+                            </li>
+                            <li><strong>transition 속성</strong><b> : 트랜지션 속성 한꺼번에 표기하기</b>
+                                <p>
+                                    트랜지션 적용 대상이 전체이고, 트랜지션 실행 시간이 대상별로 다르지 않은 경우, transition 속성으로 트랜지션 속성을 한꺼번에 지정할 수 있습니다.<br>
+                                    트랜지션 속성 값의 나열 순서는 기본형과 같이 적용해야 합니다.<br>
+                                    소스가 길어지더라도 트랜지션 적용 대상을 2~3개씩 일부만 지정할 경우, transition-property 속성을 이용해 대상을 알려 주어야 하고, 해당 속성의 기본 값을 각각 따로 사용하는 것이 권장됩니다.<br>
+                                    각 대상별로 진행 시간이 다르다면 transition-duration속성을 이용해 시간도 따로 지정하는 것이 좋습니다.<br>
+                                </p>
+                                <p>
+                                    기본형은 다음과 같습니다.
+                                    <div class="man">
+                                        transition: &lang;transition-property 값&rang; | &lang;transition-duration 값&rang; | &lang;transition-timing-function 값&rang; | &lang;transition-delay 값&rang;
+                                    </div>
+                                </p>
+                                <p>
+                                    또한, 두 개 이상의 변형을 동시에 사용하고 싶다면, 공백을 이용해 다음과 같이 적용할 수 있습니다.
+                                    <div class="man cssMan">
+                                        <span></span>
+                                        <span>transform</span> : <span>scale(2) perspective(120px) rotateX(180deg)</span>;
+                                    </div>
+                                </p>
+                            </li>
+                        </ul>
+                    </details>
+                </article>
+            </li>
+            <li>
+                <article id="c1304">
+                    <details class="accordion" open=true>
+                        <summary><h4 class="title_sub">애니메이션</h4><hr></summary>
+                        <p>
+                            CSS3의 animation 속성을 이용하면 자바스크립트나 플래시를 사용하지 않고도 웹 요소에 애니메이션을 추가할 수 있습니다.<br>
+                            CSS 애니메이션은 시작 스타일과 끝 스타일을 지정하면 CSS에서 중간 스타일을 자동으로 추가해 전체적으로 부드럽게 변하는 효과를 만들어 낸다는 것은 트랜지션과 비슷하지만,
+                            CSS 애니메이션은 시작해 끝나는 동안 원하는 곳 어디서든 스타일을 바꾸며 키프레임별로 애니메이션을 지정할 수 있다는 점은 트랜지션과 다릅니다.<br>
+                            CSS 애니메이션의 키프레임은 <b>@keyframes</b> 속성을 이용해 정의하고, <b>animation 속성</b>과 그 하위 속성을 이용해 실행 시간이나 반복 여부 등을 지정합니다.<br>
+                            이 속성들은 IE 10 이상과 최신 모던 브라우저에서 지원하며, 이전 모던 브라우저를 고려하면 prefix의 사용이 권장됩니다.<br>
+                            animation 관련 속성 중 자주 사용하는 속성들은 다음과 같습니다.
+                        </p>
+                        <ul>
+                            <li><strong>@keyframes 속성</strong><b> : 애니메이션 지점 설정하기</b>
+                                <p><div class="man">@keyframes &lang;이름&rang; { &lang;선택자&rang; { &lang;스타일&rang; } }</div></p>
+                                <p>
+                                    위는 @keyframes 속성의 기본형으로, '이름'으로 키프레임(전체 애니메이션)의 이름을 지정하며, 이 '이름'은 animation-name속성에서 사용합니다.<br>
+                                    스타일 속성이 바뀌는 지점은 '선택자'로 입력하며, 애니메이션에서 중간 지점을 추가하려면 시작 위치를 0%, 끝 위치를 100%로 놓고 50%위치에 키프레임을 추가하는 것처럼 이용하면 됩니다.<br>
+                                    시작과 끝 위치만 이용하고 싶다면 백분율 대신 from과 to 키워드를 이용할 수 있습니다.<br>
+                                </p>
+                                <p>
+                                    다음은 시작할 때 파란 사각형이었다가 끝날 때 파란 원으로 바뀌는 애니메이션입니다.<br>
+                                    애니메이션 키프레임의 이름은 
+                                </p>
+                                <!--왜안돼??-->
+                            </li>
+                            <li><strong>animation-name 속성</strong><b> : 애니메이션 이름 지정하기</b>
+                                <p>
+                                    @keyframes 속성으로 만든 애니메이션을 CSS 선택자를 이용해 대상 요소에 할당합니다. 기본형은 다음과 같습니다.
+                                    <div class="man">
+                                        animation-name: &lang;키프레임 이름&rang; | none
+                                    </div>
+                                </p>
+                            </li>
+                            <li><strong>animation-duration 속성</strong><b> : 애니메이션 실행 시간 설정하기</b>
+                                <p>
+                                    애니메이션을 얼마동안 재생할 것인지 설정합니다. 사용할 수 있는 값은 초(s)나 밀리초(ms)입니다.<br>
+                                    기본값은 0이기 때문에 animation-duration 속성 값을 정하지 않으면 애니메이션은 일어나지 않습니다.<br>
+                                    기본형은 다음과 같습니다.
+                                    <div class="man">
+                                        animation-duration : &lang;시간&rang;
+                                    </div>
+                                </p>
+                            </li>
+                            <li><strong>animation-direction 속성</strong><b> : 애니메이션 방향 지정하기</b>
+                                <p>
+                                    기본적으로 애니메이션이 한 번 실행되면 원래 위치로 돌아가는데, animation-direction 속성을 이용하면 원래 위치로 되돌아갈지, 혹은 반대 방향으로 애니메이션을 한 번 더 실행할지를 결정합니다.<br>
+                                    기본값은 normal이며, alternate 속성 값을 설정하면 애니메이션이 끝난 뒤 왔던 방향으로 되돌아가면서 애니메이션을 실행합니다.<br>
+                                    기본형은 다음과 같습니다.
+                                    <div class="man">
+                                        animation-direction: normal | alternate 
+                                    </div>
+                                </p>
+                            </li>
+                            <li><strong>animation-iteration-count 속성</strong><b> : 반복 횟수 지정하기</b>
+                                <p>
+                                    애니메이션 실행 후 애니메이션을 반복해서 실행할지를 설정합니다. 애니메이션은 기본적으로 한 번만 실행한 뒤 끝납니다.<br>
+                                    기본형은 다음과 같습니다.
+                                    <div class="man">
+                                        animation-iteration-count: &lang;숫자&rang; | infinite
+                                    </div>
+                                </p>
+                            </li>
+                            <li><strong>animation-timing-function 속성</strong><b> : 애니메이션 속도 곡선 지정하기</b>
+                                <p>
+                                    트랜지션과 마찬가지로 애니메이션에도 애니메이션 속도 곡선을 지정할 수 있습니다. 기본형은 다음과 같습니다.
+                                    <div class="man">
+                                        animation-timing-function: linear | ease | ease-in | ease-out | ease-in-out | cubic-bezier(n,n,n,n)
+                                    </div>
+                                </p>
+                            </li>
+                            <li><strong>animation 속성</strong><b> : 애니메이션 관련 속성 한꺼번에 표시하기</b>
+                                <p>
+                                    애니메이션 관련 속성을 한 번에 표시할 수 있습니다. animation 속성을 이용해 간략히 표기하더라도 <b>animation-duration 속성 값은 반드시 표기해야</b> 합니다.<br>
+                                    애니메이션 기본형에 나열된 속성들의 순서는 중요하지 않지만, <b>시간 값이 두 개라면 첫 번째 시간은 animation-time으로, 두 번째 시간은 animation-delay 속성으로 간주</b>합니다.<br>
+                                    기본형은 다음과 같습니다.
+                                    <div class="man">
+                                        animation: &lang;animation-name&rang; | &lang;animation-name&rang; | &lang;animation-duration&rang; |&lang;animation-timing-function&rang; | <br>
+                                        <span class="tab2">&lang;animation-delay&rang; | &lang;animation-iteration-count&rang; | &lang;animation-direction&rang;</span>
+                                    </div>
+                                </p>
+                            </li>
+                        </ul>
+                    </details>
+                </article>
+            </li>
+        </ol>
+    </section>
+</body>
