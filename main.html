@@ -4,40 +4,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/css_main.css">
-    <title>HTML STUDY PROJECT</title>
-    <style>
-        ul{
-            list-style: disc;
-        }
-        a{
-            text-decoration: none;
-            font-weight: bold;
-            color: cornflowerblue;
-        }
-    </style>
+    <title>HTML Study Project</title>
 </head>
 <body>
-    <h1>HTML STUDY PROJECT</h1>
-    <small>mainpage version alpha 0.0.2</small>
-    <hr>
-    <br>
-    HTML 공부 프로젝트의 메인 페이지로, 현재 작업 중인 임시 페이지입니다.<br><br>
-    <h3>연관 페이지</h3>
-    GitHub : <a href="https://github.com/SolKimDev/html_study_project">SolKimDev/HTML_STUDY_PROJECT</a>
-    <br>
-    <br>
-    <h3>정리된 챕터 내비게이션</h3>
-    <ul>
-        <li> Chapter 02 : <a href="./chap_02/main.html">이동</a> </li>
-        <li> Chapter 03 : <a href="./chap_03/main.html">이동</a> </li>
-        <li> Chapter 04 : <a href="./chap_04/main.html">이동</a> </li>
-        <li> Chapter 05 : <a href="./chap_05/main.html">이동</a> </li>
-        <li> Chapter 06 : <a href="./chap_06/main.html">이동</a> </li>
-        <li> Chapter 07 : <a href="./chap_07/main.html">이동</a> </li>
-        <li> Chapter 08 : <a href="./chap_08/main.html">이동</a> </li>
-        <li> Chapter 09 : <a href="./chap_09/main.html">이동</a> </li>
-        <li> Chapter 10 : <a href="./chap_10/main.html">이동</a> </li>
-        <li> Chapter 11 : <a href="./chap_11/main.html">이동</a> </li>
-    </ul>
+    <div class="content-wrap">
+        <header>
+            <ul>
+                <li>
+                    <a href="#" class="menu">
+                        <p class="mTextArea">HTML Studying</p>
+                        <div class="colorBar"></div>
+                    </a>
+                    <ul id="dropdown_html" class="dropdown">
+                        <li><a href="./hdocviewpage.html">HTML</a></li>
+                        <li><a href="./jsdocviewpage.html">JS/jQuery</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="menu">
+                        <p class="mTextArea">Clone Coding</p>
+                        <div class="colorBar"></div>
+                    </a>
+                    <ul id="dropdown_CC" class="dropdown">
+                        <li><a href="#" onclick="alert('준비중입니다.');">준비중입니다</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="menu">
+                        <p class="mTextArea">About</p>
+                        <div class="colorBar"></div>
+                    </a>
+                    <ul id="dropdown_about" class="dropdown">
+                        <li><a href="#" onclick="alert('준비중입니다.');">준비중입니다</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </header>
+        <content>
+            <div id="RecentUpdate">
+                <div id="basic">
+                    <div class="titlearea">
+                        <label>풀스택이 되는 그날까지!</label><br>
+                        <label>웹 프로그래밍을 공부해 봅시다</label>
+                    </div>
+                    <div class="textArea">
+                        현재 페이지는 리뉴얼 예정인 임시 페이지입니다.<br>
+                        <br>
+                        <b>연관 페이지</b>
+                        <p>
+                            <ul>
+                                <li>GitHub : <a href="https://github.com/SolKimDev/html_study_project">SolKimDev/HTML_STUDY_PROJECT</a></li>
+                            </ul>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="LogoArea">
+                <img src="./rsrc/image/logo/HSTUDY_166x41.png" title="Logo" id="logoMain">
+            </div>
+            <br class="clearFloat">
+        </content>
+        <footer>
+            <p>
+                <div class="footer-left">Mainpage Version 0.1.0 Updated at 2021.08.16</div>
+                <div class="footer-right">
+                    <img src="" title="Profile">
+                    <img src="" title="GitHub">
+                    <img src="" title="Twitter">
+                </div>
+            </p>
+        </footer>
+    </div>
 </body>
 </html>

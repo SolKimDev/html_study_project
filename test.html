@@ -1,72 +1,88 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>ball</title>
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom,#eeedef 0%, #ebe8eb 50%, #bbbabb 80%);
+            overflow: hidden;
+        }
+
+        html *, body *{
+            position: absolute;
+            top:0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+            box-sizing: border-box;
+        }
+
+        html *:before, body *:before, html *:after, body *:after {
+            content: "";
+            position: absolute;
+        }
+
+        .ball {
+            z-index: 2;
+            width: 50vmin;
+            height: 50vmin;
+            left: -25vmin;
+            background: linear-gradient(145deg, #fff 0%, #dbdbdb 30%, #757575 85%);
+            border-radius: 50%;
+            box-shadow: 0 0 12vmin 0 rgba(#000, 0.75) inset;
+        }
+
+        .shadow-1 {
+            width: 29vmin;
+            height: 10vmin;
+            border-radius: 50%;
+            top: 37vmin;
+            left: -25vmin;
+            filter: drop-shadow(0 4vmin 3.5vmin #000);
+            background: #000;
+        }
+
+        .shadow-1::before {
+            background: #000;
+            width: 15vmin;
+            height: 5vmin;
+            border-radius: 50%;
+            transform: rotate(-22deg);
+            box-shadow: 0 0 4vmin 2vmin #000;
+            left: 18vmin;
+            top: -1vmin;
+            background: red;
+        }
+
+        .shadow-1::after {
+            width: 28vmin;
+            height: 0vmin;
+            box-shadow: 0 0 6.5vmin 1vmin #000;
+            left: 26vmin;
+            top: 1vmin;
+        }
+
+        .shadow-2 {
+            width: 10vmin;
+            height: 0;
+            border-radius: 50%;
+            transform: rotate(-10deg);
+            box-shadow: 0 0 8vmin 2vmin #000, 5vmin 0 8vmin 1.5vmin #000;
+            top: 36vmin;
+            left: 11vmin;
+        }
+
+
+    </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="#">애완견 종류</a></li>
-                <li><a href="#">입양하기</a></li>
-                <li><a href="#">건강돌보기</a></li>
-                <li><a href="#">더불어살기</a></li>
-            </ul>
-        </nav>
-    </header>
-    <article>
-        <h2>애완견 종류</h2>
-        <section>
-            <h3>활달한 강아지</h3>
-            <dl>
-                <dt>요크셔 테리어</dt>
-                <dd>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse nisl. Nullam sit amet magna in magna gravida vehicula. Etiam quis quam. Etiam dui sem, fermentum vitae, sagittis id, malesuada in, quam. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nunc auctor. Praesent dapibus. Nulla non arcu lacinia neque faucibus fringilla. Praesent id justo in neque elementum ultrices. Praesent vitae arcu tempor neque lacinia pretium.</dd>
-                <dt>말티즈</dt>
-                <dd>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse nisl. Nullam sit amet magna in magna gravida vehicula. Etiam quis quam. Etiam dui sem, fermentum vitae, sagittis id, malesuada in, quam. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nunc auctor. Praesent dapibus. Nulla non arcu lacinia neque faucibus fringilla. Praesent id justo in neque elementum ultrices. Praesent vitae arcu tempor neque lacinia pretium.</dd>
-                <dt>포메 라이언</dt>
-                <dd>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse nisl. Nullam sit amet magna in magna gravida vehicula. Etiam quis quam. Etiam dui sem, fermentum vitae, sagittis id, malesuada in, quam. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nunc auctor. Praesent dapibus. Nulla non arcu lacinia neque faucibus fringilla. Praesent id justo in neque elementum ultrices. Praesent vitae arcu tempor neque lacinia pretium.</dd>
-                <dt>골든 리트리버</dt>
-                <dd>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse nisl. Nullam sit amet magna in magna gravida vehicula. Etiam quis quam. Etiam dui sem, fermentum vitae, sagittis id, malesuada in, quam. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nunc auctor. Praesent dapibus. Nulla non arcu lacinia neque faucibus fringilla. Praesent id justo in neque elementum ultrices. Praesent vitae arcu tempor neque lacinia pretium.</dd>
-            </dl>
-        </section>
-        <section>
-            <h3>온순한 강아지</h3>
-            <dl>
-                <dt>쉬즈</dt>
-                <dd>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse nisl. Nullam sit amet magna in magna gravida vehicula. Etiam quis quam. Etiam dui sem, fermentum vitae, sagittis id, malesuada in, quam. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nunc auctor. Praesent dapibus. Nulla non arcu lacinia neque faucibus fringilla. Praesent id justo in neque elementum ultrices. Praesent vitae arcu tempor neque lacinia pretium.</dd>
-                <dt>퍼그</dt>
-                <dd>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse nisl. Nullam sit amet magna in magna gravida vehicula. Etiam quis quam. Etiam dui sem, fermentum vitae, sagittis id, malesuada in, quam. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nunc auctor. Praesent dapibus. Nulla non arcu lacinia neque faucibus fringilla. Praesent id justo in neque elementum ultrices. Praesent vitae arcu tempor neque lacinia pretium.</dd>
-                <dt>래브라볶 음트리버</dt>
-                <dd>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse nisl. Nullam sit amet magna in magna gravida vehicula. Etiam quis quam. Etiam dui sem, fermentum vitae, sagittis id, malesuada in, quam. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nunc auctor. Praesent dapibus. Nulla non arcu lacinia neque faucibus fringilla. Praesent id justo in neque elementum ultrices. Praesent vitae arcu tempor neque lacinia pretium.</dd>
-            </dl>
-        </section>
-        <section>
-            <h3>사납지만 복종적인 강아지</h3>
-            <dl>
-                <dt>미니어쳐핀셔</dt>
-                <dd>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse nisl. Nullam sit amet magna in magna gravida vehicula. Etiam quis quam. Etiam dui sem, fermentum vitae, sagittis id, malesuada in, quam. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nunc auctor. Praesent dapibus. Nulla non arcu lacinia neque faucibus fringilla. Praesent id justo in neque elementum ultrices. Praesent vitae arcu tempor neque lacinia pretium.</dd>
-                <dt>푸들</dt>
-                <dd>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse nisl. Nullam sit amet magna in magna gravida vehicula. Etiam quis quam. Etiam dui sem, fermentum vitae, sagittis id, malesuada in, quam. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nunc auctor. Praesent dapibus. Nulla non arcu lacinia neque faucibus fringilla. Praesent id justo in neque elementum ultrices. Praesent vitae arcu tempor neque lacinia pretium.</dd>
-                <dt>폭스테리어</dt>
-                <dd>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse nisl. Nullam sit amet magna in magna gravida vehicula. Etiam quis quam. Etiam dui sem, fermentum vitae, sagittis id, malesuada in, quam. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nunc auctor. Praesent dapibus. Nulla non arcu lacinia neque faucibus fringilla. Praesent id justo in neque elementum ultrices. Praesent vitae arcu tempor neque lacinia pretium.</dd>
-            </dl>
-        </section>
-        <aside>
-            <h3>건강한 강아지는</h3>
-            <ul>
-                <li>Quisque tincidunt scelerisque libero.</li>
-                <li>Quisque tincidunt scelerisque libero.</li>
-                <li>Quisque tincidunt scelerisque libero.</li>
-                <li>Quisque tincidunt scelerisque libero.</li>
-                <li>Quisque tincidunt scelerisque libero.</li>
-            </ul>
-        </aside>
-        <footer>
-            <p>Copyright 2012 funnycom</p>
-        </footer>
-    </article>
+    <div class="ball"></div>
+    <div class="shadow-1"></div>
+    <div class="shadow-2"></div>
 </body>
 </html>

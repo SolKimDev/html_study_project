@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/hdviewpage.css">
+    <script>
+        let before=-1;
+
+        function clicked(n){
+
+            let el = document.getElementById('navlist').children;
+
+            if (before==-1) {
+                console.log('do_nothing');
+            } else {
+                el.item(before).style.color="black";
+                el.item(before).style.fontWeight="normal";
+            }
+            console.log("====================");
+            console.log('n = ' + n );
+            console.log('before = ' + before);
+            console.log(el.item(n));
+            console.log("====================");
+            el.item(n).style.color="cornflowerblue";
+            el.item(n).style.fontWeight="bold";
+
+            before = n;
+        }
+    </script>
+    <title>HTML Studying</title>
+</head>
+<body>
+    <div class="content-wrap">
+        <header>
+            <div id="logoarea">
+                <a href="./main.html">
+                    <div id="logoHover"></div>
+                    <img id="logo" src="./rsrc/image/logo/HSTUDY_166x41.png">
+                </a>
+            </div>
+            <div id="labeltext" style="color: #45464C;">JavaScript / jQuery</div>
+            <div class="header-right">
+                <img src="" title="Profile">
+                <img src="" title="GitHub">
+                <img src="" title="Twitter">
+            </div>
+        </header>
+        <content>
+            <iframe id="ifrm" src="./js/chap_01/main.html" frameborder='0' scrolling="yes"></iframe>
+            <div id="navArea">
+                <div id="nav">
+                    <h3>HStudy Navigation</h3>
+                    <br>
+                    <p style="overflow: hidden;">
+                        <ol style="padding-left: 20px;" start="0" id="navlist">
+                            <li><a href="./main.html">메인페이지로</a></li>
+                            <li><a href="#" onclick="document.getElementById('ifrm').src = './js/chap_01/main.html'; clicked(1); ">자바스크립트 기초</a></li>
+                            <li><a href="#" onclick="document.getElementById('ifrm').src = './js/chap_02/main.html'; clicked(2); ">객체</a></li>
+                        </ol>
+                    </p>
+                </div>
+            </div>
+        </content>
+    </div>
+</body>
+</html>

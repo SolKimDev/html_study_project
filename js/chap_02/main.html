@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/7eaeb96e92.js" crossorigin="anonymous"></script> <!--미사용-->
+    <link rel="stylesheet" href="../../css/css_documents.css">
+    <script>
+        let isCorrect = 0;
+        let interval;
+
+        function locationInfo() {
+            //<![CDATA
+            document.write("href : " + location.href, "<br>");
+            document.write("hash : " + location.hash, "<br>");
+            document.write("hostname : " + location.hostname, "<br>");
+            document.write("host : " + location.host, "<br>");
+            document.write("protocol : " + location.protocol, "<br>");
+            //]]>
+        }
+
+        window.onload=function(){
+            //interval = setInterval('locationInfo()',500);
+        }
+
+        function quiz() {
+            let answer = prompt('1 + 1 = ?', '0');
+            if(answer == 2){
+                alert('정답입니다!');
+                isCorrect = 1;
+            }
+            else {
+                alert('틀렸습니다 이 멍텅구리야');
+                isCorrect = 2;
+            }
+        }
+
+        function question() {
+            let answer = confirm('위의 문제를 맞췄나요?');
+            if(answer == true)
+            {
+                switch(isCorrect)
+                {
+                    case 0:
+                        alert('거짓말쟁이! 눌러보지도 않았으면서!');
+                        break;
+                    case 1:
+                        alert('잘했어요 똑똑이');
+                        break;
+                    case 2:
+                        alert('틀렸잖아요 이 멍텅구리야');
+                        break;
+                }
+            } else {
+                switch(isCorrect)
+                {
+                    case 0:
+                        alert('어서 위의 문제를 풀어보고 오세요');
+                        break;
+                    case 1:
+                        alert('맞췄는데 왜 거짓말을 하는 거죠?');
+                        break;
+                    case 2:
+                        alert('솔직함에 대한 상으로 경고창을 띄워 줄테야');
+                        break;
+                }
+            }
+        }
+
+        function go_sample(){
+            var num=document.go_form.num_input.value;
+            if(num==""){
+                alert("숫자를 입력한 뒤 버튼을 누르세요.");
+                //document.getElementById('num_input').focus();
+                //document.getElementById('num_input').scrollIntoView();
+            } else{
+                goto(num);
+            }
+        }
+    </script>
+    <style>
+        #overlay {
+            position: fixed;
+            background: red;
+            width: 100%;
+            height: 100%;
+        }
+        #browserTree {
+            border: none;
+            background-color: rgba(211, 211, 211, 0.329);
+            box-shadow: 5px 5px 5px rgba(197, 197, 197, 0.5) inset;
+            width: fit-content;
+            padding: 1em 2em;
+            text-align: center;
+        }
+        #browserTree *:not(#mid, #line, #bottom, .vertical) {
+            padding: 1.2em;
+            border: none;
+            border-radius: 0.15em;
+            font-weight: bold;
+            color: #282C37;
+            background-color: #acc7ec;
+        }
+        #browserTree div:not(#mid, #bottom){
+            box-shadow: 10px 5px 5px #cdcdcdd7;
+        }
+        #browserTree > #line {
+            margin: 1em 4.5em 0.5em 5em;
+        }
+        #browserTree > #mid, #bottom {
+            margin: 0px;
+            justify-content: space-between;
+        }
+        #browserTree > #mid > div:not(.vertical), #browserTree > #bottom > div:not(.vertical){
+            z-index: 2;
+        }
+        #browserTree .vertical {
+            border-left: 1px solid black;
+            height: 3em;
+            margin: 0px;
+            padding: 0px;
+            width: 0px;
+            z-index: 1;
+            position: relative;
+            top: -0.5em;
+        }
+        #mid > div:nth-child(even) { left: -3.4em;}
+        #mid > div:nth-child(6) { left: -3.7em; top: -1.6em;}
+        #mid > div:nth-child(10) {
+            left: -4.5em;
+        }
+        #browserTree > #top {
+            width: fit-content;
+            display: inline-block;
+            margin: 0px;
+        }
+        #browserTree > #line {
+            border-top: 1px solid black;
+        }
+        #browserTree > #mid, #bottom {
+            display: flex;
+        }
+        #browserTree > #bottom {
+            width: fit-content;
+        }
+        #bottom > .vertical {
+            left: -15em;
+        }
+
+        /*#windowDesc button {
+            margin-left: 1em;
+        }*/
+
+        button {
+            margin-left: 1em;
+        }
+    </style>
+    <title>Chapter 02</title>
+</head>
+<body>
+    <header>
+        <h1 style="display: inline;">객체</h1><br>
+        <small>이지스퍼블리싱 '자바스크립트 + 제이쿼리 입문' 및 <a href="https://learnjs.vlpt.us/" target="_blank">홈페이지</a>를 참조하였습니다.</small><br>
+    </header>
+    <nav>
+        <h3>Lists</h3>
+        <ol>
+            <li><a href="#c0201">객체</a></li>
+            <li><a href="#c0202">프로토타입과 클래스</a></li>
+            <li><a href="#c0203">내장 객체</a></li>
+            <li><a href="#c0204">브라우저 객체 모델( BOM )</a></li>
+            <li><a href="#c0205">문서 객체 모델( DOM )</a></li>
+        </ol>
+    </nav>
+    <section id="mainText">
+        <ol>
+            <li>
+                <article id="c0201">
+                    <details class="accordion" open=true>
+                        <summary><h4 class="title_sub">객체</h4><hr></summary>
+                        <p>
+                            JS도 자바와 마찬가지로 객체 기반 언어로, 객체는 기능 또는 속성을 가지고 있습니다.<br>
+                            JS Object에서의 기능을 Method, 속성을 Property라고 합니다. 
+                        </p>
+                        <ul>
+                            <li><strong>객체의 종류</strong>
+                                <p>자바스크립트의 객체는 크게 <b>내장 객체, BOM, DOM</b>으로 나눌 수 있습니다.</p>
+                                <p>
+                                    <ul>
+                                        <li><b>내장 객체</b>
+                                            <p>
+                                                내장 객체는 자바스크립트 엔진에 내장되어 있어, 필요한 경우 생성해 사용할 수 있습니다.<br>
+                                                내장 객체로는 <b>문자(String), 날짜(Date), 배열(Array), 수학(Math) 객체 등</b>이 있습니다.
+                                            </p>
+                                        </li>
+                                        <li><b>브라우저 객체 모델(BOM)</b>
+                                            <p>
+                                                브라우저에 계층적으로 내장되어 있는 객체들을 BOM(Browser Object Model)이라고 합니다.<br>
+                                                BOM으로는 <b>window(브라우저), screen, location(주소 창), history, navigator, document(문서 영역) 객체 등</b>이 있습니다.<br>
+                                                브라우저(window)는 document와 location 객체의 상위 객체입니다.
+                                            </p>
+                                        </li>
+                                        <li><b>문서 객체 모델(DOM)</b>
+                                            <p>
+                                                문서 객체 모델(DOM : Document Object Model)이란, (X)HTML<sup title="HTML 및 XML로 작성된 HTML">[?]</sup> 문서 구조를 말합니다.<br>
+                                                (X)HTML 문서의 기본 구조는 최상위 객체로 &lang;html&rang;이 있으며, 그 하위 객체로는 &lang;head&rang;와 &lang;body&rang;가 있습니다.<br>
+                                                자바스크립트를 이용해 이미지의 src 속성을 바꾸고자 한다면, 지정된 &lang;img&rang;를 선택해 src 속성을 바꿔야 합니다.<br>
+                                                이렇게 문서 객체 모델에서는 (X)HTML의 모든 요소들을 문서 객체로 선택하여 자유롭게 속성을 바꿀 수 있고, 선택한 객체에 원하는 스타일(CSS)를 적용할 수도 있습니다.
+                                            </p>
+                                            <p>
+                                                하지만 자바스크립트의 DOM은 IE8 이하 버전에서<span class="under">호환성이 떨어지기 때문에</span> 사용이 힘들다는 단점이 있어, 최근에는 <span class="under">jQuery의 DOM을 많이 사용</span>하며, 이러한 이유로, JS의 DOM은 깊게 다루지 않습니다.
+                                            </p>
+                                        </li>
+                                    </ul>
+                                </p>
+                            </li>
+                            <li><strong>객체의 생성</strong>
+                                <p>
+                                    객체의 기본형은 다음과 같습니다.
+                                    <div class="man">
+                                        var | let | const Object_name = {
+                                        <div class="tab">
+                                            'key(with space)' : value<br>
+                                            key : value;<br>
+                                            <br>
+                                            key: function func_name( param ) {<br>
+                                                <span class="tab">. . .</span><br>
+                                            }
+                                        </div>
+                                        }
+                                    </div>
+                                </p>
+                                <p>
+                                    또한, 필요에 따라 객체 내에 Getter 혹은 Setter 함수를 추가하기도 합니다.
+                                </p>
+                                <p>
+                                    JS 역시 다른 OOP와 마찬가지로, 객체에 대해 생성자를 지원합니다.<br>
+                                    생성자는 일반적으로 함수의 이름을 대문자로 시작하도록 명명하며, 새로운 객체를 만들 때에는 new 키워드를 앞에 붙여주어야 합니다.<br>
+                                    자바의 생성자와 다른 점은, 객체 내에 생성자가 위치하는 것이 아닌, 함수로서 별도의 생성자가 만들어진다는 것입니다.<br>
+                                </p>
+                                <p>
+                                    생성자는 다음과 같이 이용할 수 있습니다.
+                                    <div class="colorscripter-code" style="color:#010101;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important; position:relative !important;overflow:auto"><table class="colorscripter-code-table" style="margin:0;padding:0;border:none;background-color:#fafafa;border-radius:4px;" cellspacing="0" cellpadding="0"><tr><td style="padding:6px;border-right:2px solid #e5e5e5"><div style="margin:0;padding:0;word-break:normal;text-align:right;color:#666;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important;line-height:130%"><div style="line-height:130%">1</div><div style="line-height:130%">2</div><div style="line-height:130%">3</div><div style="line-height:130%">4</div><div style="line-height:130%">5</div><div style="line-height:130%">6</div><div style="line-height:130%">7</div><div style="line-height:130%">8</div><div style="line-height:130%">9</div><div style="line-height:130%">10</div><div style="line-height:130%">11</div><div style="line-height:130%">12</div><div style="line-height:130%">13</div><div style="line-height:130%">14</div></div></td><td style="padding:6px 0;text-align:left"><div style="margin:0;padding:0;color:#010101;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important;line-height:130%"><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#a71d5d">function</span>&nbsp;Animal(type,&nbsp;<span style="color:#066de2">name</span>,&nbsp;sound)&nbsp;{</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;<span style="color:#066de2">this</span>.type&nbsp;<span style="color:#ff3399"></span><span style="color:#a71d5d">=</span>&nbsp;type;</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;<span style="color:#066de2">this</span>.<span style="color:#066de2">name</span>&nbsp;<span style="color:#ff3399"></span><span style="color:#a71d5d">=</span>&nbsp;<span style="color:#066de2">name</span>;</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;<span style="color:#066de2">this</span>.sound&nbsp;<span style="color:#ff3399"></span><span style="color:#a71d5d">=</span>&nbsp;sound;</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;<span style="color:#066de2">this</span>.say&nbsp;<span style="color:#ff3399"></span><span style="color:#a71d5d">=</span>&nbsp;<span style="color:#a71d5d">function</span>()&nbsp;{</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#066de2">console</span>.log(<span style="color:#066de2">this</span>.sound);</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;};</div><div style="padding:0 6px; white-space:pre; line-height:130%">}</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;</div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#a71d5d">const</span>&nbsp;dog&nbsp;<span style="color:#ff3399"></span><span style="color:#a71d5d">=</span>&nbsp;<span style="color:#a71d5d">new</span>&nbsp;Animal(<span style="color:#63a35c">'개'</span>,&nbsp;<span style="color:#63a35c">'멍멍이'</span>,&nbsp;<span style="color:#63a35c">'멍멍'</span>);</div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#a71d5d">const</span>&nbsp;cat&nbsp;<span style="color:#ff3399"></span><span style="color:#a71d5d">=</span>&nbsp;<span style="color:#a71d5d">new</span>&nbsp;Animal(<span style="color:#63a35c">'고양이'</span>,&nbsp;<span style="color:#63a35c">'야옹이'</span>,&nbsp;<span style="color:#63a35c">'야옹'</span>);</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;</div><div style="padding:0 6px; white-space:pre; line-height:130%">dog.say();</div><div style="padding:0 6px; white-space:pre; line-height:130%">cat.say();</div></div><div style="text-align:right;margin-top:-13px;margin-right:5px;font-size:9px;font-style:italic"><a href="http://colorscripter.com/info#e" target="_blank" style="color:#e5e5e5;text-decoration:none">Colored by Color Scripter</a></div></td><td style="vertical-align:bottom;padding:0 2px 4px 0"><a href="http://colorscripter.com/info#e" target="_blank" style="text-decoration:none;color:white"><span style="font-size:9px;word-break:normal;background-color:#e5e5e5;color:white;border-radius:10px;padding:1px">cs</span></a></td></tr></table></div>
+                                </p>
+                            </li>
+                            <li><strong>객체 비구조화 할당</strong>
+                                <p>
+                                    <b>객체 비구조화 할당</b> 혹은 <b>객체 구조 분해</b>라는 문법을 사용하면, 객체 내의 값을 조회할 때, 객체명을 명시하지 않고 사용할 수 있도록 하여, 객체의 값에 액세스 할 때 조금 더 간결한 문장을 이용해 접근할 수 있도록 합니다.
+                                    <div class="colorscripter-code" style="color:#010101;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important; position:relative !important;overflow:auto"><table class="colorscripter-code-table" style="margin:0;padding:0;border:none;background-color:#fafafa;border-radius:4px;" cellspacing="0" cellpadding="0"><tr><td style="padding:6px;border-right:2px solid #e5e5e5"><div style="margin:0;padding:0;word-break:normal;text-align:right;color:#666;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important;line-height:130%"><div style="line-height:130%">1</div><div style="line-height:130%">2</div><div style="line-height:130%">3</div><div style="line-height:130%">4</div><div style="line-height:130%">5</div><div style="line-height:130%">6</div><div style="line-height:130%">7</div><div style="line-height:130%">8</div><div style="line-height:130%">9</div><div style="line-height:130%">10</div><div style="line-height:130%">11</div><div style="line-height:130%">12</div><div style="line-height:130%">13</div><div style="line-height:130%">14</div><div style="line-height:130%">15</div><div style="line-height:130%">16</div><div style="line-height:130%">17</div><div style="line-height:130%">18</div><div style="line-height:130%">19</div><div style="line-height:130%">20</div></div></td><td style="padding:6px 0;text-align:left"><div style="margin:0;padding:0;color:#010101;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important;line-height:130%"><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#a71d5d">const</span>&nbsp;ironMan&nbsp;<span style="color:#ff3399"></span><span style="color:#a71d5d">=</span>&nbsp;{</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;<span style="color:#066de2">name</span>:&nbsp;<span style="color:#63a35c">'토니&nbsp;스타크'</span>,</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;actor:&nbsp;<span style="color:#63a35c">'로버트&nbsp;다우니&nbsp;주니어'</span>,</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;alias:&nbsp;<span style="color:#63a35c">'아이언맨'</span></div><div style="padding:0 6px; white-space:pre; line-height:130%">};</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;</div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#a71d5d">const</span>&nbsp;captainAmerica&nbsp;<span style="color:#ff3399"></span><span style="color:#a71d5d">=</span>&nbsp;{</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;<span style="color:#066de2">name</span>:&nbsp;<span style="color:#63a35c">'스티븐&nbsp;로저스'</span>,</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;actor:&nbsp;<span style="color:#63a35c">'크리스&nbsp;에반스'</span>,</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;alias:&nbsp;<span style="color:#63a35c">'캡틴&nbsp;아메리카'</span></div><div style="padding:0 6px; white-space:pre; line-height:130%">};</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;</div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#a71d5d">function</span>&nbsp;print(hero)&nbsp;{</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;<span style="color:#a71d5d">const</span>&nbsp;{&nbsp;alias,&nbsp;<span style="color:#066de2">name</span>,&nbsp;actor&nbsp;}&nbsp;<span style="color:#ff3399"></span><span style="color:#a71d5d">=</span>&nbsp;hero;</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;<span style="color:#a71d5d">const</span>&nbsp;text&nbsp;<span style="color:#ff3399"></span><span style="color:#a71d5d">=</span>&nbsp;`${alias}(${<span style="color:#066de2">name</span>})&nbsp;역할을&nbsp;맡은&nbsp;배우는&nbsp;${actor}&nbsp;입니다.`;</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;<span style="color:#066de2">console</span>.log(text);</div><div style="padding:0 6px; white-space:pre; line-height:130%">}</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;</div><div style="padding:0 6px; white-space:pre; line-height:130%">print(ironMan);</div><div style="padding:0 6px; white-space:pre; line-height:130%">print(captainAmerica);</div></div><div style="text-align:right;margin-top:-13px;margin-right:5px;font-size:9px;font-style:italic"><a href="http://colorscripter.com/info#e" target="_blank" style="color:#e5e5e5;text-decoration:none">Colored by Color Scripter</a></div></td><td style="vertical-align:bottom;padding:0 2px 4px 0"><a href="http://colorscripter.com/info#e" target="_blank" style="text-decoration:none;color:white"><span style="font-size:9px;word-break:normal;background-color:#e5e5e5;color:white;border-radius:10px;padding:1px">cs</span></a></td></tr></table></div>
+                                    <b>const { alias, name, actor } = hero;</b> 코드를 이용해 객체에서 값들을 추출한 뒤, 새로운 상수로 선언합니다.<br>
+                                    혹은 <b>function print({ alias, name, actor }) { ... }</b> 와 같이, 파라미터 레벨에서 객체 비구조화 할당을 할 수도 있습니다.
+                                </p>
+                            </li>
+                        </ul>
+                    </details>
+                </article>
+            </li>
+            <li>
+                <article id="c0202">
+                    <details class="accordion" open=true>
+                        <summary><h4 class="title_sub">프로토타입과 클래스</h4><hr></summary>
+                            <ul>
+                                <li><strong>프로토타입</strong>
+                                    <p>
+                                        여러 객체들 중, <b>같은 객체 생성자 함수</b>를 사용하는 경우, 특정 함수 또는 값을 <b>재사용</b>할 수 있으며, 이것을 <b>프로토타입</b>이라고 합니다.<br>
+                                        프로토타입은 다음과 같이 객체 생성자 함수 아래에 <b>.prototype.[원하는 키] = 코드</b>를 입력하여 설정할 수 있습니다.
+                                        <div class="colorscripter-code" style="color:#010101;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important; position:relative !important;overflow:auto"><table class="colorscripter-code-table" style="margin:0;padding:0;border:none;background-color:#fafafa;border-radius:4px;" cellspacing="0" cellpadding="0"><tr><td style="padding:6px;border-right:2px solid #e5e5e5"><div style="margin:0;padding:0;word-break:normal;text-align:right;color:#666;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important;line-height:130%"><div style="line-height:130%">1</div><div style="line-height:130%">2</div><div style="line-height:130%">3</div><div style="line-height:130%">4</div><div style="line-height:130%">5</div><div style="line-height:130%">6</div><div style="line-height:130%">7</div><div style="line-height:130%">8</div><div style="line-height:130%">9</div><div style="line-height:130%">10</div><div style="line-height:130%">11</div><div style="line-height:130%">12</div><div style="line-height:130%">13</div><div style="line-height:130%">14</div><div style="line-height:130%">15</div><div style="line-height:130%">16</div><div style="line-height:130%">17</div><div style="line-height:130%">18</div><div style="line-height:130%">19</div></div></td><td style="padding:6px 0;text-align:left"><div style="margin:0;padding:0;color:#010101;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important;line-height:130%"><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#a71d5d">function</span>&nbsp;Animal(type,&nbsp;<span style="color:#066de2">name</span>,&nbsp;sound)&nbsp;{</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;<span style="color:#066de2">this</span>.type&nbsp;<span style="color:#ff3399"></span><span style="color:#a71d5d">=</span>&nbsp;type;</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;<span style="color:#066de2">this</span>.<span style="color:#066de2">name</span>&nbsp;<span style="color:#ff3399"></span><span style="color:#a71d5d">=</span>&nbsp;<span style="color:#066de2">name</span>;</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;<span style="color:#066de2">this</span>.sound&nbsp;<span style="color:#ff3399"></span><span style="color:#a71d5d">=</span>&nbsp;sound;</div><div style="padding:0 6px; white-space:pre; line-height:130%">}</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;</div><div style="padding:0 6px; white-space:pre; line-height:130%">Animal.<span style="color:#066de2">prototype</span>.say&nbsp;<span style="color:#ff3399"></span><span style="color:#a71d5d">=</span>&nbsp;<span style="color:#a71d5d">function</span>()&nbsp;{</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;<span style="color:#066de2">console</span>.log(<span style="color:#066de2">this</span>.sound);</div><div style="padding:0 6px; white-space:pre; line-height:130%">};</div><div style="padding:0 6px; white-space:pre; line-height:130%">Animal.<span style="color:#066de2">prototype</span>.sharedValue&nbsp;<span style="color:#ff3399"></span><span style="color:#a71d5d">=</span>&nbsp;<span style="color:#0099cc">1</span>;</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;</div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#a71d5d">const</span>&nbsp;dog&nbsp;<span style="color:#ff3399"></span><span style="color:#a71d5d">=</span>&nbsp;<span style="color:#a71d5d">new</span>&nbsp;Animal(<span style="color:#63a35c">'개'</span>,&nbsp;<span style="color:#63a35c">'멍멍이'</span>,&nbsp;<span style="color:#63a35c">'멍멍'</span>);</div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#a71d5d">const</span>&nbsp;cat&nbsp;<span style="color:#ff3399"></span><span style="color:#a71d5d">=</span>&nbsp;<span style="color:#a71d5d">new</span>&nbsp;Animal(<span style="color:#63a35c">'고양이'</span>,&nbsp;<span style="color:#63a35c">'야옹이'</span>,&nbsp;<span style="color:#63a35c">'야옹'</span>);</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;</div><div style="padding:0 6px; white-space:pre; line-height:130%">dog.say();</div><div style="padding:0 6px; white-space:pre; line-height:130%">cat.say();</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;</div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#066de2">console</span>.log(dog.sharedValue);</div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#066de2">console</span>.log(cat.sharedValue);</div></div></td><td style="vertical-align:bottom;padding:0 2px 4px 0"><a href="http://colorscripter.com/info#e" target="_blank" style="text-decoration:none;color:white"><span style="font-size:9px;word-break:normal;background-color:#e5e5e5;color:white;border-radius:10px;padding:1px">cs</span></a></td></tr></table></div>
+                                        위의 생성자 코드와 비교하면, 기존의 생성자와는 달리 생성자 내에 say()가 선언되어 있지 않음에도 불구하고, 이후 prototype을 이용해 say() 및 sharedValue를 추가하며, 기존의 type, name, sound 값은 재활용하는 것을 확인할 수 있습니다.
+                                    </p>
+                                </li>
+                                <li><strong>객체 생성자 상속받기</strong>
+                                    <p>
+                                        프로토타입을 활용하면, 새로운 객체 생성자를 만들면서 기존의 객체 생성자를 상속받아 재사용할 수 있습니다.<br>
+                                        다음은 프로토타입을 이용한 생성자 상속의 예시입니다.
+                                        <div class="colorscripter-code" style="color:#010101;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important; position:relative !important;overflow:auto"><table class="colorscripter-code-table" style="margin:0;padding:0;border:none;background-color:#fafafa;border-radius:4px;" cellspacing="0" cellpadding="0"><tr><td style="padding:6px;border-right:2px solid #e5e5e5"><div style="margin:0;padding:0;word-break:normal;text-align:right;color:#666;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important;line-height:130%"><div style="line-height:130%">1</div><div style="line-height:130%">2</div><div style="line-height:130%">3</div><div style="line-height:130%">4</div></div></td><td style="padding:6px 0;text-align:left"><div style="margin:0;padding:0;color:#010101;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important;line-height:130%"><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#a71d5d">function</span>&nbsp;Dog(<span style="color:#066de2">name</span>,&nbsp;sound)&nbsp;{</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;Animal.call(<span style="color:#066de2">this</span>,&nbsp;<span style="color:#63a35c">'개'</span>,&nbsp;<span style="color:#066de2">name</span>,&nbsp;sound);</div><div style="padding:0 6px; white-space:pre; line-height:130%">}</div><div style="padding:0 6px; white-space:pre; line-height:130%">Dog.<span style="color:#066de2">prototype</span>&nbsp;<span style="color:#ff3399"></span><span style="color:#a71d5d">=</span>&nbsp;Animal.<span style="color:#066de2">prototype</span>;</div></div></td><td style="vertical-align:bottom;padding:0 2px 4px 0"><a href="http://colorscripter.com/info#e" target="_blank" style="text-decoration:none;color:white"><span style="font-size:9px;word-break:normal;background-color:#e5e5e5;color:white;border-radius:10px;padding:1px">cs</span></a></td></tr></table></div>
+                                        기존 Animal의 프로토타입을 그대로 이용하며, Animal.call( ) 을 호출해 객체 생성자를 상속했습니다.<br>
+                                        call( )의 첫 번째 인자는 this를 넣어주어야 하며, 이후에는 Animal 객체 생성자 함수에서 필요로 하는 파라미터를 넣어주어야 합니다.
+                                    </p>
+                                </li>
+                                <li><strong>클래스</strong>
+                                    <p>
+                                        자바스크립트의 ES6부터는 클래스 문법이 추가되어, 객체 생성자로 구현했던 코드를 C++, Java와 같은 OOP에서 활용하는 방식과 같이, 조금 더 명확하고 깔끔하게 구현할 수 있도록 합니다.<br>
+                                        기본형은 다음과 같습니다.
+                                        <div class="man">
+                                            class Class_Name {
+                                                <div class="tab">
+                                                    constructor(param1, param2, ... ) {<br>
+                                                        <div class="tab2">
+                                                        this.key = value;<br>
+                                                        this.key2 = value2;<br>
+                                                        ...
+                                                        </div>
+                                                    }<br>
+                                                    method( param1, ... ) {<br>
+                                                        <span class="tab2">. . .</span><br>
+                                                    }
+                                                </div>                                                    
+                                            }
+                                        </div>
+                                    </p>
+                                    <p>
+                                        클래스 키워드를 이용해 객체를 만들면 prototype이 자동으로 등록되며, 다음과 같이 상속도 손쉽게 할 수 있습니다.
+                                        <div class="man">
+                                            class Class_Name extends Parent_Name {
+                                                <div class="tab">
+                                                    constructor(param1, param2, ...) {<br>
+                                                        <span class="tab2">super( ... );</span><br>
+                                                    }
+                                                </div>
+                                            }
+                                        </div>
+                                    </p>
+                                    <p>
+                                        상속 할 때에는 <b>extends</b> 키워드를 사용하며, constructor에서 사용하는 <b>super( )</b> 함수가 상속받은 클래스(부모 클래스)의 생성자를 가르킵니다.
+                                    </p>
+                                </li>
+                            </ul>
+                    </details>
+                </article>
+            </li>
+            <li>
+                <article id="c0203">
+                    <details class="accordion" open=true>
+                        <summary><h4 class="title_sub">내장 객체</h4><hr></summary>
+                        <p>
+                            내장 객체(Built-in Object)는 브라우저의 자바스크립트 엔진에 내장된 객체를 말하며, 필요한 경우 객체를 생성해 사용할 수 있습니다.<br>
+                            내장 객체로는 문자(String), 날짜(Date), 배열(Array), 수학(math), 정규 표현 객체(RegExp Object)등이 있습니다.
+                        </p>
+                        <ul>
+                            <li><strong>내장 객체 생성하기</strong>
+                                <p>
+                                    <b>new</b> 키워드와 생성 함수를 이용하여 다음과 같이 생성합니다.
+                                    <div class="man">
+                                        참조 변수(인스턴스 네임) = new 생성 함수( )
+                                    </div>
+                                </p>
+                                <p>
+                                    객체의 속성과 메소드는 객체를 생성한 뒤, 참조 변수를 이용하여 다음과 같이 생성합니다.
+                                    <div class="man">
+                                        참조 변수(인스턴스 네임).변수명 = 값; <small>/* 객체에 속성 할당 */</small><br>
+                                        참조 변수(인스턴스 네임).함수명 = function() { . . . }; <small>/*객체에 메소드 할당 */</small>
+                                    </div>
+                                </p>
+                                <p>
+                                    일반적으로 내장 객체는 new 키워와 생성 함수를 사용해 생성하나, 내장 객체 중의 일부는 new 키워드와 생성 함수를 사용하지 않고, 값만으로 객체를 생성하는 객체들이 있습니다.<br>
+                                    내장 객체를 생성할 때 반듯 ㅣ생성자 함수를 사용해야 하는 경우와 그렇지 않은 경우는 다음과 같습니다.
+                                    <table>
+                                        <thead>
+                                            <tr><th>구분</th><th>객체 생성할 때<br>생성자 함수가 반드시 필요한 객체</th><th>객체 생성할 때<br>생성자 함수가 필요 없는 객체</th></tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr style="vertical-align: middle;"><th>객체<br>종류</th><td>날짜 객체(date Object)</td><td>수학 객체(Math Object)<br>
+                                                숫자 객체(Math Object)<br>문자 객체(String Object)<br>배열 객체(Array Object)<br>정규 표현 객체(RegExp Object)</td></tr>
+                                        </tbody>
+                                    </table>
+                                    즉, 날짜 객체를 제외한 모든 객체는 변수에 값만 참조하여도 객체가 생성됩니다.
+                                </p>
+                            </li>
+                            <li><strong>날짜 정보 객체</strong>
+                                <p>
+                                    날짜나 시간 관련 정보를 제공받고 싶을 때에는 날짜 객체(Date Object)를 생성합니다.<br>
+                                    먼저, 현재 날짜 정보를 제공하는 Date 객체는 다음과 같이 생성합니다.<br>
+                                    또한, 생성 함수를 이용하여 생성과 동시에 특정 날짜로 초기화 할 수 있습니다.
+                                    <div class="man">
+                                        참조 변수 = new Date(); <small> /* 기본형 */</small><br>
+                                        참조 변수 = new Date("연/월/일"); <small>or</small><br>
+                                        참조 변수 = new Date(연, 월-1, 일);
+                                    </div>
+                                </p>
+                                <p>
+                                    Date 객체의 메서드는 다음과 같이 날짜의 정보를 가져오는 메서드와, 날짜를 수정하는 메서드로 나눌 수 있습니다.<br>
+                                    또한, 특정 날짜 객체와 뺄셈 연산을 할 시, 날짜 사이의 시간을 밀리초 단위로 알아낼 수 있습니다.
+                                    <table>
+                                        <thead>
+                                            <tr><th colspan="2">날짜 정보를 가져올 때 (GET)</th><th colspan="2">날짜 정보를 수정할 때 (SET)</th></tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr><th>getFullYear( )</th><td>연도 정보를 가져옴</td><th>setFullYear( )</th><td>연도 정보만 수정</td></tr>
+                                            <tr><th>getMonth( )</th><td>월 정보를 가져옴 (현재 월 -1)</td><th>setMonth( )</th><td>월 정보만 수정(월 -1)</td></tr>
+                                            <tr><th>getDate( )</th><td>날짜(일) 정보를 가져옴</td><th>setDate( )</th><td>날짜(일) 정보만 수정</td></tr>
+                                            <tr><th>getDay( )</th><td>요일 정보를 가져옴 (일:0 ~ 토:6)</td><th colspan="2">'요일'은 날짜를 바꾸면 자동으로 바뀌므로 setDay는 없음</th></tr>
+                                            <tr><th>getHours( )</th><td>시 정보를 가져옴</td><th>setHours( )</th><td>시 정보만 수정</td></tr>
+                                            <tr><th>getMinutes( )</th><td>분 정보를 가져옴</td><th>setMinutes( )</th><td>분 정보만 수정</td></tr>
+                                            <tr><th>getSeconds( )</th><td>초 정보를 가져옴</td><th>setSeconds( )</th><td>초 정보만 수정</td></tr>
+                                            <tr><th>getMilliseconds( )</th><td>밀리초 정보를 가져옴</td><th>setMilliseconds( )</th><td>밀리초 정보만 수정</td></tr>
+                                            <tr><th>getTime( )</th><td>1970.01.01부터 경과된 시간을 ms로 표기함</td><th>setFullYear( )</th><td>1970.01.01부터 경과된 시간을 ms로 수정</td></tr>
+                                            <tr><th>toGMTString( )</th><td>GMT 표준 표기 방식으로 문자형 데이터 반환</td><th>toLocaleString( )</th><td>OS 표기 방식으로 문자형 데이터 반환</td></tr>
+                                        </tbody>
+                                    </table>
+                                </p>
+                            </li>
+                            <li><strong>숫자 객체</strong>
+                                <p>
+                                    숫자 객체(Number Object)는 JS를 이용하여 숫자를 표기할 때, 표현 가능한 수의 속성과 숫자 표기법에 대한 메서드를 제공합니다.<br>
+                                    숫자 객체는 <b>new</b> 키워드와 생성자 함수를 이용해 객체를 생성할 수 있고, <span class="under">참조 변수에 값만 입력해도</span> 객체가 생성됩니다.
+                                    <div class="man">
+                                        let 참조 변수 = new Number(값); <small>or</small> <br>
+                                        let 참조 변수 = 값; 
+                                    </div>
+                                </p>
+                                <p>
+                                    JS의 표현 가능한 숫자의 속성을 알고 싶다면 다음과 같이 사용합니다.
+                                    <div class="man">
+                                        Number.속성;
+                                    </div>
+                                </p>
+                                <p>
+                                    숫자에 표기법 관련 메서드를 사용하려면 다음과 같이 사용합니다.
+                                    <div class="man">
+                                        객체.표기 메서드( )
+                                    </div>
+                                </p>
+                                <p>
+                                    다음 표는 잡스크립트에서 숫자를 표기할 때 표현가능한 수의 속성을 설명한 것입니다.
+                                    <table>
+                                        <thead>
+                                            <tr><th>속성</th><th>설명</th></tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr><th>MAX_VALUE</th><td>표현 가능한 가장 큰 수</td></tr>
+                                            <tr><th>MIN_VALUE</th><td>표현 가능한 가장 작은 수</td></tr>
+                                            <tr><th>POSITIVE_INFINITY</th><td>무한대 수 표기</td></tr>
+                                            <tr><th>NEGATIVE_INFINITY</th><td>음의 무한대 수 표기</td></tr>
+                                            <tr><th>NaN</th><td>숫자가 아닌 경우 표기</td></tr>
+                                        </tbody>
+                                    </table>
+                                </p>
+                                <p>
+                                    다음은 자바스크립트 숫자 표기법에 관련한 메서드들입니다. 숫자를 지정 자릿수만큼 고정 소수점으로 표기하거나 지수 표기법으로 표기할 때 사용합니다.<br>
+                                    이 부분은 간략한 사용법만 숙지하고 넘어가도 괜찮습니다.
+                                    <table>
+                                        <thead>
+                                            <tr><th>속성</th><th>설명</th></tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr><th>toExponential(n)</th><td>지수 표기법으로 소수점 n자리만큼 문자형 데이터로 반환합니다</td></tr>
+                                            <tr><th>toFixed()</th><td>소수점 n자리만큼 반올림하여 문자형 데이터로 반환합니다</td></tr>
+                                            <tr><th>toPrecision(n)</th><td>유효 숫자 n의 개수만큼 반올림하여 문자형 데이터로 반환합니다</td></tr>
+                                            <tr><th>toString()</th><td>숫자형 데이터를 문자형 데이터로 반환합니다.</td></tr>
+                                            <tr><th>valueOf()</th><td>객체의 원래 값을 반환합니다</td></tr>
+                                            <tr><th>parseInt(값)</th><td>데이터를 정수로 변환하여 반환합니다</td></tr>
+                                            <tr><th>parseFloat(값))</th><td>데이터를 실수로 변환하여 반환합니다</td></tr>
+                                        </tbody>
+                                    </table>
+                                </p>
+                            </li>
+                            <li><strong>수학 객체</strong>
+                                <p>
+                                    자바스크립트 내장 객체에는 수학과 관련한 기능과 소겅을 제공하는 수학 객체(Math Object)가 있습니다.<br>
+                                    다음 표는 수학 객체의 메서드와 참조하는 상수에 대해 정리한 것입니다
+                                    <table>
+                                        <thead>
+                                            <tr><th>종류</th><th>설명</th></tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr><th>Math.abs(숫자)</th><td>숫자의 절댓값을 반환합니다.</td></tr>
+                                            <tr><th>Math.max(숫자1, 숫자2, ... )</th><td>숫자 중 가장 큰 값을 반환합니다.</td></tr>
+                                            <tr><th>Math.min(숫자1, 숫자2, ... )</th><td>숫자 중 가장 작은 값을 반환합니다.</td></tr>
+                                            <tr><th>Math.pow(숫자, 제곱값)</th><td>숫자의 거듭제곱한 값을 반환합니다.</td></tr>
+                                            <tr><th>Math.random()</th><td>0~1 사이의 난수를 반환합니다.</td></tr>
+                                            <tr><th>Math.round(숫자)</th><td>소수점 첫쨰 자리에서 반올림하여 정수를 반환합니다.</td></tr>
+                                            <tr><th>Math.ceil(숫자)</th><td>소수점 첫째 자리에서 무조건 올림해서 정수를 반환합니다.</td></tr>
+                                            <tr><th>Math.floor(숫자)</th><td>소수점 첫째 자리에서 무조건 내림해서 정수를 반환합니다.</td></tr>
+                                            <tr><th>Math.sqrt(숫자)</th><td>숫자의 제곱근 값을 반환합니다.</td></tr>
+                                            <tr><th>Math.PI(숫자)</th><td>원주율 상수를 반환합니다.</td></tr>
+                                        </tbody>
+                                    </table>
+                                </p>
+                            </li>
+                            <li><strong>문자 객체</strong>
+                                <p>
+                                    문자 객체(String Object)는 문자형 데이터를 객체로 취급하는 것으로, 자바스크립트에서 가장 많이 사용합니다.
+                                    문자 객체는 마찬가지로 <b>new</b> 키워드와 문자 객체 함수 <b>String</b>메서드를 사용합니다.
+                                    <div class="man">
+                                        let 참조 변수=new String(문자형 데이터);
+                                    </div>
+                                </p>
+                                <p>
+                                    문자 객체는 다음과 같이 참조 변수에 문자형 데이터만 입력해도 객체가 생성됩니다.
+                                    <div class="man">
+                                        let 참조 변수=문자형 데이터;
+                                    </div>
+                                </p>
+                                <p>
+                                    문자 객체는 문자와 관련된 메서드와 속성을 제공하며, 이를 이용해 문자에 대한 다양한 정보를 구해올 수 있습니다.
+                                    <table>
+                                        <thead>
+                                            <tr><th>종류</th><th>설명</th></tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr><th>charAt(index)</th><td>문자열에서 인덱스 번호에 해당하는 문자를 반환합니다.</td></tr>
+                                            <tr><th>indexOf("찾을 문자")</th><td>문자열에서 왼쪽부터 찾을 문자와 일치하는 문자를 찾아 최초로 일치하는 문자의 인덱스 번호를 반환합니다.<br>만일 찾는 문자가 없으면 -1을 반환합니다.</td></tr>
+                                            <tr><th>lastIndexOf("찾을 문자")</th><td>문자열에서 오른쪽부터 찾을 문자와 일치하는 문자를 찾아 최초로 일치하는 문자의 인덱스 번호를 반환합니다.<br>만일 찾는 문자가 없으면 -1을 반환합니다.</td></tr>
+                                            <tr><th>match("찾을 문자")</th><td>문자열에서 왼쪽부터 찾을 문자와 일치하는 문자를 찾아 최초로 찾은 문자를 반환합니다.<br>만일 찾는 문자가 없으면 null을 반환합니다.</td></tr>
+                                            <tr><th>replace("바꿀 문자", "새 문자")</th><td>문자열에서 왼쪽부터 바꿀 문자와 일치하는 문자를 찾아 최초로 찾은 문자를 새 문자로 치환합니다.</td></tr>
+                                            <tr><th>search("찾을 문자")</th><td>문자열에서 왼쪽부터 찾을 문자와 일치하는 문자를 찾아 최초로 일치하는 인덱스 번호를 반환합니다.</td></tr>
+                                            <tr><th>slice(a, b)</th><td>문자열에서 (a+1)~(b+1)번째의 글자를 제외한 나머지를 없앤 뒤 반환합니다.<br>음수가 들어올 시 뒤에서부터 기산합니다.</td></tr>
+                                            <tr><th>substring(a, b)</th><td>a인덱스부터 b인덱스 이전 구간의 문자를 반환합니다.<br>음수가 들어올 시 뒤에서부터 기산합니다.</td></tr>
+                                            <tr><th>substr(a, 문자 개수)</th><td>문자열에 a인덱스부터 지정한 문자 개수만큼 잘라 문자열을 반환합니다.</td></tr>
+                                            <tr><th>split("구분자")</th><td>구분자를 기준으로 나누어 각 문자열을 배열에 나누어 저장해 반환합니다.</td></tr>
+                                            <tr><th>toLowerCase()</th><td>문자열에서 영문 대문자를 모두 소문자로 변환합니다.</td></tr>
+                                            <tr><th>toUpperCase()</th><td>문자열에서 영문 소문자를 모두 대문자로 변환합니다.</td></tr>
+                                            <tr><th>length</th><td>문자열에서 문자의 개수를 반환합니다.</td></tr>
+                                            <tr><th>concat("문자열")</th><td>기존 문자열 뒤에 문자열을 이어서 붙입니다.</td></tr>
+                                            <tr><th>charCodeAt(index)</th><td>문자열에서 인덱스 번호에 해당하는 문자의 아스키 코드를 반환합니다.</td></tr>
+                                            <tr><th>fromCharCode("아스키 코드 값")</th><td>아스키 코드 값에 해당하는 문자를 반환합니다.</td></tr>
+                                            <tr><th>trim( )</th><td>문자열 앞뒤의 공백 문자열을 제거합니다.</td></tr>
+                                        </tbody>
+                                    </table>
+                                </p>
+                            </li>
+                            <li><strong>정규 표현 객체</strong>
+                                <p>
+                                    정규 표현식(RegExp)를 사용할 수 있는 객체입니다.<br>
+                                    객체에 정규식을 입력한 뒤, 메서드를 이용해 일치 여부를 판단합니다.<br>
+                                    정규 표현 객체를 생성하는 기본형은 다음과 같습니다.
+                                    <div class="man">
+                                        let 참조 변수 = new RegExp(패턴, 검색 옵션); <small>or</small><br>
+                                        let 참조 변수 = /패턴/검색 옵션
+                                    </div>
+                                </p>
+                                <p>
+                                    정규 표현 객체에서 사용 가능한 메서드는 다음과 같습니다.
+                                    <ul>
+                                        <li><b>test( )</b> : 지정된 규칙에 맞는 단어가 있으면 true 값을 반환합니다.</li>
+                                        <li><b>exec( )</b> : 지정된 규칙에 맞는 단어가 있으면 해당 단어를 반환합니다.</li>
+                                    </ul>
+                                </p>
+                            </li>
+                        </ul>
+                    </details>
+                </article>
+            </li>
+            <li>
+                <article id="c0204">
+                    <details class="accordion" open=true>
+                        <summary><h4 class="title_sub">브라우저 객체 모델(BOM)</h4><hr></summary>
+                        <ul>
+                            <li><strong>브라우저 객체란?</strong>
+                                <p>
+                                    브라우저에 내장된 객체를 '브라우저 객체'라 합니다. window는 브라우저 객체의 최상위 객체이며, window 객체에 하위 구조를 내포하는 계층적 구조로 구성됩니다.<br>
+                                    그리고 이를 일컬어 브라우저 객체 모델(BOM:Browser Object Model)이라고 합니다. 
+                                    <div id="browserTree">
+                                        <div id="top">
+                                            window
+                                        </div>
+                                        <div id="line">
+
+                                        </div>
+                                        <div id="mid">
+                                            <div>
+                                                document
+                                            </div>
+                                            <div class="vertical"></div>
+                                            <div>
+                                                screen
+                                            </div>
+                                            <div class="vertical"></div>
+                                            <div>
+                                                location
+                                            </div>
+                                            <div class="vertical"></div>
+                                            <div>
+                                                history
+                                            </div>
+                                            <div class="vertical"></div>
+                                            <div>
+                                                navigator
+                                            </div>
+                                            <div class="vertical"></div>
+                                        </div>
+                                        <div id="bottom">
+                                            <div>body, div, img, a, form, input... 등</div>
+                                            <div class="vertical"></div>
+                                        </div>
+                                    </div>
+                                </p>
+                            </li>
+                            <li><strong>window 객체</strong>
+                                <p>
+                                    window는 브라우저 객체의 최상위 객체이며, 다음과 같은 메서드를 사용할 수 있습니다.
+                                    <ul>
+                                        <li><b>open( )</b> : 새 창을 열 때 사용합니다.</li>
+                                        <li><b>alert( )</b> : 경고 창을 띄웁니다.</li>
+                                        <li><b>prompt( )</b> : 질의응답 창을 띄웁니다.</li>
+                                        <li><b>confirm( )</b> : 확인/취소 창을 띄웁니다.</li>
+                                        <li><b>moveTo( )</b> : 창의 크기를 이동시킬 때 사용합니다.</li>
+                                        <li><b>resizeTo( )</b> : 창의 크기를 변경시킬 때 사용합니다.</li>
+                                        <li><b>setInterval( )</b> : 일정 간격으로 지속적으로 실행문을 실행시킬 때 사용합니다.</li>
+                                        <li><b>setTimeout( )</b> : 일정 간격으로 한 번만 실행문을 실행시킬 때 사용합니다.</li>
+                                    </ul>
+                                </p>
+                                <p>
+                                    각 속성들에 대한 자세한 설명은 다음과 같습니다.
+                                    <ul id="windowDesc">
+                                        <li><b>open( )</b><button onclick="window.open('./empty.html','빈 창','width=400, height=500, left=50, top=10, scrollbors=no,location=no')">open( )</button>
+                                            <p>
+                                                open( )메서드는 새 브라우저 창을 띄울 때 사용합니다.<br>
+                                                사이트에서 팝업 창을 띄울 때 주로 사용되는 window 객체 메서드로, 기본형은 다음과 같습니다.
+                                                <div class="man">
+                                                    window.open("url 경로", "창 이름", "옵션 설정");
+                                                </div>
+                                            </p>
+                                            <p>
+                                                옵션에서는 팝업 창의 크기, 높이, 위치, 도구상자 노출 여부 등을 설정합니다.<br>
+                                                open( ) 메서드의 옵션 설정에는 다음과 같은 속성들을 설정할 수 있습니다.
+                                                <ul style="list-style: outside;">
+                                                    <li><b>width</b> : 창의 너비를 설정합니다.</li>
+                                                    <li><b>height</b> : 창의 높이를 설정합니다.</li>
+                                                    <li><b>left</b> : 창의 좌/우 수평 위치를 설정합니다.</li>
+                                                    <li><b>top</b> : 창의 상/하 수직 위치를 설정합니다.</li>
+                                                    <li><b>location</b> : 창의 url 주소 입력 영역의 노출 여부를 결정합니다. (=yes / =no)</li>
+                                                    <li><b>status</b> : 창의 상태 영역 노출 여부를 결정합니다. (=yes / =no)</li>
+                                                    <li><b>scrollbors</b> : 창의 스크롤바의 노출 여부를 결정합니다. (=yes / =no)</li>
+                                                    <li><b>toolbars</b> : 창의 도구상자 영역의 노출 여부를 결정합니다. (=yes / =no)</li>
+                                                </ul>
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <b>alert( )</b><button onclick="alert('경고 창입니다!')">alert( )</button>
+                                            <p>
+                                                altert( ) 메서드는 경고 창을 띄울 때 사용합니다.<br>
+                                                window.alert( ) 메서드는 다음 기본형처럼 window 객체를 따로 작성하지 않아도 사용할 수 있습니다.
+                                                <div class="man">
+                                                    alert("경고 메시지");
+                                                </div>
+                                            </p>
+                                            <p>
+                                                경고 창은 코드의 흐름을 중단시켜 '확인'버튼을 클릭해야 alert 메서드의 다음에 나오는 코드를 실행시킬 수 있도록 합니다.
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <b>prompt( )</b><button onclick="quiz()">prompt( )</button>
+                                            <p>
+                                                promt( ) 메서드는 질의응답 창을 띄울 때 사용합니다.<br>
+                                                window.prompt( )메서드도 마찬가지로 앞에 window 객체를 따로 작성하지 않아도 됩니다.
+                                                <div class="man">
+                                                    prompt("질의 내용", "기본 답변(placeholder)");
+                                                </div>
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <b>confirm( )</b><button onclick="question()">confirm( )</button>
+                                            <p>
+                                                confirm( ) 메서드는 확인/취소 창을 띄울 때 사용합니다.
+                                                window.confirm( )메서드도 마찬가지로 앞에 window 객체를 따로 작성하지 않아도 됩니다.
+                                                <div class="man">
+                                                    confirm("질의 내용");
+                                                </div>
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <b>moveTo( )</b><button onclick="moveTo(100,200);">moveTo( )</button>
+                                            <p>
+                                                moveTo( ) 메서드는 브라우저 창의 위치를 이동시킬 때 사용합니다. <span class="under">단, 크롬, 오페라 브라우저에서는 정상적으로 작동하지 않습니다.</span><br>
+                                                moveTo( ) 메서드는 다음 기본형처럼 스크린(모니터) 왼쪽을 기준으로, x의 위칫값과 위쪽을 기준으로 y의 위칫값을 입력합니다.
+                                                <div class="man">
+                                                    moveTo(x, y);
+                                                </div>
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <b>resizeTo( )</b><button onclick="moveTo(100,200);">moveTo( )</button>
+                                            <p>
+                                                moveTo( ) 메서드는 브라우저 창의 너비와 높이를 바꿀 때 사용합니다. <span class="under">단, 크롬, 오페라 브라우저에서는 정상적으로 작동하지 않습니다.</span><br>
+                                                moveTo( ) 메서드는 다음 기본형처럼 스크린(모니터) 왼쪽을 기준으로, x의 위칫값과 위쪽을 기준으로 y의 위칫값을 입력합니다.
+                                                <div class="man">
+                                                    resizeTo(width, height);
+                                                </div>
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <b>setTimeout( ) / clearTimeout( )</b>
+                                            <p>
+                                                setTimeout( ) 메서드는 일정한 간격으로 스크립트 실행문을 한 번만 실행시킵니다.<br>
+                                                하지만 setTimeout( ) 메서드도 재귀 함수 호출을 이용하면 setInterval( ) 메서드처럼 사용할 수 있습니다.<br>
+                                                clearTimeout( ) 메서드는 setTimeout( ) 메서드를 사용하여 일정한 시간 간격으로 한 번 실행할 예정인 실행문을 취소하고자 할 때 사용합니다.<br>
+                                                (링크는 제이쿼리 완성 후에)
+                                            </p>
+                                            <p>
+                                                setTimeout( ) 메서드의 기본형은 다음과 같으며, 단위는 ms입니다.
+                                                <div class="man">
+                                                    let 참조 변수=setTimeout("스크립트 실행문", 시간);
+                                                </div>
+                                            </p>
+                                            <p>
+                                                clearTimeout( ) 메서드의 기본형은 다음과 같습니다. 이 때 참조는 앞의 setTimeout( ) 실행문을 참조하는 변수입니다.
+                                                <div class="man">
+                                                    clearTimeout(참조 변수);
+                                                </div>
+                                            </p>
+                                        </li>
+                                    </ul>
+                                </p>
+                            </li>
+                            <li><strong>screen 객체</strong>
+                                <p>
+                                    screen 객체는 모니터의 너비나 높이와 같은 사용자의 모니터 정보(속성)를 제공하는 객체입니다.
+                                    <div class="man">
+                                        screen.속성;
+                                    </div>
+                                </p>
+                                <p>
+                                    screen 객체에서 사용할 수 있는 속성 값들은 다음과 같습니다.
+                                    <ul>
+                                        <li>screen.<b>width</b> : 화면의 너비를 반환합니다.</li>
+                                        <li>screen.<b>height</b> : 화면의 높이를 반환합니다.</li>
+                                        <li>screen.<b>availWidth</b> : 작업 표시줄을 제외한 화면의 너비값을 반환합니다.</li>
+                                        <li>screen.<b>availHeight</b> : 작업 표시줄을 제외한 화면의 높이값을 반환합니다.</li>
+                                        <li>screen.<b>colorDepth</b> : 사용자 모니터가 표현 가능한 컬러 bit수를 반환합니다.</li>
+                                    </ul>
+                                </p>
+                            </li>
+                            <li><strong>location 객체</strong>
+                                <p>
+                                    location 객체는 사용자 브라우저의 주소 창에 url에 대한 정보(속성)와 새로 고침 기능(메서드)을 제공하는 객체입니다.<br>
+                                    location 객체를 로컬에서 사용할 경우 href 속성만 지원됩니다.
+                                    <div class="man">
+                                        location.속성 <small>or</small><br>
+                                        location.메서드( )
+                                    </div>
+                                </p>
+                                <p>
+                                    location 객체에서 사용할 수 있는 속성과 메서드는 다음과 같습니다.
+                                    <ul>
+                                        <li>location.<b>href</b> : 주소 영역에 참조 주소를 설정하거나 URL을 반환합니다.</li>
+                                        <li>location.<b>hash</b> : URL에 명시된 해시값(#)을 반환합니다.</li>
+                                        <li>location.<b>hostname</b> : URL에 호스트 이름을 설정하거나 반환합니다.</li>
+                                        <li>location.<b>host</b> : URL에 명시된 호스트 이름과 포트 번호를 반환합니다.</li>
+                                        <li>location.<b>port</b> : URL에 명시된 포트 번호를 반환합니다.</li>
+                                        <li>location.<b>protocol</b> : URL에 명시된 프로토콜을 반환합니다.</li>
+                                        <li>location.<b>search</b> : URL에 명시된 쿼리(?)를 반환합니다.</li>
+                                        <li>location.<b>reload( )</b> : 페이지를 새로 고침 합니다.<button onclick="location.reload()">reload( )</button></li>
+                                    </ul>
+                                </p>
+                                <p>
+                                    다음은 location 객체를 이용하여 각 정보를 표기한 모습입니다.
+                                    <div id=locationArea>
+                                        <script type="text/javascript">
+                                            locationInfo(); //timeout 계속 덮어쓰는 바람에 구현 X
+                                        </script>
+                                    </div>
+                                </p>
+                            </li>
+                            <li><strong>history 객체</strong>
+                                <p>
+                                    history 객체는 사용자의 방문 기록과 관련하여 페이지를 조작할 수 있도록 합니다.
+                                    <div class="man">
+                                        history.메서드; <small>or</small>
+                                        history.속성;
+                                    </div>
+                                </p>
+                                <p>
+                                    history 객체에서 사용 가능한 메서드와 속성은 다음과 같습니다.
+                                    <ul class="detail">
+                                        <li>history.<b>back( )</b> : 이전에 방문한 페이지로 이동(뒤로가기)합니다<button onclick="history.back()">back ( )</button></li>
+                                        <li>history.<b>foward( )</b> : 다음 페이지로 이동(앞으로)합니다.<button onclick="history.foward()">foward ( )</button></li>
+                                        <li>history.<b>go(n)</b> : n만큼 페이지를 앞으로 혹은 뒤로 이동시킵니다. <form style="display:inline-block" name="go_form"><input type="number" style="width: 7em;" placeholder="숫자를 입력" id="num_input"><button onclick="go_sample()">go ( )</button></form></li>
+                                        <li><b>length</b> : 방문 기록에 저장된 목록의 개수를 반환합니다.</li>
+                                    </ul>
+                                </p>
+                            </li>
+                            <li><strong>navigator 객체</strong>
+                                <p>
+                                    navigator 객체는 현재 방문자가 사용하는 브라우저와 운영체제의 정보를 제공하는 객체입니다.
+                                    <div class="man">
+                                        navigator.속성;
+                                    </div>
+                                </p>
+                                <p>
+                                    navigator 객체에서 제공하는 속성은 다음과 같습니다.
+                                    <ul class="detail">
+                                        <li>navigator.<b>appCodeName</b> : 방문자의 브라우저 코드명을 반환합니다 : <script>document.write(navigator.appCodeName)</script></li>
+                                        <li>navigator.<b>appName</b> : 방문자의 브라우저 이름을 반환합니다 : <script>document.write(navigator.appName)</script></li>
+                                        <li>navigator.<b>appVersion</b> : 방문자의 브라우저 버전 정보를 반환합니다<br><script>document.write(navigator.appVersion)</script></li>
+                                        <li>navigator.<b>language</b> : 방문자의 브라우저 사용 언어를 반환합니다 : <script>document.write(navigator.language)</script></li>
+                                        <li>navigator.<b>product</b> : 방문자의 브라우저 사용 엔진 이름을 반환합니다 : <script>document.write(navigator.product)</script></li>
+                                        <li>navigator.<b>platform</b> : 방문자의 브라우저를 실행하는 운영체제를 반환합니다 : <script>document.write(navigator.platform)</script></li>
+                                        <li>navigator.<b>userAgent</b> : 방문자의 브라우저와 운영체제 종합 정보를 제공합니다<br><script>document.write(navigator.userAgent)</script></li>
+                                    </ul>
+                                </p>
+                            </li>
+                        </ul>
+                    </details>
+                </article>
+            </li>
+            <li>
+                <article id="c0205">
+                    <details class="accordion" open=true>
+                        <summary><h4 class="title_sub">문서 객체 모델(DOM)</h4><hr></summary>
+                            <ul>
+                                <li><strong>문서 객체 모델</strong>
+                                    <p>
+                                        (X)HTML<sup title="HTML 및 XML로 작성된 HTML">[?]</sup> 문서의 구조를 가리켜 문서 객체 모델(DOM: Document Object Model)이라 합니다.<br>
+                                        &lang;img&rang; 태그가 이미지를 출력하는 기능과, src/alt 속성이 있는것처럼, (X)HTML에는 각 태그마다 기능과 속성이 있습니다.<br>
+                                        이렇게 DOM을 사용하면 자바스크립트를 사용하여 문서 객체를 선택하고 속성이나 스타일(CSS)을 적용할 수 있습니다.
+                                    </p>
+                                    <p>
+                                        그러나 자바스크립트 DOM은 IE 8 이하 버전과 그 외 파이어폭스, 크롬, 사파리 등 브라우저 간 호환성이 떨어진다는 단점이 있어, 근래에는 JS DOM 대신 jQuery를 주로 사용합니다.
+                                        DOM은 태그로 이루어지기 때문에, 문서 객체의 구조는 곧 HTML 태그 아래에서 나타나는 태그의 트리적 계층 구조도와 정확히 일치합니다.<br>
+                                        이렇게 HTMl 태그를 최상위 노드로 한 문서 객체 구조의 노드로는 요소 노드(Element node), 텍스트 노드(Text node), 속성 노드(Attribute Node)가 있습니다.
+                                    </p>
+                                </li>
+                                <li><strong>선택자</strong>
+                                    <p>
+                                        (X)HTML의 CSS와 JS의 스타일은 본질적으로 (X)HTML의 요소의 디지인 속성을 바꿀 때 사용한다는 점에서 같습니다.<br>
+                                        그러나, <b style="color: tomato;">CSS</b>에서는 요소에 특정 동작(이벤트)가 발생한 경우 스타일을 변경시키는 등, <b style="color: tomato">디자인 속성의 가변적 변환이 불가</b>능합니다.<br>
+                                        따라서 <b>(X)HTML</b>의 스타일은 <b>정적</b>이라 표현하고, <b>자바스크립트</b> 내에서 작성한 스타일은 <b>동적</b>이라고 표현합니다.
+                                    </p>
+                                    <p>
+                                        선택자에는 크게 <span class="under">문서에서 요소를 직접 선택해 오는</span> <b>직접 선택자</b>가 있고, 이 선택자를
+                                        사용해 선택해 온 문서 객체를 기준으로 <span class="under">가까이에 있는 요소를 선택하는</span> <b>인접 관계 선택자</b>가 있습니다.<br>
+                                        직접 선택자에는 id, class, 폼 명(Form Name), 요소 명(Element Name) 선택자 등이 있고, 인접 관계 선택자에는 parentNode, childNodes, firstChild, children, previousSibling, nextSibling 선택자 등이 있습니다.
+                                    </p>
+                                    <p>
+                                        선택자를 적용할 때 &lang;head&rang;영역에 자바스크립트를 선언하게 되면, (X)HTML을 읽어오는(Loading) 것보다 스크립트의 선택자가 먼저 실행되어 문서 객체를 선택할 수 없게 됩니다.<br>
+                                        또한, (X)HTML 문단 태그보다 먼저 자바스크립트가 문서 상단에 위치해 있어 먼저 실행되면 다음에 오는 문단 태그를 스크립트의 선택자를 사용하여 선택해 올 수 없게 됩니다.<br>
+                                        그러므로 스크립트에 선택문을 사용할 경우애는 &lang;body&rang;태그 영역에 문단 태그 작성을 마친 후 마지막 부분에 작성하거나, <i>window.onload=function(){ ... }</i>를 이용하여 선택문을 작성해야 합니다.
+                                    </p>
+                                </li>
+                                <li><strong>선택자 종류</strong>
+                                    <p>
+                                        선택자의 종류는 다음과 같습니다.
+                                        parentNode, firstChild, previousSibling, nextSibling은 공백 문자 인식 호환성에 문제가 있음을 유의해야 합니다.
+                                        <table>
+                                            <thead>
+                                                <tr><th>구분</th><th>종류</th><th>설 명</th></tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr><th rowspan="3" style="vertical-align: middle; text-align: center;">직접<br>선택자</th><td>document.getElementById("ID");</td><td>ID를 이용해 요소를 선택해 옵니다.</td></tr>
+                                                <tr><td>document.getElementsByTagName("TagName");</td><td>요소의 Name 속성을 이용해 요소를 선택해 옵니다.</td></tr>
+                                                <tr><td>document.formName.inputName</td><td>폼 요소의 name 속성을 이용해 요소를 선택합니다.</td></tr>
+                                                <tr><th rowspan="6" style="vertical-align: middle; text-align: center;">인접<br>관계<br>선택자</th><td>parentNode</td><td>선택한 요소의 부모 요소를 선택해 옵니다.</td></tr>
+                                                <tr><td>childNodes</td><td>선택한 요소의 모든 자식 요소를 선택해 옵니다.<br>선택한 모든 요소가 배열 객체로 저장됩니다.</td></tr>
+                                                <tr><td>children</td><td>선택한 요소의 자식 요소인 태그만 선택해 옵니다.<br>선택한 모든 요소가 배열 객체로 저장됩니다.</td></tr>
+                                                <tr><td>firstChild</td><td>선택한 요소의 첫 번째 자식 요소만 선택해 옵니다.</td></tr>
+                                                <tr><td>previousSibling</td><td>선택한 요소의 이전에 오는 형제 요소만 선택해 옵니다.</td></tr>
+                                                <tr><td>nextSibling</td><td>선택한 요소의 다음에 오는 형제 요소만 선택해 옵니다.</td></tr>
+                                            </tbody>
+                                        </table>
+                                    </p>
+                                </li>
+                                <li><strong>문서 객체에 CSS 적용법</strong>
+                                    <p>
+                                        직접 선택자로 문서 객체의 스타일(CSS)을 적용하는 방법은 다음과 같습니다.
+                                        <div class="man">
+                                            document.직접 선택자(선택 메서드).style.속성=값;
+                                        </div>
+                                    </p>
+                                    <p>
+                                        인접 관계 선택자를 사용하려면 직접 선택자를 이용해 우선 요소를 선택한 후, 해당 요소를 기준으로 인접 관계 선택자를 사용해야 합니다.
+                                        <div class="man">
+                                            document.직접 선택자(선택 메서드).인접 관계 선택자.style.속성=값;
+                                        </div>
+                                    </p>
+                                    <p>
+                                        자바스크립트에서 CSS 속성을 작성할 때 주의해야 할 점은, (X)HTML의 background-color와 같은 속성을 사용하고자 하는 경우, 자바스크립트에서 하이픈('-')문자를 사용하게 되면 산술 연산자로 인식되므로, backgroundColor와 같이 카멜 케이스로 표기합니다.<br>
+                                        또한, 인접 관계 선택자를 사용할 경우, IE8 이하 버전과 그 밖의 브라우저에서는 결과가 모두 다르게 나오는데, 이는 공백 문자의 인식 여부 차이 때문입니다.
+                                    </p>
+                                </li>
+                                <li><strong>노드 타입으로 인접 관계 선택자 문제 해결하기</strong>
+                                    <p>
+                                        노드 타입(nodeType)을 이용하면 DOM에서 인접 관계 선택자를 이용함으로서 인해 생기는 호환성 문제를 해결할 수 있습니다.<br>
+                                        (X)HTML 노드에는 (X)HTML 태그를 연결하는 <b>요소 노드(Element Node)</b>와 텍스트를 연결하는 <b>텍스트 노드(Text Node)</b>, 그리고 (X)HTML 태그에 속성을 연결해 주는 <b>속성 노드(Attribute Node)</b>가 있습니다.<br>
+                                    </p>
+                                    <p>
+                                        선택자로 선택한 요소가 어떤 노드인가에 따라 <b>요소 노드는 1, 속성 노드는 2, 텍스트 노드는 3의 노드 타입 값</b>을 같습니다.<br>
+                                        다음은 문단 태그에서 선택자로 각 노드를 선택해 타입을 검사하는 예문입니다.
+                                        <div class="man">
+                                            &lang; <ruby>a<rt>1</rt></ruby> <ruby>href<rt>2</rt></ruby>=&quot;http://w3.org&quot;id=&quot;m&quot;&rang; <ruby>W3C<rt>3</rt></ruby> &lang;/a&rang;
+                                        </div>
+                                    </p>
+                                    <p>
+                                        <div class="man">
+                                            <ol>
+                                                <li>document.getElementById("m").nodeType; <small>// 요소 노드 : 1을 반환합니다.</small> '&lang;a&rang;'</li>
+                                                <li>document.getElementById("m").firstChild.nodeType; <small>// 텍스트 노드 : 3을 반환합니다.</small> 'W3C'</li>
+                                                <li>document.getElementById("m").getAttributeNode("href").nodeType; <small>// 속성 노드 : 2를 반환합니다.</small> 'href'</li>
+                                            </ol>
+                                        </div>
+                                    </p>
+                                    <p>
+                                        그러나 다음 문단 태그에 인접 관계 선택자를 사용해 요소를 선택할 경우, IE8 이하 버전에서 실행하면 다음과 같은 호환성 문제가 발생할 수 있습니다.
+                                        <div class="colorscripter-code" style="color:#010101;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important; position:relative !important;overflow:auto"><table class="colorscripter-code-table" style="margin:0;padding:0;border:none;background-color:#fafafa;border-radius:4px;" cellspacing="0" cellpadding="0"><tr><td style="padding:6px;border-right:2px solid #e5e5e5"><div style="margin:0;padding:0;word-break:normal;text-align:right;color:#666;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important;line-height:130%"><div style="line-height:130%">1</div><div style="line-height:130%">2</div><div style="line-height:130%">3</div><div style="line-height:130%">4</div><div style="line-height:130%">5</div><div style="line-height:130%">6</div></div></td><td style="padding:6px 0;text-align:left"><div style="margin:0;padding:0;color:#010101;font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important;line-height:130%"><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#010101">&lt;</span><span style="color:#066de2">div</span>&nbsp;<span style="color:#0a9989">id</span>=<span style="color:#df5000">"wrap"</span><span style="color:#0a9989"></span><span style="color:#010101">&gt;</span></div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#010101">&lt;</span><span style="color:#066de2">p</span><span style="color:#010101">&gt;</span>내용1<span style="color:#010101">&lt;</span><span style="color:#010101">/</span><span style="color:#066de2">p</span><span style="color:#010101">&gt;</span>&nbsp;&nbsp;&nbsp;&nbsp;//Index0</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#010101">&lt;</span><span style="color:#066de2">p</span><span style="color:#010101">&gt;</span>내용2<span style="color:#010101">&lt;</span><span style="color:#010101">/</span><span style="color:#066de2">p</span><span style="color:#010101">&gt;</span>&nbsp;&nbsp;&nbsp;&nbsp;//Index1</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#010101">&lt;</span><span style="color:#066de2">p</span><span style="color:#010101">&gt;</span>내용3<span style="color:#010101">&lt;</span><span style="color:#010101">/</span><span style="color:#066de2">p</span><span style="color:#010101">&gt;</span>&nbsp;&nbsp;&nbsp;&nbsp;//Index2</div><div style="padding:0 6px; white-space:pre; line-height:130%">&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#010101">&lt;</span><span style="color:#066de2">p</span><span style="color:#010101">&gt;</span>내용4<span style="color:#010101">&lt;</span><span style="color:#010101">/</span><span style="color:#066de2">p</span><span style="color:#010101">&gt;</span>&nbsp;&nbsp;&nbsp;&nbsp;//Index3</div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#010101">&lt;</span><span style="color:#010101">/</span><span style="color:#066de2">div</span><span style="color:#010101">&gt;</span></div></div></td><td style="vertical-align:bottom;padding:0 2px 4px 0"><a href="http://colorscripter.com/info#e" target="_blank" style="text-decoration:none;color:white"><span style="font-size:9px;word-break:normal;background-color:#e5e5e5;color:white;border-radius:10px;padding:1px">cs</span></a></td></tr></table></div>
+                                    </p>
+                                    <p>
+                                        위의 문단 태그에 다음 인접 관계 선택자를 IE8 이하 버전에서 실행하면 줄바꿈을 해도 공백문자가 생성되지 않으므로, 정상적으로 '&lang;p&rang;내용3&lang;/p&rang;의 태그가 선택됩니다.<br>
+                                        그 결과, 노드 타입 값을 검사하면 1이 반환됩니다.
+                                        <h4>IE8 이하 브라우저</h4>
+                                        <div class="man">
+                                            document.getElementById("wrap").firstChild.nodeType; <small>// 노드 타입 값 1을 반환합니다.</small><br>
+                                            var p=document.getElementsByTagName("p")[1];<br>
+                                            p.nextSibling.nodeType; <small>// 노드 타입 값 1을 반환합니다.</small>
+                                        </div>
+                                    </p>
+                                    <p>
+                                        그러나, 파이어폭스, 크롬, 사파리 등에서 다음과 같이 인접 관계 선택자를 실행하면, (X)HTML의 코드에 줄 바꿈이 일어날 때마다 공백 문자가 생성되어, &lang;p&rang;태그가 아닌 공백 문자가 선택됩니다.<br>
+                                        그 결과, 노드 타입 값을 검사하면 1이 아닌 3이 반환됩니다.
+                                        <h4>크롬, 사파리, 오페라 등의 브라우저</h4>
+                                        <div class="man">
+                                            document.getElementById("wrap").firstChild.nodeType; <small>// 공백이 선택되어 노드 타입 값 3을 반환합니다.</small><br>
+                                            var p=document.getElementsByTagName("p")[1];
+                                            p.nextSibling.nodeType; <small>// 노드 타입 값 3을 반환합니다.</small>
+                                        </div>
+                                    </p>
+                                    <p>
+                                        공백 문자가 아닌 요소 노드를 정상적으로 선택하려면, fisrtChild를 이용하는 대신 children[0]을 사용해야 합니다.<br>
+                                        children[0]은 텍스트 노드를 무시한 채 선택하기 때문에 공백 문자는 선택되지 않고, 오로지 요소 노드만 서낵합니다.<br>
+                                        또, nextSibling의 경우, 노드 타입의 값을 검사해 3이 나오면 계속해서 1이 나올때까지 nextSibling을 반복하게 합니다.<br>
+                                        즉, 다음과 같이 코드를 작성하여 인접 관계 선택자 호환성 문제를 해결할 수 있습니다.
+                                        <div class="man">
+                                            document.getElementById("wrap").<span style="background-color: #cdf1f1;">children[0]</span>.nodeType;
+                                            var p=document.getElementsByTagName("p")[1];<br>
+                                            <span style="background-color: #cdf1f1;">var nextObj=p.nextSibling;</span><br>
+                                            <span style="background-color: #cdf1f1;">(nextObj.nodeType != 1){<br></span>
+                                                    <span class="tab" style="background-color: #cdf1f1;">nextObj=nextObj.nextSibling;</span><br>
+                                            <span style="background-color: #cdf1f1;">}</span>
+                                            </div>
+                                        </div>
+                                    </p>
+                                </li>
+                                <li><strong>요소의 속성값 변경, 생성 및 불러오는 방법</strong>
+                                    <p>
+                                        <table>
+                                            <caption>문서 객체의 속성 메서드</caption>
+                                            <thead>
+                                                <tr><th>종류</th><th>풀이</th></tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr><th>요소 선택.속성명</th><td>요소의 지정한 속성값을 불러옵니다.</td></tr>
+                                                <tr><th>요소 선택.속성명="새 값"</th><td>요소의 지정한 속성값을 새 값으로 변경 또는 생성합니다..</td></tr>
+                                                <tr><th>요소 선택.getAttribute("속성");</th><td>요소의 지정한 속성값을 불러옵니다.</td></tr>
+                                                <tr><th>요소 선택.setAttribute("속성","새 값");</th><td>요소의 지정한 새 값으로 변경 또는 생성합니다.</td></tr>
+                                            </tbody>
+                                        </table>
+                                    </p>
+                                    <p>
+                                        다음 innerHTML 속성은 선택한 문서 객체의 모든 하위 요소를 불러오거나, 하위 요소를 변경할 때 사용합니다.
+                                        <ul>
+                                            <li>요소 선택.<b>innerHTML</b>; : 선택한 요소의 모든 하위 요소를 문자 데이터로 반환합니다.</li>
+                                            <li>요소 선택.<b>innerHTML=새 요소</b>; : 선택한 요소의 전체 하위 요소를 새 요소로 변경 또는 새롭게 선택합니다.</li>
+                                        </ul>
+                                    </p>
+                                </li>
+                                <li><strong>문서 객체 이벤트 핸들러 적용하기</strong>
+                                    <p>
+                                        방문자가 사이트에서 행하는 모든 행위를 <b>이벤트</b>라 부르고, 이런 행위를 취했을 때 자바스크립트 코드가 실행되게 하는 것을 <b>이벤트 핸들러</b>라고 합니다.<br>
+                                        여기서는 이벤트 핸들러를 적용하는 방법과 이벤트의 몇 가지 종류에 대해서만 알아볼 것입니다. 이벤트에 대한 자세한 내용은 <a href="../chap_03/main.html">이곳</a>에서 확인할 수 있습니다.<br>
+                                        다음은, 이벤트 핸들러를 적용할 때 사용되는 이벤트의 몇 가지 종류입니다.
+                                        <ul>
+                                            <li><b>onclick</b> : 선택한 요소를 마우스로 클릭했을 때 이벤트가 발생합니다.</li>
+                                            <li><b>onmouseover</b> : 선택한 요소를 마우스오버했을때 발생하는 이벤트입니다.</li>
+                                            <li><b>onmouseout</b> : 선택한 요소에 마우스오버 후, 마우스가 벗어날 때 발생하는 이벤트입니다.</li>
+                                            <li><b>submit</b> : 선택한 폼에 전송이 일어났을 때 이벤트가 발생합니다.</li>
+                                        </ul>
+                                    </p>
+                                    <p>
+                                        문서 객체에 이벤트 핸들러를 적용하는 기본형은 다음과 같습니다.
+                                        <div class="man">
+                                            요소 선택.이벤트 종류=function(){<br>
+                                                <span class="tab">. . .</span><br>
+                                            }
+                                        </div>
+                                    </p>
+                                </li>
+                                <li><strong>폼 요소 선택자</strong>
+                                    <p>
+                                        폼 요소를 선택하는 방식은 다음과 같이 정리할 수 있습니다.
+                                        <table>
+                                            <thead>
+                                                <tr><th>구분</th><th>종류</th><th>설명</th></tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr><th rowspan="2" style="text-align: center;">입력<br>요소<br>선택자</th><td>document.getElementById("ID")</td><td>폼 요소를 아이디로 선택할 때 사용합니다.</td></tr>
+                                                <tr><td>document.폼 이름.입력 요소 이름</td><td>폼 요소를 이름으로 선택할 때 사용합니다.</td></tr>
+                                                <tr><th rowspan="2" style="text-align: center;">select<br>option<br>선택자</th><td>document.폼 이름.입력 요소 이름.options[index]</td><td>&lang;select&rang;에 &lang;option&rang;을 선택할 때 사용합니다.</td></tr>
+                                                <tr><td>var i=document.폼 이름.입력 요소 이름.selectedIndex;<br>document.폼 이름.입력 요소 이름.options[i];</td><td>&lang;select&rang;에 선택된 &lang;option&rang;을 선택할 때 사용합니다.</td></tr>
+                                            </tbody>
+                                        </table>
+                                    </p>
+                                    <p>
+                                        다음은 폼 요소 속성의 종류입니다.
+                                        <table>
+                                            <thead>
+                                                <tr><th>구분</th><th>속성</th><th>설명</th></tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr><th rowspan="3">전체</th><td>value</td><td>입력 요소의 value 속성을 변경하거나, 값을 가져옵니다.</td></tr>
+                                                <tr><td>disabled</td><td>입력 요소의 disabled 속성을 변경하거나, 현재 상태의 값을 가져옵니다.</td></tr>
+                                                <tr><td>defaultValue</td><td>입력 요소 초기에 입력된 value의 값을 가져옵니다.</td></tr>
+                                                <tr><th rowspan="1">선택 박스</th><td>selected</td><td>&lang;select&rang;태그에 &lang;option&rang; 선택된 상태의 값을 가져옵니다.<br>
+                                                    선택한 &lang;option&rang; 태그가 선택되어 있을 경우는 true를, 선택되지 않은 경우 false를 반환합니다.</td></tr>
+                                                <tr><th rowspan="1">체크 박스와<br>라디오 버튼</th><td>checked</td><td>체크 박스나 라디오 버튼 태그에 체크 상태 값을 반환하거나, 체크 여부를 제어합니다.<br>
+                                                    체크가 되어 있는 경우 true를, 해지되어 있는 경우 false를 반환합니다.</td></tr>  
+                                            </tbody>
+                                        </table>
+                                    </p>
+                                </li>
+                            </ul>
+                    </details>
+                </article>
+            </li>
+        </ol>
+    </section>
+</body>

@@ -11,330 +11,322 @@
     <title>Chapter 07</title>
 </head>
 <body>
-    <div id="content-wrap">
-        <div id="titlebox">
-            <h1 style="display: inline;">색상과 배경을 위한 스타일</h1><br>
-            <small>이지스퍼블리싱 Do it! HTML 2판을 기준으로 정리한 문서입니다.</small>
-        </div>
-        <div id="navigator">
-            <table style="border:1px solid #ccc">
-                <tr>
-                    <td>
-                        <h3>Lists</h3>
-                        <ol>
-                            <li><a href="#show1">웹에서 색상 표현하기</a></li>
-                            <li><a href="#show2">배경 색과 배경 이미지</a></li>
-                            <li><a href="#show3">그라데이션 효과로 배경 뿌리기</a></li>
-                        </ol>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <div id="mainText">
-            <ol>
-                <li>
-                    <div id="c0701">
-                        <h4><a href=#one id="show1" onclick="if(hide1.style.display=='none')
-                            {hide1.style.display='';show1.innerText='챕터 7-1. 웹에서 색상 표현하기 ▽'}
-                            else {hide1.style.display='none'; show1.innerText='챕터 7-1. 웹에서 색상 표현하기 ▷'}">챕터 7-1. 웹에서 색상 표현하기 ▽</a></h4>
-                            <hr>
-                        <div id="hide1" style="display: show">
-                            <p>이번 장에서는 웹에서 색상을 표현하는 방법들에 대해서 알아봅니다.</p>
-                            <ul>
-                                <li><strong>16진수 표기법</strong> : 16진수로 색상을 표기합니다.</li>
-                                <li><strong>RGB / RGBa 표기법</strong>
-                                    <p>RGB / RGBa로 색상을 표기합니다. 알파값은 0~1 사이의 값으로 표기합니다. 기본형은 다음과 같습니다.
-                                        <div class="man">
-                                            rgb[a](R, G, B [, a] );
-                                        </div>
-                                    </p>
-                                </li>
-                                <li><strong>HSL / HSLa 표기법</strong>
-                                    <p>HSL / HSLa로 색상을 표기합니다. 알파값은 0~1 사이의 값으로 표기합니다. 기본형은 다음과 같습니다.
-                                        <div class="man">
-                                            hsl[a](R, G, B [, a] );
-                                        </div>
-                                    </p>
-                                </li>
-                                <li><strong>색상 이름 표기법</strong>
-                                    <p>
-                                        웹 안전 색상(Web-Safe Color)중 미리 설정된 16가지 기본 색상을 표기합니다. 해당 값은 다음과 같습니다. <br>
-                                        <a href=#colnames id="showColName" onclick="if(hideColName.style.display=='none')
-                                            {hideColName.style.display='';showColName.innerText='접기 ▽'}
-                                            else {hideColName.style.display='none'; showColName.innerText='펼쳐보기 ▷'}">펼쳐보기 ▷</a></h4>
-                                        <div id="hideColName" style="display: none;">
-                                            <ul style="font-weight: bold;">
-                                                <li><span style="color: aqua;">aqua</span></li>
-                                                <li><span style="color: black;">black</span></li>
-                                                <li><span style="color: blue;">blue</span></li>
-                                                <li><span style="color: fuchsia;">fuchia</span></li>
-                                                <li><span style="color: gray;">gray</span></li>
-                                                <li><span style="color: green;">green</span></li>
-                                                <li><span style="color: lime;">lime</span></li>
-                                                <li><span style="color: maroon;">maroon</span></li>
-                                                <li><span style="color: navy;">navy</span></li>
-                                                <li><span style="color: olive;">olive</span></li>
-                                                <li><span style="color: purple;">purple</span></li>
-                                                <li><span style="color: red;">red</span></li>
-                                                <li><span style="color: silver;">silver</span></li>
-                                                <li><span style="color: teal;">teal</span></li>
-                                                <li><span style="color: white;">white</span></li>
-                                                <li><span style="color: yellow;">yellow</span></li>
-                                            </ul>
-                                        </div>
-                                    </p>
-                                </li>
-                            </ul>
-                        </div>
+    <header>
+        <h1 style="display: inline;">색상과 배경을 위한 스타일</h1><br>
+        <small>이지스퍼블리싱 Do it! HTML 2판을 기준으로 정리한 문서입니다.</small>
+    </header>
+    <nav>
+        <h3>Lists</h3>
+        <ol>
+            <li><a href="#show1">웹에서 색상 표현하기</a></li>
+            <li><a href="#show2">배경 색과 배경 이미지</a></li>
+            <li><a href="#show3">그라데이션 효과로 배경 뿌리기</a></li>
+        </ol>
+    </nav>
+    <section id="mainText">
+        <ol>
+            <li>
+                <div id="c0701">
+                    <h4><a href=#one id="show1" onclick="if(hide1.style.display=='none')
+                        {hide1.style.display='';show1.innerText='챕터 7-1. 웹에서 색상 표현하기 ▽'}
+                        else {hide1.style.display='none'; show1.innerText='챕터 7-1. 웹에서 색상 표현하기 ▷'}">챕터 7-1. 웹에서 색상 표현하기 ▽</a></h4>
+                        <hr>
+                    <div id="hide1" style="display: show">
+                        <p>이번 장에서는 웹에서 색상을 표현하는 방법들에 대해서 알아봅니다.</p>
+                        <ul>
+                            <li><strong>16진수 표기법</strong> : 16진수로 색상을 표기합니다.</li>
+                            <li><strong>RGB / RGBa 표기법</strong>
+                                <p>RGB / RGBa로 색상을 표기합니다. 알파값은 0~1 사이의 값으로 표기합니다. 기본형은 다음과 같습니다.
+                                    <div class="man">
+                                        rgb[a](R, G, B [, a] );
+                                    </div>
+                                </p>
+                            </li>
+                            <li><strong>HSL / HSLa 표기법</strong>
+                                <p>HSL / HSLa로 색상을 표기합니다. 알파값은 0~1 사이의 값으로 표기합니다. 기본형은 다음과 같습니다.
+                                    <div class="man">
+                                        hsl[a](R, G, B [, a] );
+                                    </div>
+                                </p>
+                            </li>
+                            <li><strong>색상 이름 표기법</strong>
+                                <p>
+                                    웹 안전 색상(Web-Safe Color)중 미리 설정된 16가지 기본 색상을 표기합니다. 해당 값은 다음과 같습니다. <br>
+                                    <a href=#colnames id="showColName" onclick="if(hideColName.style.display=='none')
+                                        {hideColName.style.display='';showColName.innerText='접기 ▽'}
+                                        else {hideColName.style.display='none'; showColName.innerText='펼쳐보기 ▷'}">펼쳐보기 ▷</a></h4>
+                                    <div id="hideColName" style="display: none;">
+                                        <ul style="font-weight: bold;">
+                                            <li><span style="color: aqua;">aqua</span></li>
+                                            <li><span style="color: black;">black</span></li>
+                                            <li><span style="color: blue;">blue</span></li>
+                                            <li><span style="color: fuchsia;">fuchia</span></li>
+                                            <li><span style="color: gray;">gray</span></li>
+                                            <li><span style="color: green;">green</span></li>
+                                            <li><span style="color: lime;">lime</span></li>
+                                            <li><span style="color: maroon;">maroon</span></li>
+                                            <li><span style="color: navy;">navy</span></li>
+                                            <li><span style="color: olive;">olive</span></li>
+                                            <li><span style="color: purple;">purple</span></li>
+                                            <li><span style="color: red;">red</span></li>
+                                            <li><span style="color: silver;">silver</span></li>
+                                            <li><span style="color: teal;">teal</span></li>
+                                            <li><span style="color: white;">white</span></li>
+                                            <li><span style="color: yellow;">yellow</span></li>
+                                        </ul>
+                                    </div>
+                                </p>
+                            </li>
+                        </ul>
                     </div>
-                </li>
-                <li>
-                    <div id="c0702">
-                        <h4><a href=#two id="show2" onclick="if(hide2.style.display=='none')
-                            {hide2.style.display='';show2.innerText='챕터 7-2. 배경 색과 배경 이미지 ▽'}
-                            else {hide2.style.display='none'; show2.innerText='챕터 7-2. 배경 색과 배경 이미지 ▷'}">챕터 7-2. 배경 색과 배경 이미지 ▽</a></h4>
-                            <hr>
-                        <div id="hide2" style="display: show">
-                            <ul>
-                                <li><strong>background-color 속성</strong><b> : 배경 색 지정하기</b>
-                                    <p>
-                                        background-color 값은 상속되지 않습니다. 기본형은 다음과 같습니다.
-                                        <div class="man">
-                                            background-color : &lang;색상&rang;
-                                        </div>
-                                    </p>
-                                </li>
-                                <li><strong>background-clip 속성</strong><b> : 배경 적용 범위 조절하기</b>
-                                    <p>
-                                        박스 모델 관점에서 배경 적용 범위를 조절할 수 있습니다. 기본형은 다음과 같습니다.
-                                        <div class="man">
-                                            background-clip: border-box | padding-box | content-box
-                                        </div>
-                                    </p>
-                                    <p>
-                                        각 속성에 대한 설명은 다음과 같습니다.
-                                        <ul>
-                                            <li>border-box : 기본값으로, 박스 모델의 가장 외곽인 테두리(border)까지 적용합니다.</li>
-                                            <li>padding-box : 박스 모델에서 테두리를 뺀 패딩(padding) 범위까지 적용합니다.</li>
-                                            <li>content-box : 박스 모델에서 내용 부분에만 적용합니다.</li>
-                                        </ul>
-                                    </p>
-                                </li>
-                                <li><strong>background-image 속성</strong><b> : 배경 이미지 넣기</b>
-                                    <p>
-                                        배경 이미지는 웹에서 사용 가능한 파일인 jpg나 gif,png 파일을 사용하며, 이것을 'url(파일 경로)' 형식으로 사용합니다.<br>
-                                        파일 경로는 현재 웹 문서를 기준으로 상대 경로를 지정할 수도 있고, 'http://'로 시작하는 상대 경로를 사용할 수도 있습니다.<br>
-                                        배경 이미지는 배경 색과 마찬가지로, 문서 전체의 배경 이미지를 지정하려면 &lang;body&rang;태그에 지정하고,
-                                        특정 영역에 배경 이미지를 만들고 싶다면 클래스 선택자나 id 선택자를 이용해 태그에 배경 이미지를 지정하면 됩니다. <br>
-                                    </p>
-                                    <p>
-                                        기본형은 다음과 같습니다.
-                                        <div class="man">
-                                            background-image : url(파일 경로)
-                                        </div>
-                                        <br>
-                                        배경 이미지를 여러 개 사용할 경우, 첫 번째 이미지부터 순서대로 표시하며, 배경 이미지가 표시하고자 하는 범위보다 작을 경우, 바둑판 형태로 배치됩니다.
-                                    </p>
-                                </li>
-                                <li><strong>background-repeat 속성</strong><b> : 배경 이미지 반복 방법 지정하기</b>
-                                    <p>
-                                        background-image가 반복될 경우, 해당 이미지가 어떠한 방식으로 반복되어야 할 지에 대한 방식을 지정합니다. 기본형은 다음과 같습니다.
-                                        <div class="man">
-                                            background-repeat : repeat | repeat-x | repeat-y | no-repeat
-                                        </div>
-                                    </p>
-                                    <p>
-                                        각 속성에 대한 설명은 다음과 같습니다.
-                                        <ul>
-                                            <li>repeat : 기본값. 바둑판 형태로 배치합니다.</li>
-                                            <li>repeat-x : x축으로만 반복합니다.</li>
-                                            <li>repeat-y : y축으로만 반복합니다.</li>
-                                            <li>no-repeat : 반복하지 않습니다.</li>
-                                        </ul>
-                                    </p>
-                                </li>
-                                <li><strong>background-size 속성</strong><b> : 배경 이미지 크기 조절하기</b>
-                                    <p>
-                                        기본형은 다음과 같습니다.
-                                        <div class="man">
-                                            background-size : auto | contain | cover | &lang;크기 값&rang; | &lang;백분율&rang;
-                                        </div>
-                                    </p>
-                                    <p>
-                                        각 속성에 대한 설명은 다음과 같습니다.
-                                        <ul>
-                                            <li>auto : 기본값. 원래 이미지 크기만큼 표시됩니다.</li>
-                                            <li>contain : 요소 안에 배경 이미지가 다 들어오도록 이미지를 확대/축소합니다.</li>
-                                            <li>cover : 배경 이미지로 요소를 모두 덮도록 이미지를 확대/축소합니다.</li>
-                                        </ul>
-                                    </p>
-                                </li>
-                                <li><strong>background-position 속성</strong><b> : 배경 이미지 위치 조절하기</b>
-                                    <p>
-                                        background-position에는 수평 값과 수직 값을 함께 표시하는데, 값을 하나만 지정할 경우 수직 위치 값은 50%나 center로 간주합니다.
-                                    </p>
-                                    <p>
-                                        기본형은 다음과 같습니다.
-                                        <div class="man">
-                                            background-position : &lang;수평 위치&rang; [ &lang;수직 위치&rang; ] <br>
-                                            <small style="color: gray;">
-                                            <span class="tab">수평 위치 : left | center | right | &lang;백분율&rang; | &lang;길이 값&rang; <br> </span>
-                                            <span class="tab">수평 위치 : top | center | bottom | &lang;백분율&rang; | &lang;길이 값&rang; </span>
-                                            </small>
-                                        </div>
-                                    </p>
-                                </li>
-                                <li><strong>background-origin 속성</strong><b> : 배경 이미지 배치할 기준 조절하기</b>
-                                    <p>background-position에 대한 기준점을 설정합니다. 기본형은 다음과 같습니다.
-                                        <div class="man">
-                                            background-origin: border-box | padding-box | content-box
-                                        </div>
-                                    </p>
-                                    <p>
-                                        각 속성에 대한 설명은 다음과 같습니다.
-                                        <ul>
-                                            <li>border-box : 박스 모델의 가장 외곽인 보더가 기준이 됩니다.</li>
-                                            <li>padding-box : 기본값. 박스 모델에서 테두리를 뺀 패딩이 기준이 됩니다.</li>
-                                            <li>content-box : 박스 모델에서 내용 부분이 기준이 됩니다.</li>
-                                        </ul>
-                                    </p>
-                                </li>
-                                <li><strong>background-attatchment 속성</strong><b> : 배경 이미지 고정하기</b>
-                                    <p>
-                                        스크롤을 내리더라도 배경 이미지는 해당 위치에 고정되어 있도록 설정합니다. 기본형은 다음과 같습니다.
-                                        <div class="man">
-                                            background-attatchment : scroll | fixed
-                                        </div>
-                                    </p>
-                                </li>
-                                <li><strong>background 속성</strong><b> : 속성 하나로 배경 이미지 제어하기</b>
-                                    <p>
-                                        배경 관련 속성을 하나의 속성으로 정리합니다. 속성 값이 다르므로 입력 순서는 상관없습니다.<br>
-                                        배경 관련 속성은 다음과 같이 입력할 수 있습니다.
-                                        <div class="man cssMan">
-                                            <span></span><span>background</span> : <span>url('images/bg3.jpg') no-reat fixed right bottom;</span>
-                                        </div>
-                                    </p>
-                                </li>
-                            </ul>
-                        </div>
+                </div>
+            </li>
+            <li>
+                <div id="c0702">
+                    <h4><a href=#two id="show2" onclick="if(hide2.style.display=='none')
+                        {hide2.style.display='';show2.innerText='챕터 7-2. 배경 색과 배경 이미지 ▽'}
+                        else {hide2.style.display='none'; show2.innerText='챕터 7-2. 배경 색과 배경 이미지 ▷'}">챕터 7-2. 배경 색과 배경 이미지 ▽</a></h4>
+                        <hr>
+                    <div id="hide2" style="display: show">
+                        <ul>
+                            <li><strong>background-color 속성</strong><b> : 배경 색 지정하기</b>
+                                <p>
+                                    background-color 값은 상속되지 않습니다. 기본형은 다음과 같습니다.
+                                    <div class="man">
+                                        background-color : &lang;색상&rang;
+                                    </div>
+                                </p>
+                            </li>
+                            <li><strong>background-clip 속성</strong><b> : 배경 적용 범위 조절하기</b>
+                                <p>
+                                    박스 모델 관점에서 배경 적용 범위를 조절할 수 있습니다. 기본형은 다음과 같습니다.
+                                    <div class="man">
+                                        background-clip: border-box | padding-box | content-box
+                                    </div>
+                                </p>
+                                <p>
+                                    각 속성에 대한 설명은 다음과 같습니다.
+                                    <ul>
+                                        <li>border-box : 기본값으로, 박스 모델의 가장 외곽인 테두리(border)까지 적용합니다.</li>
+                                        <li>padding-box : 박스 모델에서 테두리를 뺀 패딩(padding) 범위까지 적용합니다.</li>
+                                        <li>content-box : 박스 모델에서 내용 부분에만 적용합니다.</li>
+                                    </ul>
+                                </p>
+                            </li>
+                            <li><strong>background-image 속성</strong><b> : 배경 이미지 넣기</b>
+                                <p>
+                                    배경 이미지는 웹에서 사용 가능한 파일인 jpg나 gif,png 파일을 사용하며, 이것을 'url(파일 경로)' 형식으로 사용합니다.<br>
+                                    파일 경로는 현재 웹 문서를 기준으로 상대 경로를 지정할 수도 있고, 'http://'로 시작하는 상대 경로를 사용할 수도 있습니다.<br>
+                                    배경 이미지는 배경 색과 마찬가지로, 문서 전체의 배경 이미지를 지정하려면 &lang;body&rang;태그에 지정하고,
+                                    특정 영역에 배경 이미지를 만들고 싶다면 클래스 선택자나 id 선택자를 이용해 태그에 배경 이미지를 지정하면 됩니다. <br>
+                                </p>
+                                <p>
+                                    기본형은 다음과 같습니다.
+                                    <div class="man">
+                                        background-image : url(파일 경로)
+                                    </div>
+                                    <br>
+                                    배경 이미지를 여러 개 사용할 경우, 첫 번째 이미지부터 순서대로 표시하며, 배경 이미지가 표시하고자 하는 범위보다 작을 경우, 바둑판 형태로 배치됩니다.
+                                </p>
+                            </li>
+                            <li><strong>background-repeat 속성</strong><b> : 배경 이미지 반복 방법 지정하기</b>
+                                <p>
+                                    background-image가 반복될 경우, 해당 이미지가 어떠한 방식으로 반복되어야 할 지에 대한 방식을 지정합니다. 기본형은 다음과 같습니다.
+                                    <div class="man">
+                                        background-repeat : repeat | repeat-x | repeat-y | no-repeat
+                                    </div>
+                                </p>
+                                <p>
+                                    각 속성에 대한 설명은 다음과 같습니다.
+                                    <ul>
+                                        <li>repeat : 기본값. 바둑판 형태로 배치합니다.</li>
+                                        <li>repeat-x : x축으로만 반복합니다.</li>
+                                        <li>repeat-y : y축으로만 반복합니다.</li>
+                                        <li>no-repeat : 반복하지 않습니다.</li>
+                                    </ul>
+                                </p>
+                            </li>
+                            <li><strong>background-size 속성</strong><b> : 배경 이미지 크기 조절하기</b>
+                                <p>
+                                    기본형은 다음과 같습니다.
+                                    <div class="man">
+                                        background-size : auto | contain | cover | &lang;크기 값&rang; | &lang;백분율&rang;
+                                    </div>
+                                </p>
+                                <p>
+                                    각 속성에 대한 설명은 다음과 같습니다.
+                                    <ul>
+                                        <li>auto : 기본값. 원래 이미지 크기만큼 표시됩니다.</li>
+                                        <li>contain : 요소 안에 배경 이미지가 다 들어오도록 이미지를 확대/축소합니다.</li>
+                                        <li>cover : 배경 이미지로 요소를 모두 덮도록 이미지를 확대/축소합니다.</li>
+                                    </ul>
+                                </p>
+                            </li>
+                            <li><strong>background-position 속성</strong><b> : 배경 이미지 위치 조절하기</b>
+                                <p>
+                                    background-position에는 수평 값과 수직 값을 함께 표시하는데, 값을 하나만 지정할 경우 수직 위치 값은 50%나 center로 간주합니다.
+                                </p>
+                                <p>
+                                    기본형은 다음과 같습니다.
+                                    <div class="man">
+                                        background-position : &lang;수평 위치&rang; [ &lang;수직 위치&rang; ] <br>
+                                        <small style="color: gray;">
+                                        <span class="tab">수평 위치 : left | center | right | &lang;백분율&rang; | &lang;길이 값&rang; <br> </span>
+                                        <span class="tab">수평 위치 : top | center | bottom | &lang;백분율&rang; | &lang;길이 값&rang; </span>
+                                        </small>
+                                    </div>
+                                </p>
+                            </li>
+                            <li><strong>background-origin 속성</strong><b> : 배경 이미지 배치할 기준 조절하기</b>
+                                <p>background-position에 대한 기준점을 설정합니다. 기본형은 다음과 같습니다.
+                                    <div class="man">
+                                        background-origin: border-box | padding-box | content-box
+                                    </div>
+                                </p>
+                                <p>
+                                    각 속성에 대한 설명은 다음과 같습니다.
+                                    <ul>
+                                        <li>border-box : 박스 모델의 가장 외곽인 보더가 기준이 됩니다.</li>
+                                        <li>padding-box : 기본값. 박스 모델에서 테두리를 뺀 패딩이 기준이 됩니다.</li>
+                                        <li>content-box : 박스 모델에서 내용 부분이 기준이 됩니다.</li>
+                                    </ul>
+                                </p>
+                            </li>
+                            <li><strong>background-attatchment 속성</strong><b> : 배경 이미지 고정하기</b>
+                                <p>
+                                    스크롤을 내리더라도 배경 이미지는 해당 위치에 고정되어 있도록 설정합니다. 기본형은 다음과 같습니다.
+                                    <div class="man">
+                                        background-attatchment : scroll | fixed
+                                    </div>
+                                </p>
+                            </li>
+                            <li><strong>background 속성</strong><b> : 속성 하나로 배경 이미지 제어하기</b>
+                                <p>
+                                    배경 관련 속성을 하나의 속성으로 정리합니다. 속성 값이 다르므로 입력 순서는 상관없습니다.<br>
+                                    배경 관련 속성은 다음과 같이 입력할 수 있습니다.
+                                    <div class="man cssMan">
+                                        <span></span><span>background</span> : <span>url('images/bg3.jpg') no-reat fixed right bottom;</span>
+                                    </div>
+                                </p>
+                            </li>
+                        </ul>
                     </div>
-                </li>
-                <li>
-                    <div id="c0703">
-                        <h4><a href=#three id="show3" onclick="if(hide3.style.display=='none')
-                            {hide3.style.display='';show1.innerText='챕터 7-3. 그라데이션 효과로 배경 뿌리기 ▽'}
-                            else {hide3.style.display='none'; show1.innerText='챕터 7-3. 그라데이션 효과로 배경 뿌리기 ▷'}">챕터 7-3. 그라데이션 효과로 배경 뿌리기 ▽</a></h4>
-                            <hr>
-                        <div id="hide3" style="display: show">
-                            <p>현재 그라데이션은 표준 구문이 완성되었으나, 그라데이션을 지원하지 않는 구형 브라우저를 고려하여 브라우저 접두사를 이용할 필요성이 있습니다. <br>
-                                각 접두사에 대한 설명은 다음과 같습니다.
-                                <table>
-                                    <thead><tr><th>접두사</th><th>브라우저 버전</th></tr></thead>
-                                    <tbody>
-                                        <tr><th>-webkit-</th><td>사파리 5.1 ~ 6.0</td></tr>
-                                        <tr><th>-moz-</th><td>파이어폭스 3.6 ~ 15</td></tr>
-                                        <tr><th>-o-</th><td>오페라 11.1 ~ 12.0</td></tr>
-                                    </tbody>
-                                </table>
-                            </p>
-                            <ul>
-                                <li><strong>선형 그라데이션</strong>
-                                    <p>
-                                        선형 그라데이션을 표시합니다. 기본형은 다음과 같습니다.
-                                        <div class="man">
-                                            linear-gradient( &lang;각도&rang; to &lang;방향&rang;, color-stop [, color-stop, ... ]);
-                                        </div>
-                                    </p>
-                                    <p>
-                                        각 속성들에 대한 설명은 다음과 같습니다.
-                                        <ul>
-                                            <li><b>방향</b>
-                                                <p>
-                                                    방향 옵션의 경우 접두사에 따라 기준 위치가 조금씩 달라지며, 기본적으로 생략할 경우 to bottom으로 인식합니다. <br>
-                                                    prefix에 따른 위치 속성 값은 다음과 같습니다.
-                                                    <table>
-                                                        <thead><tr><th>접두사</th><th>브라우저 버전</th><th>'위치'속성 값</th></tr></thead>
-                                                        <tbody>
-                                                            <tr><th>-webkit-</th><td>사파리 5.1 ~ 6.0</td><td>그라데이션 시작 위치 기준</td></tr>
-                                                            <tr><th>-moz-</th><td>파이어폭스 3.6 ~ 15</td><td>그라데이션 끝 위치 기준. 키워드 to 사용하지 않음</td></tr>
-                                                            <tr><th>-o-</th><td>오페라 11.1 ~ 12.0</td><td>그라데이션 끝 위치 기준. 키워드 to 사용하지 않음</td></tr>
-                                                        </tbody>
-                                                    </table>
-                                                </p>
-                                            </li>
-                                            <li><b>각도</b>
-                                                <p>
-                                                    각도는 0deg에서 시작해, 시계 방향으로 한 바퀴 돌아 360deg까지 사용할 수 있습니다.
-                                                </p>
-                                            </li>
-                                            <li><b>색상 중지 점(color-stop)</b>
-                                                <p>
-                                                    색상 중지 점을 지정할 때는 색상만 지정할 수도 있고, 색상과 함께 중지 점의 위치도 지정할 수 있습니다.
-                                                </p>
-                                            </li>
-                                        </ul>
-                                    </p>
-                                    <p>
-                                        그라데이션 속성을 모두 적용하면, 다음과 같은 구문을 쓸 수 있습니다.
-                                        <div class="man cssMan">
-                                            <span>.grad</span> { <span>background</span> : <span>#06f</span> ; <small> /* css3 미지원 브라우저 */ </small> <br>
-                                                <span class="tab">background</span> : <span>-webkit-linear-gradient(left top, blue, white)</span> ; <small> /* webkit 속성 : 시작 위치 지정함*/</small> <br>
-                                                <span class="tab">background</span> : <span>linear-gradient(to bottom, #06f, white 30%, #06f</span> ; <small> /* 시작 색상, 중지 점 색상과 위치, 끝 색상 */ </small> <br>
-                                                <span class="tab">background</span> : <span>linear-gradient(45deg, #ff0000, #ffffff)</span> ; <small> /* 끝부분 각도, 시작 색상, 끝 색상 */ </small> <br>
-                                            }
-                                        </div>
-                                    </p>
-                                </li>
-                                <li><strong>방사형 그라데이션</strong>
-                                    <p>
-                                        방사형 그라데이션을 사용하기 위해서는 원의 중심과 크기를 지정하고, 그라데이션의 모양을 지정해야 합니다. 기본값은 다음과 같습니다.
-                                        <div class="man">
-                                            radial-gradient( &lang;모양&rang; &lang;크기&rang; at &lang;위치&rang;, color-stop [ , color-stop ... ] )
-                                        </div>
-                                        <br>
-                                    </p>
-                                    <p>
-                                        각 속성들에 대한 설명은 다음과 같습니다.
-                                        <ul>
-                                            <li><b>모양</b>
-                                                <p>
-                                                    모양 옵션은 circle과 ellipse입니다. 별도로 지정하지 않는 경우 ellipse로 인식합니다.
-                                                </p>
-                                            </li>
-                                            <li><b>위치</b>
-                                                <p>
-                                                    그라데이션이 시작하는 원의 중심 위치를 지정합니다. 표준 구문과 이전 구문 사이에 큰 차이가 있으므로 주의가 필요합니다.<br>
-                                                    표준 구문의 경우 at 키워드가 요구되나, 비표준 구문에서는 at을 사용하지 않습니다.<br>
-                                                    사용할 수 있는 값은 키워드(left, right, top, bottom, center)나, 백분율입니다. 생략할 경우 center로 인식합니다.
-                                                </p>
-                                            </li>
-                                            <li><b>크기</b>
-                                                <p>
-                                                    모양 속성과 크기 속성은 함께 사용하며, 다음과 같은 방법으로 사용할 수 있습니다.
-                                                    <ul>
-                                                        <li>farthest-corner : 기본값으로, 그라데이션 가장자리가 그라데이션 중심에서 가장 먼 코너에 닿도록 합니다.</li>
-                                                        <li>farthest-side : 그라데이션 가장자리가 그라데이션 중심에서 가장 먼 모서리와 만나도록 합니다.</li>
-                                                        <li>closest-corner : 그라데이션 가장자리가 그라데이션 중심에서 가장 가까운 요소의 코너에 닿도록 합니다.</li>
-                                                        <li>closest-side : 원의 경우 그라데이션 가장자리가 그라데이션 중심에서 가장 가까운 요소의 모서리와 만나고,<br>
-                                                            <span class="tab3">타원의 경우, 그라데이션 중심에서 가장 가까운 요소의 수평축이나 수직축과 만납니다.</span></li>
-                                                    </ul> 
-                                                </p>
-                                            </li>
-                                        </ul>
-                                    </p>
-                                </li>
-                                <li><strong>그라데이션을 사용해 패턴 만들기</strong>
-                                    <p>
-                                        그라데이션 패턴을 만든 후, 요소를 채울 때 까지 반복해 표시할 수 있습니다.<br>
-                                        선형 그라데이션의 경우 <b>repeating-linear-gradient</b>를 사용하며, 원형 그라데이션은 <b>repeating-radial-gradient</b>를 사용합니다.
-                                    </p>
-                                </li>
-                            </ul>
-                        </div>
+                </div>
+            </li>
+            <li>
+                <div id="c0703">
+                    <h4><a href=#three id="show3" onclick="if(hide3.style.display=='none')
+                        {hide3.style.display='';show1.innerText='챕터 7-3. 그라데이션 효과로 배경 뿌리기 ▽'}
+                        else {hide3.style.display='none'; show1.innerText='챕터 7-3. 그라데이션 효과로 배경 뿌리기 ▷'}">챕터 7-3. 그라데이션 효과로 배경 뿌리기 ▽</a></h4>
+                        <hr>
+                    <div id="hide3" style="display: show">
+                        <p>현재 그라데이션은 표준 구문이 완성되었으나, 그라데이션을 지원하지 않는 구형 브라우저를 고려하여 브라우저 접두사를 이용할 필요성이 있습니다. <br>
+                            각 접두사에 대한 설명은 다음과 같습니다.
+                            <table>
+                                <thead><tr><th>접두사</th><th>브라우저 버전</th></tr></thead>
+                                <tbody>
+                                    <tr><th>-webkit-</th><td>사파리 5.1 ~ 6.0</td></tr>
+                                    <tr><th>-moz-</th><td>파이어폭스 3.6 ~ 15</td></tr>
+                                    <tr><th>-o-</th><td>오페라 11.1 ~ 12.0</td></tr>
+                                </tbody>
+                            </table>
+                        </p>
+                        <ul>
+                            <li><strong>선형 그라데이션</strong>
+                                <p>
+                                    선형 그라데이션을 표시합니다. 기본형은 다음과 같습니다.
+                                    <div class="man">
+                                        linear-gradient( &lang;각도&rang; to &lang;방향&rang;, color-stop [, color-stop, ... ]);
+                                    </div>
+                                </p>
+                                <p>
+                                    각 속성들에 대한 설명은 다음과 같습니다.
+                                    <ul>
+                                        <li><b>방향</b>
+                                            <p>
+                                                방향 옵션의 경우 접두사에 따라 기준 위치가 조금씩 달라지며, 기본적으로 생략할 경우 to bottom으로 인식합니다. <br>
+                                                prefix에 따른 위치 속성 값은 다음과 같습니다.
+                                                <table>
+                                                    <thead><tr><th>접두사</th><th>브라우저 버전</th><th>'위치'속성 값</th></tr></thead>
+                                                    <tbody>
+                                                        <tr><th>-webkit-</th><td>사파리 5.1 ~ 6.0</td><td>그라데이션 시작 위치 기준</td></tr>
+                                                        <tr><th>-moz-</th><td>파이어폭스 3.6 ~ 15</td><td>그라데이션 끝 위치 기준. 키워드 to 사용하지 않음</td></tr>
+                                                        <tr><th>-o-</th><td>오페라 11.1 ~ 12.0</td><td>그라데이션 끝 위치 기준. 키워드 to 사용하지 않음</td></tr>
+                                                    </tbody>
+                                                </table>
+                                            </p>
+                                        </li>
+                                        <li><b>각도</b>
+                                            <p>
+                                                각도는 0deg에서 시작해, 시계 방향으로 한 바퀴 돌아 360deg까지 사용할 수 있습니다.
+                                            </p>
+                                        </li>
+                                        <li><b>색상 중지 점(color-stop)</b>
+                                            <p>
+                                                색상 중지 점을 지정할 때는 색상만 지정할 수도 있고, 색상과 함께 중지 점의 위치도 지정할 수 있습니다.
+                                            </p>
+                                        </li>
+                                    </ul>
+                                </p>
+                                <p>
+                                    그라데이션 속성을 모두 적용하면, 다음과 같은 구문을 쓸 수 있습니다.
+                                    <div class="man cssMan">
+                                        <span>.grad</span> { <span>background</span> : <span>#06f</span> ; <small> /* css3 미지원 브라우저 */ </small> <br>
+                                            <span class="tab">background</span> : <span>-webkit-linear-gradient(left top, blue, white)</span> ; <small> /* webkit 속성 : 시작 위치 지정함*/</small> <br>
+                                            <span class="tab">background</span> : <span>linear-gradient(to bottom, #06f, white 30%, #06f</span> ; <small> /* 시작 색상, 중지 점 색상과 위치, 끝 색상 */ </small> <br>
+                                            <span class="tab">background</span> : <span>linear-gradient(45deg, #ff0000, #ffffff)</span> ; <small> /* 끝부분 각도, 시작 색상, 끝 색상 */ </small> <br>
+                                        }
+                                    </div>
+                                </p>
+                            </li>
+                            <li><strong>방사형 그라데이션</strong>
+                                <p>
+                                    방사형 그라데이션을 사용하기 위해서는 원의 중심과 크기를 지정하고, 그라데이션의 모양을 지정해야 합니다. 기본값은 다음과 같습니다.
+                                    <div class="man">
+                                        radial-gradient( &lang;모양&rang; &lang;크기&rang; at &lang;위치&rang;, color-stop [ , color-stop ... ] )
+                                    </div>
+                                    <br>
+                                </p>
+                                <p>
+                                    각 속성들에 대한 설명은 다음과 같습니다.
+                                    <ul>
+                                        <li><b>모양</b>
+                                            <p>
+                                                모양 옵션은 circle과 ellipse입니다. 별도로 지정하지 않는 경우 ellipse로 인식합니다.
+                                            </p>
+                                        </li>
+                                        <li><b>위치</b>
+                                            <p>
+                                                그라데이션이 시작하는 원의 중심 위치를 지정합니다. 표준 구문과 이전 구문 사이에 큰 차이가 있으므로 주의가 필요합니다.<br>
+                                                표준 구문의 경우 at 키워드가 요구되나, 비표준 구문에서는 at을 사용하지 않습니다.<br>
+                                                사용할 수 있는 값은 키워드(left, right, top, bottom, center)나, 백분율입니다. 생략할 경우 center로 인식합니다.
+                                            </p>
+                                        </li>
+                                        <li><b>크기</b>
+                                            <p>
+                                                모양 속성과 크기 속성은 함께 사용하며, 다음과 같은 방법으로 사용할 수 있습니다.
+                                                <ul>
+                                                    <li>farthest-corner : 기본값으로, 그라데이션 가장자리가 그라데이션 중심에서 가장 먼 코너에 닿도록 합니다.</li>
+                                                    <li>farthest-side : 그라데이션 가장자리가 그라데이션 중심에서 가장 먼 모서리와 만나도록 합니다.</li>
+                                                    <li>closest-corner : 그라데이션 가장자리가 그라데이션 중심에서 가장 가까운 요소의 코너에 닿도록 합니다.</li>
+                                                    <li>closest-side : 원의 경우 그라데이션 가장자리가 그라데이션 중심에서 가장 가까운 요소의 모서리와 만나고,<br>
+                                                        <span class="tab3">타원의 경우, 그라데이션 중심에서 가장 가까운 요소의 수평축이나 수직축과 만납니다.</span></li>
+                                                </ul> 
+                                            </p>
+                                        </li>
+                                    </ul>
+                                </p>
+                            </li>
+                            <li><strong>그라데이션을 사용해 패턴 만들기</strong>
+                                <p>
+                                    그라데이션 패턴을 만든 후, 요소를 채울 때 까지 반복해 표시할 수 있습니다.<br>
+                                    선형 그라데이션의 경우 <b>repeating-linear-gradient</b>를 사용하며, 원형 그라데이션은 <b>repeating-radial-gradient</b>를 사용합니다.
+                                </p>
+                            </li>
+                        </ul>
                     </div>
-                </li>
-            </ol>
-        </div>
-    </div>
+                </div>
+            </li>
+        </ol>
+    </section>
 </body>

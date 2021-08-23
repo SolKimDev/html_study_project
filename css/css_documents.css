@@ -9,23 +9,41 @@
 .clearfix:before, .clearfix:after {display:block; content: ''; line-height: 0;}
 .clearfix:after {clear: both;}
 
+a[target="_blank"] {
+    padding-right: 1.5ex;
+    background:url(../rsrc/image/newwindow.png) no-repeat top right;
+    background-size: 1.2ex;
+}
+
 #mainText {
         font-family: 'Nanum Gothic', sans-serif;
 }
 
+sup {
+    color: coral;
+    font-weight: bold;
+}
+
 #title { font-size: 20px; font-weight: bold; color: #616161; margin: 25px 0px 24px; font-family: 'NanumGothic-Bold';}
 
-/*호환성 유지. nav로 전부 전환 된 후에 해당 항목 삭제할 것*/
-navigator { display: block; 
-    border:  1px solid black;
-    width : max-content;
-    padding: 0px 10px;
+section {
+    margin: 0rem 20rem 0rem 2rem;
+}
+
+body {
+    margin-top: 2.5rem;
+    margin-bottom: 10rem;
+}
+
+body > header > h1 {
+    display: inline
 }
 
 nav { display: block; 
     border:  1px solid black;
     width : max-content;
     padding: 0px 10px;
+    margin: 20px;
 }
 
 #mainTitle{
@@ -52,8 +70,9 @@ nav { display: block;
         color: black;
 }
 
-#content-wrap {
-
+.colorscripter-code{
+    border: 1px solid gray;
+    width: fit-content;
 }
 
 strong {
@@ -84,7 +103,7 @@ strong {
         margin: 20px 10px;
       }
       
-      table thead th {
+      table thead th  {
         padding: 10px;
         font-weight: bold;
         border-top: 1px solid #ccc;
@@ -101,12 +120,28 @@ strong {
         border-bottom: 1px solid #ccc;
         background: #f1f1f1;
       }
-      table td {
+
+      table tbody td {
+          border-right: 1px solid #ccc;
+          border-bottom: 1px solid #ccc;
+          padding: 10px;
+      }
+      
+      table {
         width: max-content;
         padding: 10px;
         vertical-align: top;
         border-right: 1px solid #ccc;
         border-bottom: 1px solid #ccc;
+      }
+
+      table > caption {
+          font-weight: bold;
+          text-align: left;
+      }
+
+      table th[rowspan] {
+          vertical-align: middle;
       }
 
       .nRowHead .upper{
@@ -116,11 +151,6 @@ strong {
         thead th {
             text-align: center;
         }
-
-    /*미사용*/
-    .title:link {color: black;}
-    .title:visited {color: black;}
-    .title:hover {color:black; text-decoration: underline;}
 
     .man {
         margin: auto;
@@ -145,7 +175,6 @@ strong {
     .man em small {
         color : green;
     }
-    /* small green이 왜 안되는거지??*/
 
     .cssMan span:nth-child(even){
         color: red;
@@ -157,12 +186,12 @@ strong {
         color: brown;
     }
 
-    .tab { padding-left: 1.8em; }
-    .tab2 { padding-left: 3.6em; }
-    .tab3 { padding-left: 5.4em; }
+    .tab { margin-left: 1.8em; }
+    .tab2 { margin-left: 3.6em; }
+    .tab3 { margin-left: 5.4em; }
 
     .detail li{
-        margin: auto;
+        margin: 0.1rem;
     }
 
     .title_sub{

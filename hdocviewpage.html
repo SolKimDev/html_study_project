@@ -4,6 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/hdviewpage.css">
+    <script>
+        let before=-1;
+
+        function clicked(n){
+
+            let el = document.getElementById('navlist').children;
+
+            if (before==-1) {
+                console.log('do_nothing');
+            } else {
+                el.item(before).style.color="black";
+                el.item(before).style.fontWeight="normal";
+            }
+            console.log("====================");
+            console.log('n = ' + n );
+            console.log('before = ' + before);
+            console.log(el.item(n));
+            console.log("====================");
+            el.item(n).style.color="cornflowerblue";
+            el.item(n).style.fontWeight="bold";
+
+            before = n;
+        }
+    </script>
     <title>HTML Studying</title>
 </head>
 <body>
@@ -11,6 +35,7 @@
         <header>
             <div id="logoarea">
                 <a href="./main.html">
+                    <div id="logoHover"></div>
                     <img id="logo" src="./rsrc/image/logo/HSTUDY_166x41.png">
                 </a>
             </div>
@@ -22,29 +47,34 @@
             </div>
         </header>
         <content>
-            <iframe id="ifrm" src="./chap_07/main.html" frameborder='0' scrolling="yes"></iframe>
+            <iframe id="ifrm" src="./chap_10/main.html" frameborder='0' scrolling="yes"></iframe>
             <div id="navArea">
                 <div id="nav">
                     <h3>HStudy Navigation</h3>
                     <br>
                     <p style="overflow: hidden;">
-                        <ol style="padding-left: 20px;">
-                            <li><a href="./main_new.html">메인페이지로</a></li>
-                            <li><a href="#" onclick="document.getElementById('ifrm').src = './chap_02/main.html' ">asd</a></li>
-                            <li><a href="#" onclick="document.getElementById('ifrm').src = './chap_03/main.html' ">asd</a></li>
-                            <li><a href="#" onclick="document.getElementById('ifrm').src = './chap_04/main.html' ">asd</a></li>
-                            <li><a href="#" onclick="document.getElementById('ifrm').src = './chap_05/main.html' ">asd</a></li>
-                            <li><a href="#" onclick="document.getElementById('ifrm').src = './chap_06/main.html' ">asd</a></li>
-                            <li><a href="#" onclick="document.getElementById('ifrm').src = './chap_07/main.html' ">색상과 배경을 위한<br>스타일</a></li>
-                            <li><a href="#" onclick="document.getElementById('ifrm').src = './chap_08/main.html' ">CSS 박스 모델</a></li>
+                        <ol style="padding-left: 20px;" id="navlist">
+                            <li><a href="./main.html">메인페이지로</a></li>
+                            <li><a href="#" onclick="document.getElementById('ifrm').src = './chap_02/main.html'; clicked(1);">HTML : 기본 태그</a></li>
+                            <li><a href="#" onclick="document.getElementById('ifrm').src = './chap_03/main.html'; clicked(2);">HTML : 이미지 태그</a></li>
+                            <li><a href="#" onclick="document.getElementById('ifrm').src = './chap_04/main.html'; clicked(3);">HTML : 폼 태그</a></li>
+                            <li><a href="#" onclick="document.getElementById('ifrm').src = './chap_05/main.html'; clicked(4);">CSS 기초</a></li>
+                            <li><a href="#" onclick="document.getElementById('ifrm').src = './chap_06/main.html'; clicked(5);">CSS : 텍스트/문단</a></li>
+                            <li><a href="#" onclick="document.getElementById('ifrm').src = './chap_07/main.html'; clicked(6);">CSS : 색상/배경</li>
+                            <li><a href="#" onclick="document.getElementById('ifrm').src = './chap_08/main.html'; clicked(8);">CSS 박스 모델</a></li>
+                            <li><a href="#" onclick="document.getElementById('ifrm').src = './chap_09/main.html'; clicked(9);">CSS 레이아웃</a></li>
+                            <li><a href="#" onclick="document.getElementById('ifrm').src = './chap_10/main.html'; clicked(10);">HTML : 시맨틱 태그</a></li>
+                            <li><a href="#" onclick="document.getElementById('ifrm').src = './chap_11/main.html'; clicked(11);">HTML : 웹과 멀티미디어</a></li>
+                            <li><a href="#" onclick="document.getElementById('ifrm').src = './chap_12/main.html'; clicked(12);">CSS 선택자 심화</a></li>
+                            <li><a href="#" onclick="document.getElementById('ifrm').src = './chap_13/main.html'; clicked(13);">CSS 애니메이션</a></li>
+                            <li><a href="#" onclick="document.getElementById('ifrm').src = './chap_14/main.html'; clicked(14);">반응형 레이아웃</a></li>
+                            <li><a href="#" onclick="document.getElementById('ifrm').src = './chap_15/main.html'; clicked(15);">미디어 쿼리</a></li>
+                            <li><a href="#" onclick="document.getElementById('ifrm').src = './chap_16/main.html'; clicked(16);">플렉스 박스 레이아웃</a></li>
                         </ol>
                     </p>
                 </div>
             </div>
         </content>
-        <footer>
-            <a href="./main.html">☜ 메인으로 돌아가기</a>
-        </footer>
     </div>
 </body>
 </html>

@@ -38,27 +38,23 @@
             clear: both;
         }
 
-        #emptycells {
-            
-        }
-
     </style>
     <title>Chapter 09</title>
 </head>
 <body>
-    <div id="titlebox">
+    <header>
         <h1 style="display: inline;">CSS 레이아웃</h1><br>
         <small>이지스퍼블리싱 Do it! HTML 2판을 기준으로 정리한 문서입니다.</small>
-    </div>
-    <navigator>
+    </header>
+    <nav>
         <h3>Lists</h3>
         <ol>
             <li><a href="#c0901">CSS 포지셔닝과 주요 속성들</a></li>
             <li><a href="#c0902">다단으로 편집하기</a></li>
             <li><a href="#c0903">표 스타일</a></li>
         </ol>
-    </navigator>
-    <div id="mainText">
+    </nav>
+    <section id="mainText">
         <ol>
             <li>
                 <div id="c0901">
@@ -251,7 +247,7 @@
                                             <p>
                                                 fixed 속성 값도 absolute 속성 값처럼 문서의 흐름과 상관없이 위치를 좌표로 결정하지만, 부모 요소가 아닌 브라우저 창이 기준이 됩니다.<br>
                                                 브라우저 창의 왼쪽 위 꼭지점을 원점으로 두고 좌표가 계산되며 한 번 배치되면 브라우저 창을 스크롤하더라도 계속 고정되어 표시됩니다.<br>
-                                                <small>현재 창의 우상단에 떠 있는 노란색 박스입니다!</small>
+                                                <small>현재 오른쪽의 네비게이션 역시 fixed 속성이 적용되어 있습니다.</small>
                                             </p>
                                         </li>
                                     </ul>
@@ -561,6 +557,6 @@
                 </div>
             </li>
         </ol>
-    </div>
+    </section>
 </body>
 </html>

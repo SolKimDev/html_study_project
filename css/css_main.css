@@ -1,60 +1,199 @@
 @font-face {
     font-family: AppleSDGothicNeoL;
     src: url('../rsrc/font/AppleSDGothicNeoL.ttf') format('truetype');
+    font-size: 17px;
+    letter-spacing: -0.34px;
+    line-height: 27.625px;
 }
 
 *{margin: 0; padding: 0;}
-a {text-decoration: none;}
+*{
+    font-family: AppleSDGothicNeoL;
+}
+a {text-decoration: none;
+    font-weight: bold;
+    color: cornflowerblue;}
+
+a:hover{
+    color: darkblue; 
+}
 .clearFloat { clear:both; }
 
-.LogoArea {height: max-content ; float: right; margin-top: 4%; margin-right: 2%}
+.LogoArea {height: max-content ; float: right; margin-top: 10.588rem; margin-right: 8.824rem;}
 
-#logoMain {height: auto !important; float: right;
-            max-height: 120px; min-height: 60px;
-            }
+#logoMain {height: auto !important; float: right; width: 27.059rem;}
+
+#basic > .titlearea {
+    margin-bottom: 2.941rem;
+}
+
+#basic > .textArea {
+    font-size: 1.412rem;
+}
+
+#basic p {
+    margin: 1ex;
+}
+#basic > .titlearea > label:first-child {
+    font-size: 3.294rem;
+    font-weight: 600;
+}
+
+#basic > .titlearea > label {
+    font-size: 1.882rem;
+}
 
 header{display: flex; justify-content: space-around; background-color: #F8F8FA; box-shadow: 0px -10px 10px 30px#8f8f8f41;}
-header .menu {width: 100%; box-shadow: 0 0 0 1px #ededed inset; transition-property: box-shadow; transition-duration: 0.3s;}
+header ul {display: flex; width: 100%;}
+header li {display: flex; width: 100%;}
+.dropdown > li{
+    margin: 0.8rem;
+    display: inline;
+}
+.dropdown > li > a { color: black; padding:1ex; visibility: hidden; transition: all 0.1s;}
+#dropdown_CC > li > a { color: white;}
+.dropdown > li > a:hover { color: white; }
+#dropdown_CC > li > a:hover { color: cornflowerblue   ;}
+.dropdown > li:hover { background: none;}
+
+#dropdown_html{
+    vertical-align: middle;
+    visibility: hidden;
+    background-color: #AC6E48;
+    height: 0rem;
+    border: none;
+    position: absolute; top:5%; left:0px;
+    width: 100%;
+    z-index: 200;
+    transition: all 0.3s;
+}
+
+#dropdown_CC{
+    vertical-align: middle;
+    visibility: hidden;
+    background-color: #45464C;
+    height: 0rem;
+    border: none;
+    position: absolute; top:5%; left:0px;
+    width: 100%;
+    z-index: 200;
+    transition: all 0.3s;
+}
+
+#dropdown_about{
+    vertical-align: middle;
+    visibility: hidden;
+    background-color: #E5DDD6;
+    height: 0rem;
+    border: none;
+    position: absolute; top:5%; left:0px;
+    width: 100%;
+    z-index: 200;
+    transition: all 0.3s;
+}
+
+#dropdown_html:hover{
+    height: 3rem;
+    visibility: visible;
+    transition: all 0.3s;
+}
+
+#dropdown_CC:hover{
+    height: 3rem;
+    visibility: visible;
+    transition: all 0.3s;
+}
+
+#dropdown_about:hover{
+    height: 3rem;
+    visibility: visible;
+    transition: all 0.3s;
+}
+
+.dropdown:hover > li > a{
+    visibility: visible;
+}
+
+
+header .menu {width: 100%; transition-duration: 0.3s; border:none;}
 header .menu:hover { box-shadow: none;}
-header .mTextArea {color: #767676; margin: 3% 0% 1% 3%; font-size: 1.2em;}
-header .colorBar{height: 10%; }
+header .mTextArea {color: #767676; margin: 3% 0% 1% 3%; font-size: 1.1em;}
+header .colorBar{height: 10%; border:none;}
 
-header .menu:first-child .colorBar{background-color: #AC6E48; }
-header .menu:nth-child(2) .colorBar{background-color: #45464C;}
-header .menu:nth-child(3) .colorBar{background-color: #E5DDD6;}
+header li:first-child .colorBar{background-color: #AC6E48; }
+header li:nth-child(2) .colorBar{background-color: #45464C;}
+header li:nth-child(3) .colorBar{background-color: #E5DDD6;}
 
-header .menu:first-child , .menu:nth-child(2), .menu:nth-child(3) { transition-property: background-color; transition-duration: 0.3s;}
-header .menu:first-child:hover {background-color: #AC6E48;}
-header .menu:first-child:hover .mTextArea {color: #f8f8fa;}
+header li:first-child , li:nth-child(2), li:nth-child(3) { transition-duration: 0.3s;}
+header >ul > li:first-child:hover{background-color: #AC6E48;}
+header li:first-child .menu:hover ~ #dropdown_html {
+    height: 2.56rem;
+    visibility: visible;
+    transition: all 0.3s;
+}
 
-header .menu:nth-child(2):hover {background-color: #45464C; color: #f8f8fa;}
-header .menu:nth-child(2):hover .mTextArea {color: #f8f8fa;}
-header .menu:nth-child(3):hover {background-color: #E5DDD6;}
-header .menu:nth-child(3):hover .mTextArea {color: #f8f8fa;}
+header li:first-child .menu:hover ~ .dropdown > li > a{
+    visibility: visible;
+}
+
+header li:nth-child(2) .menu:hover ~ #dropdown_CC {
+    height: 2.56rem;
+    visibility: visible;
+    transition: all 0.3s;
+}
+
+header li:nth-child(2) .menu:hover ~ .dropdown > li > a{
+    visibility: visible;
+}
+
+header li:nth-child(3) .menu:hover ~ #dropdown_about {
+    height: 2.56rem;
+    visibility: visible;
+    transition: all 0.3s;
+}
+
+header li:nth-child(3) .menu:hover ~ .dropdown > li > a{
+    visibility: visible;
+}
+
+header li:first-child:hover .mTextArea {color: #f8f8fa;}
+
+header > ul > li:nth-child(2):hover {background-color: #45464C; color: #f8f8fa;}
+header > ul > li:nth-child(2):hover .mTextArea {color: #f8f8fa;}
+header > ul > li:nth-child(3):hover {background-color: #E5DDD6;}
+header > ul > li:nth-child(3):hover .mTextArea {color: #f8f8fa;}
+
 
 content { display:block; padding:0 8px; background-image: url('../rsrc/image/mainpage/bgimg.jpg'); width: 100%;
     border: 0;
     padding: 0;
     min-height: 91vmin;
+    min-width: 100%;
     background-position: center 85%;
     background-size: cover;
     background-repeat: no-repeat;
 }
 
-.RecentUpdate {
-    background-color: #F8F8FA;
+#RecentUpdate {
+    background-color: rgba(248, 248, 250, 0.8);
+    border-radius: 0.882rem;
 
-    width: 21%;
-    height: 24%;
+    max-width: 50%;
+    width: 50%;
+    min-width: 30%;
+    height: 30rem;
     
-    float: right;
-    padding-top: 3.5%;
-    margin-right: 2.5%;
+    float: left;
+    padding-top: 4.706rem;
+    padding-left: 5.294rem;
+    margin-top: 5.294rem;
+    margin-left: 5.294rem;
 }
 
 footer {background-color: #DBDBDB; position:absolute; bottom: 0px; width: 100%; display: flex;}
 footer > * {background-color: #DBDBDB; }
 
+footer > p { display: flex;}
 footer > p:nth-of-type(1){padding: 8px 12px 8px 0px; font-size:1em; color: #707070; display: block; height: 30px; }
-footer .footer-left {display: block; left: 3%;}
-footer .footer-right {display: block; right: 3%; float: right;}
+.footer-left {display: flex; left: 3%;}
+.footer-right {display: flex; right: 3%; float: right;}
