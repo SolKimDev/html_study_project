@@ -6,10 +6,151 @@
     <script src="https://kit.fontawesome.com/7eaeb96e92.js" crossorigin="anonymous"></script> <!--미사용-->
     <link rel="stylesheet" href="../../css/css_documents.css">
     <style>
-
+        .key {
+            display: inline;
+            border: 1px solid black;
+            border-radius: 0.3em;
+            margin: 0px;
+            padding: 0.1em 0.4em 0.1em 0.2em;
+            letter-spacing: -0.1em;
+            font-size: 1.8ex;         
+        }
+        .eventValue{
+            margin: 0;
+            text-align: center;
+        }
     </style>
     <script>
-        
+        let bufferCX, bufferCY, bufferPX, bufferPY, bufferSX, bufferSY, bufferLX, bufferLY, bufferBtn;
+
+        document.onmousemove=function(e){
+            if(bufferCX!=e.clientX){
+                bufferCX=e.clientX;
+                const element = document.getElementById("clientX");
+                element.innerHTML = e.clientX;
+            }
+            if(bufferCY!=e.clientY){
+                bufferCY=e.clientY;
+                const element = document.getElementById("clientY");
+                element.innerHTML = e.clientY;
+            }
+            if(bufferPX!=e.pageX){
+                bufferPX=e.pageX;
+                const element = document.getElementById("pageX");
+                element.innerHTML = e.pageX;
+            }
+            if(bufferPY!=e.pageY){
+                bufferPY=e.pageY;
+                const element = document.getElementById("pageY");
+                element.innerHTML = e.pageY;
+            }
+            if(bufferSX!=e.screenX){
+                bufferSX=e.screenX;
+                const element = document.getElementById("screenX");
+                element.innerHTML = e.screenX;
+            }
+            if(bufferSY!=e.screenY){
+                bufferSY=e.screenY;
+                const element = document.getElementById("screenY");
+                element.innerHTML = e.screenY;
+            }
+            if(bufferLX!=e.layerX){
+                bufferLX=e.layerX;
+                const element = document.getElementById("layerX");
+                element.innerHTML = e.layerX;
+            }
+            if(bufferLY!=e.layerY){
+                bufferLY=e.layerY;
+                const element = document.getElementById("layerY");
+                element.innerHTML = e.layerY;
+            }
+            if(bufferBtn!=e.button){
+                bufferBtn=e.button;
+                const element = document.getElementById("button");
+                element.innerHTML = e.button;
+            }
+
+            const targetArea = document.getElementById("target");
+            targetArea.innerHTML = e.target;
+            console.log(e.target);
+        }
+
+        document.onkeydown=function(e){
+            let bufferKC, bufferAK, bufferCK, bufferSK;
+
+            if(bufferKC!=e.keyCode){
+                bufferKC=e.keyCode;
+                const element = document.getElementById("keyCode");
+                element.innerHTML = e.keyCode;
+            }
+            if(bufferAK!=e.altKey){
+                bufferAK=e.altKey;
+                const element = document.getElementById("altKey");
+                if(e.altKey){
+                    element.innerHTML = "<b>"+e.altKey+"</b>";
+                } else {
+                element.innerText = e.altKey;
+                }
+            }
+            if(bufferCK!=e.ctrlKey) {
+                bufferCK=e.ctrlKey;
+                const element = document.getElementById("ctrlKey");
+                if(e.ctrlKey){
+                    element.innerHTML = "<b>"+e.ctrlKey+"</b>";
+                } else {
+                element.innerText = e.ctrlKey;
+                }
+            }
+            if(bufferSK!=e.shiftKey) {
+                bufferSK=e.shiftKey;
+                const element = document.getElementById("shiftKey");
+                if(e.shiftKey){
+                    element.innerHTML = "<b>"+e.shiftKey+"</b>";
+                } else {
+                element.innerText = e.shiftKey;
+                }
+            }
+
+            const targetArea = document.getElementById("target");
+            targetArea.innerHTML = e.target;
+            console.log(e.target);
+        }
+
+        document.onkeyup=function(e){
+            let bufferAK, bufferCK, bufferSK;
+
+            if(bufferAK!=e.altKey){
+                bufferAK=e.altKey;
+                const element = document.getElementById("altKey");
+                if(e.altKey){
+                    element.innerHTML = "<b>"+e.altKey+"</b>";
+                } else {
+                element.innerText = e.altKey;
+                }
+            }
+            if(bufferCK!=e.ctrlKey) {
+                bufferCK=e.ctrlKey;
+                const element = document.getElementById("ctrlKey");
+                if(e.ctrlKey){
+                    element.innerHTML = "<b>"+e.ctrlKey+"</b>";
+                } else {
+                element.innerText = e.ctrlKey;
+                }
+            }
+            if(bufferSK!=e.shiftKey) {
+                bufferSK=e.shiftKey;
+                const element = document.getElementById("shiftKey");
+                if(e.shiftKey){
+                    element.innerHTML = "<b>"+e.shiftKey+"</b>";
+                } else {
+                element.innerText = e.shiftKey;
+                }
+            }
+
+            const targetArea = document.getElementById("target");
+            targetArea.innerHTML = e.target;
+            console.log(e.target);
+        }
     </script>
     <title>Chapter 03</title>
 </head>
@@ -63,6 +204,56 @@
                                         <li><b>onerror</b> : 문서 객체가 로드 중 문제가 발생하는 경우 발생합니다.</li>
                                     </ul>
                                 </p>
+                                <p>
+                                    지정한 요소에 이벤트를 적용하는 방법에는 요소에 직접 이벤트를 등록하거나, <a href="../chap_02/main.html#c0205">문서 객체 구조(DOM)</a>을 이용하여 지정된 요소에 이벤트를 등록하는 방법이 있습니다.<br>
+                                    다음은 button 태그에 onclick 이벤트를 각각 두 가지 방식으로 등록하는 예제입니다.
+                                    <h4>직접 요소 이벤트 등록 방식</h4>
+                                    <div class="man">
+                                        &lang;button id="btn" onclick="alert('Event')"&rang;버튼&lang;/button&rang;
+                                    </div>
+                                    <h4>DOM 이벤트 등록 방식</h4>
+                                    <div class="man">
+                                        &lang;button id="btn"&rang;버튼&lang;/button&rang;<hr>
+                                        document.getElementById("btn").onclick=function( ) { alert('Event'); }
+                                    </div>
+                                </p>
+                            </li>
+                            <li><strong>키보드 접근성</strong>
+                                <p>
+                                    마우스가 없는 경우에도 키보드를 통해 요소에 접근할 수 있으므로, 키보드 접근성을 고려한다면 마우스 이벤트에 대응하는 키보드 이벤트를 작성해주어야 합니다.
+                                    <h4>마우스 대응 키보드 이벤트</h4>
+                                    <table>
+                                        <thead>
+                                            <tr><th>마우스 이벤트</th><th>키보드 이벤트</th></tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr><td>onmouseover</td><td>onfocus</td></tr>
+                                            <tr><td>onmouseout</td><td>onblur</td></tr>
+                                            <tr><td>onclick</td><td><div class="key">Enter↵</div> 키 입력</td></tr>
+                                        </tbody>
+                                    </table>
+                                </p>
+                            </li>
+                            <li><strong>이벤트 중복 등록 해결</strong>
+                                <p>
+                                    요소에 이벤트를 등록하는 경우, 요소에 직접 등록하는 방식과 DOM을 이용한 방식은 모두 한 요소에 같은 이벤트를 중복해서 등록할 수 없습니다.<br>
+                                    이 경우, 우선순위에 따라 후위에 등록된 이벤트만 실행됩니다. (아래의 경우, Event2 실행문만 실행됩니다.)
+                                    <div class="man">
+                                        &lang;button id="btn" onclick="alert('Event');" onclick="alert('Event2');"&rang;button&lang;/button&rang;
+                                    </div>
+                                </p>
+                                <p>
+                                    위와 같이 이벤트를 중복으로 등록한 것이 오류가 아니라, <b>한 요소에 이벤트를 여러 개 등록</b>하고자 하는 의도였다면, 다음의 구문을 이용할 수 있습니다.<br>
+                                    <ul>
+                                        <li><b>IE 8 이하</b> 브라우저 : 요소 선택.<b>attachEvent</b>("on이벤트 종류", [함수명 | 익명 함수]);</li>
+                                        <li><b>그 외</b> 브라우저 : 요소 선택.<b>addEventListener</b>("이벤트 종류", [함수명 | 익명 함수], 표준 캡쳐 방식(true | <b>false</b>);</li>
+                                    </ul>
+                                </p>
+                            </li>
+                            <li><strong>this 키워드</strong>
+                                <p>
+                                    요소에 이벤트를 등록한 경우, 이벤트 실행문에 포함되어 있는 <b>this</b> 키워드는 방문자가 <b>이벤트를 발생시킨 요소</b> 자체를 가리킵니다.
+                                </p>
                             </li>
                         </ul>
                     </details>
@@ -73,7 +264,71 @@
                     <details class="accordion" open=true>
                         <summary><h4 class="title_sub">이벤트 객체</h4><hr></summary>
                         <p>
+                            사이트 내 특정 요소에서 이벤트가 발생하는 경우, 이벤트 핸들러(익명 함수)에 이벤트 객체를 생성하여 실행문으로 사용할 수 있습니다.
+                            이 이벤트 객체에 속성을 이용하면 해당 이벤트에 대한 다양한 정보를 얻어 올 수 있습니다.
                         </p>
+                        <ul>
+                            <li><strong>이벤트 객체 생성하기</strong>
+                                <p>
+                                이벤트 객체는 사이트에서 방문자가 이벤트를 발생시킬 때마다 생성할 수 있습니다.
+                                이렇게 생성된 이벤트 객체의 속성을 이용하면 다양한 이벤트 정보를 가져올 수 있습니다.
+                                예를 들어, 사이트 방먼자가 키보드 입력을 발생시키면 대응하는 키보드 이벤트가 발생하고, 이 때 이벤트 객체가 생성됩니다.
+                                이렇게 생성된 키보드 이벤트 객체의 속성을 이용하면 방문자가 키보드 자판에서 무슨 키를 눌렀는지와 같은 정보를 구할 수 있으며, 이를 통해 단축키 등을 구현할 수 있습니다.
+                                </p>
+                                <p>
+                                    이벤트 객체의 생성은 IE8 이하 버전과 그 외의 브라우저에서 각각 방법이 다릅니다.
+                                    우선 <b>IE 8 이외</b>의 브라우저에서는 다음과 같은 방법으로 자동으로 생성되는 이벤트 객체에 접근할 수 있습니다.<br>
+                                    <div class="man">
+                                        document.Event_Type=function(e) { <small>//alert(e);</small> }
+                                    </div>
+                                </p>
+                                <p>
+                                    위의 이벤트 객체가 실행되면 <i>[object KeyboardEvent]</i> 라는 alert 메시지가 발생하며, e를 통해 이벤트 객체에 접근했음을 확인할 수 있습니다.<br>
+                                    그러나, IE8 이하에서 위와 같은 방식으로 이벤트 객체에 접근하려 할 경우, <i>undefined</i>만 출력되며, 이벤트 객체에 접근할 수 없습니다.<br>
+                                    <b>IE8 이하</b>에서는 이벤트 객체가 자동으로 생성되지 않으므로, 다음과 같이 인위적으로 이벤트 객체를 생성해주어야 합니다.
+                                    <div class="man">
+                                        document.Event_Type=function(e) { var eventObj=window.event; }
+                                    </div>
+                                </p>
+                                <p>
+                                    따라서, 다음 예시와 같이 <a>삼항 연산자</a>를 이용하면 이벤트 객체가 생성되지 않는 경우 e=false가 되므로, <b>모든 환경</b>에서 이벤트 객체를 정상적으로 사용할 수 있습니다.
+                                    <div class="man">
+                                        document.onkeydown=function(e){
+                                            <div class="tab">
+                                                var eventObj=e?e:window.event;<br>
+                                                alert(eventObj);
+                                            </div>
+                                        }
+                                    </div>
+                                </p>
+                                <p>
+                                    다음은 이벤트 객체의 속성 종류와 설명입니다.
+                                    <table>
+                                        <thead>
+                                            <tr><th>구분</th><th>종류</th><th>설명</th><th>현재 값</th></tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr><th rowspan="9">마우스 이벤트<br>객체 속성</th><td>clientX</td><td>마우스 이벤트가 발생한 X 좌푯값(스크롤바 이동값 <b>무시</b>)</td><td><div class="eventValue" id="clientX">N/A</div></td></tr>
+                                            <tr><td>clientY</td><td>마우스 이벤트가 발생한 Y 좌푯값(스크롤바 이동값 <b>무시</b>)</td><td><div class="eventValue" id="clientY">N/A</div></td></tr>
+                                            <tr><td>pageX</td><td>마우스 이벤트가 발생한 X 좌푯값(스크롤바 이동값 <b>포함</b>)</td><td><div class="eventValue" id="pageX">N/A</div></td></tr>
+                                            <tr><td>pageY</td><td>마우스 이벤트가 발생한 Y 좌푯값(스크롤바 이동값 <b>포함</b>)</td><td><div class="eventValue" id="pageY">N/A</div></td></tr>
+                                            <tr><td>screenX</td><td>화면 모니터를 기준으로 이벤트가 발생한 X 좌푯값</td><td><div class="eventValue" id="screenX">N/A</div></td></tr>
+                                            <tr><td>screenY</td><td>화면 모니터를 기준으로 이벤트가 발생한 Y 좌푯값</td><td><div class="eventValue" id="screenY">N/A</div></td></tr>
+                                            <tr><td>layerX</td><td>position을 적용한 요소를 기준으로 이벤트가 발생한 X 좌푯값</td><td><div class="eventValue" id="layerX">N/A</div></td></tr>
+                                            <tr><td>layerX</td><td>position을 적용한 요소를 기준으로 이벤트가 발생한 Y 좌푯값</td><td><div class="eventValue" id="layerY">N/A</div></td></tr>
+                                            <tr><td>button</td><td>마우스에 눌린 버튼의 값</td><td><div class="eventValue" id="button">N/A</div></td></tr>
+
+                                            <tr><th rowspan="4">키보드 이벤트<br>객체 속성</th><td>keyCode</td><td>키보드에 눌린 유니코드 값</td><td><div class="eventValue" id="keyCode">N/A</div></td></tr>
+                                            <tr><td>altKey</td><td><div class="key">Alt</div> 키가 눌려 있으면 true를, 그렇지 않으면 false를 반환합니다.</td><td><div class="eventValue" id="altKey">N/A</div></td></tr>
+                                            <tr><td>ctrlKey</td><td><div class="key">Ctrl</div> 키가 눌려 있으면 true를, 그렇지 않으면 false를 반환합니다.</td><td><div class="eventValue" id="ctrlKey">N/A</div></td></tr>
+                                            <tr><td>shiftKey</td><td><div class="key">Shift</div> 키가 눌려 있으면 true를, 그렇지 않으면 false를 반환합니다.</td><td><div class="eventValue" id="shiftKey">N/A</div></td></tr>
+                                        
+                                            <tr><th>전체 이벤트<br>객체 속성</th><td>target</td><td>this와 같이, 이벤트가 발생한 요소를 반환합니다.</td><td><div class="eventValue" id="target">N/A</div></td></tr>
+                                        </tbody>
+                                    </table>
+                                </p>
+                            </li>
+                        </ul>
                     </details>
                 </article>
             </li>

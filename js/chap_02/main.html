@@ -5,9 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/7eaeb96e92.js" crossorigin="anonymous"></script> <!--미사용-->
     <link rel="stylesheet" href="../../css/css_documents.css">
+    <script
+        src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
     <script>
         let isCorrect = 0;
-        let interval;
 
         function locationInfo() {
             //<![CDATA
@@ -19,8 +22,14 @@
             //]]>
         }
 
+        function locationRefresh() {
+            $("#locationArea").load(location.href+"#locationArea");
+            console.log("locationRefresh() called!")
+        }
+
         window.onload=function(){
-            //interval = setInterval('locationInfo()',500);
+            //setInterval('locationRefresh()',1000);
+            //이거는 AJAX 하고 나서 하기로
         }
 
         function quiz() {
@@ -735,7 +744,7 @@
                                 </p>
                                 <p>
                                     다음은 location 객체를 이용하여 각 정보를 표기한 모습입니다.
-                                    <div id=locationArea>
+                                    <div id="locationArea">
                                         <script type="text/javascript">
                                             locationInfo(); //timeout 계속 덮어쓰는 바람에 구현 X
                                         </script>
