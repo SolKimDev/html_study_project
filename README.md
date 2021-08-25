@@ -1,6 +1,6 @@
 # html_study_project
 HTML을 공부하는 동안 나오는 태그들을 이용해, 공부하는 시점에서 직접 적용시키며 간단히 '공부용 프로젝트'를 만들어보고자 합니다.
-현재 http://mstsc.catpc.uy.to/hstudy 에 호스팅 중이며, 태그 공부한 이후 css와 php도 활용해 뭔가 그럴듯하게 만들어 보려구요.
+현재 http://www.catpc.uy.to/hstudy 에 호스팅 중이며, 태그 공부한 이후 css와 php도 활용해 뭔가 그럴듯하게 만들어 보려구요.
 
 이 프로젝트의 목적은 아래와 같습니다.
 
